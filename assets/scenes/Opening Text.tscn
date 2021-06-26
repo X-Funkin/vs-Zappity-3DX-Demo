@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/fonts/roboto/robotocondesedbold.tres" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/scripts/Text Holder.gd" type="Script" id=2]
@@ -8,6 +8,107 @@ size = 128
 font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=2]
+resource_name = "Print Text"
+length = 1.5
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("BOTTOM TEXT:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.666667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Top Text:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BOTTOM TEXT:percent_visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.666667, 0.766667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Top Text/Text Highlight Color:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.33333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Top Text:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.33333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("BOTTOM TEXT:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.33333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("BOTTOM TEXT/Text Highlight color:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.33333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath(".:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=3]
 resource_name = "Print Text"
 length = 1.5
 step = 0.0166667
@@ -130,15 +231,14 @@ __meta__ = {
 [node name="Text Holder" type="VBoxContainer" parent="Control/CenterContainer" groups=[
 "Enter Recievers",
 ]]
-margin_left = -307.0
-margin_top = -172.0
-margin_right = 306.0
-margin_bottom = 172.0
+margin_left = -238.0
+margin_top = -85.0
+margin_right = 238.0
+margin_bottom = 85.0
 script = ExtResource( 2 )
 
 [node name="Top Text" type="Label" parent="Control/CenterContainer/Text Holder"]
-self_modulate = Color( 0, 0, 0, 1 )
-margin_right = 613.0
+margin_right = 476.0
 margin_bottom = 170.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -146,11 +246,13 @@ custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 text = "yoyoyoyo"
 align = 1
 valign = 1
+percent_visible = 0.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Text Highlight Color" type="ColorRect" parent="Control/CenterContainer/Text Holder/Top Text"]
+visible = false
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -159,7 +261,7 @@ __meta__ = {
 }
 
 [node name="BOTTOM TEXT" type="Label" parent="Control/CenterContainer/Text Holder"]
-self_modulate = Color( 0, 0, 0, 1 )
+visible = false
 margin_top = 174.0
 margin_right = 613.0
 margin_bottom = 344.0
@@ -169,11 +271,13 @@ custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 text = "zappity mod"
 align = 1
 valign = 1
+percent_visible = 0.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Text Highlight color" type="ColorRect" parent="Control/CenterContainer/Text Holder/BOTTOM TEXT"]
+visible = false
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -183,3 +287,64 @@ __meta__ = {
 
 [node name="TextAnim" type="AnimationPlayer" parent="Control/CenterContainer/Text Holder"]
 "anims/Print Text" = SubResource( 2 )
+
+[node name="Control" type="Control" parent="Control/CenterContainer"]
+visible = false
+
+[node name="Text Holder2" type="VBoxContainer" parent="Control/CenterContainer/Control" groups=[
+"Enter Recievers",
+]]
+visible = false
+margin_left = -206.0
+margin_top = -172.0
+margin_right = 206.0
+margin_bottom = 172.0
+script = ExtResource( 2 )
+
+[node name="Top Text" type="Label" parent="Control/CenterContainer/Control/Text Holder2"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_right = 412.0
+margin_bottom = 170.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+text = "zarppity"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text Highlight Color" type="ColorRect" parent="Control/CenterContainer/Control/Text Holder2/Top Text"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BOTTOM TEXT" type="Label" parent="Control/CenterContainer/Control/Text Holder2"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_top = 174.0
+margin_right = 412.0
+margin_bottom = 344.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+text = "foolzarp"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text Highlight color" type="ColorRect" parent="Control/CenterContainer/Control/Text Holder2/BOTTOM TEXT"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextAnim" type="AnimationPlayer" parent="Control/CenterContainer/Control/Text Holder2"]
+"anims/Print Text" = SubResource( 3 )
