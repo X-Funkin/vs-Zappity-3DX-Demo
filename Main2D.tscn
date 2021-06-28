@@ -11,12 +11,11 @@ current = true
 
 [node name="Opening Text" parent="." instance=ExtResource( 1 )]
 modulate = Color( 0, 0.55, 1, 1 )
-position = Vector2( 278.379, -324.77 )
+position = Vector2( 453.845, -165.52 )
 
 [node name="OS Box" parent="." groups=[
 "Enter Recievers",
 ] instance=ExtResource( 2 )]
-position = Vector2( -787.351, -168.264 )
-scale = Vector2( 0.586095, 0.586095 )
-window_name = "test"
+position = Vector2( -862.307, -299.004 )
+scale = Vector2( 0.47322, 0.47322 )
 target_scene = ExtResource( 3 )
