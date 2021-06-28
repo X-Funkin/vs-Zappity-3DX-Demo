@@ -244,7 +244,6 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -70, 106 )
 modes/cull = 2
 modes/depth_draw = 3
 modes/specular = 4
@@ -435,7 +434,7 @@ current = true
 fov = 76.0
 
 [node name="basic screen" type="CSGMesh" parent="."]
-transform = Transform( 2.11878, 0, 0, 0, 1.85229e-07, 2.11878, 0, -2.11878, 1.85229e-07, 0.00117779, 0, -2.00632 )
+transform = Transform( 3.0064, 0, 0, 0, 2.62827e-07, 3.0064, 0, -2.11878, 1.85229e-07, 0.00117779, 0.782867, -2.00632 )
 mesh = SubResource( 16 )
 material = SubResource( 30 )
 
