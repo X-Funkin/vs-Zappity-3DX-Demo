@@ -228,17 +228,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Text Holder" type="VBoxContainer" parent="Control/CenterContainer" groups=[
+[node name="Text Box1" type="Control" parent="Control/CenterContainer"]
+
+[node name="Text Holder" type="VBoxContainer" parent="Control/CenterContainer/Text Box1" groups=[
 "Enter Recievers",
 ]]
-margin_left = -238.0
-margin_top = -85.0
-margin_right = 238.0
-margin_bottom = 85.0
+visible = false
+margin_left = -307.0
+margin_top = -172.0
+margin_right = 306.0
+margin_bottom = 172.0
 script = ExtResource( 2 )
 
-[node name="Top Text" type="Label" parent="Control/CenterContainer/Text Holder"]
-margin_right = 476.0
+[node name="Top Text" type="Label" parent="Control/CenterContainer/Text Box1/Text Holder"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_right = 613.0
 margin_bottom = 170.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -246,13 +250,11 @@ custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 text = "yoyoyoyo"
 align = 1
 valign = 1
-percent_visible = 0.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Text Highlight Color" type="ColorRect" parent="Control/CenterContainer/Text Holder/Top Text"]
-visible = false
+[node name="Text Highlight Color" type="ColorRect" parent="Control/CenterContainer/Text Box1/Text Holder/Top Text"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -260,8 +262,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BOTTOM TEXT" type="Label" parent="Control/CenterContainer/Text Holder"]
-visible = false
+[node name="BOTTOM TEXT" type="Label" parent="Control/CenterContainer/Text Box1/Text Holder"]
+self_modulate = Color( 0, 0, 0, 1 )
 margin_top = 174.0
 margin_right = 613.0
 margin_bottom = 344.0
@@ -271,13 +273,11 @@ custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 text = "zappity mod"
 align = 1
 valign = 1
-percent_visible = 0.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Text Highlight color" type="ColorRect" parent="Control/CenterContainer/Text Holder/BOTTOM TEXT"]
-visible = false
+[node name="Text Highlight color" type="ColorRect" parent="Control/CenterContainer/Text Box1/Text Holder/BOTTOM TEXT"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -285,13 +285,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextAnim" type="AnimationPlayer" parent="Control/CenterContainer/Text Holder"]
+[node name="TextAnim" type="AnimationPlayer" parent="Control/CenterContainer/Text Box1/Text Holder"]
 "anims/Print Text" = SubResource( 2 )
 
-[node name="Control" type="Control" parent="Control/CenterContainer"]
+[node name="Text Box 2" type="Control" parent="Control/CenterContainer"]
 visible = false
 
-[node name="Text Holder2" type="VBoxContainer" parent="Control/CenterContainer/Control" groups=[
+[node name="Text Holder2" type="VBoxContainer" parent="Control/CenterContainer/Text Box 2" groups=[
 "Enter Recievers",
 ]]
 visible = false
@@ -301,7 +301,7 @@ margin_right = 206.0
 margin_bottom = 172.0
 script = ExtResource( 2 )
 
-[node name="Top Text" type="Label" parent="Control/CenterContainer/Control/Text Holder2"]
+[node name="Top Text" type="Label" parent="Control/CenterContainer/Text Box 2/Text Holder2"]
 self_modulate = Color( 0, 0, 0, 1 )
 margin_right = 412.0
 margin_bottom = 170.0
@@ -315,7 +315,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Text Highlight Color" type="ColorRect" parent="Control/CenterContainer/Control/Text Holder2/Top Text"]
+[node name="Text Highlight Color" type="ColorRect" parent="Control/CenterContainer/Text Box 2/Text Holder2/Top Text"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -323,7 +323,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BOTTOM TEXT" type="Label" parent="Control/CenterContainer/Control/Text Holder2"]
+[node name="BOTTOM TEXT" type="Label" parent="Control/CenterContainer/Text Box 2/Text Holder2"]
 self_modulate = Color( 0, 0, 0, 1 )
 margin_top = 174.0
 margin_right = 412.0
@@ -338,7 +338,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Text Highlight color" type="ColorRect" parent="Control/CenterContainer/Control/Text Holder2/BOTTOM TEXT"]
+[node name="Text Highlight color" type="ColorRect" parent="Control/CenterContainer/Text Box 2/Text Holder2/BOTTOM TEXT"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -346,5 +346,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextAnim" type="AnimationPlayer" parent="Control/CenterContainer/Control/Text Holder2"]
+[node name="TextAnim" type="AnimationPlayer" parent="Control/CenterContainer/Text Box 2/Text Holder2"]
 "anims/Print Text" = SubResource( 3 )
