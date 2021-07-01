@@ -1,0 +1,134 @@
+[gd_resource type="ShaderMaterial" load_steps=14 format=2]
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=1]
+uniform_name = "Depth"
+
+[sub_resource type="VisualShaderNodeScalarClamp" id=2]
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=3]
+uniform_name = "Metallic"
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=4]
+uniform_name = "Roughness"
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=5]
+uniform_name = "Specular"
+
+[sub_resource type="VisualShaderNodeColorUniform" id=6]
+uniform_name = "Color"
+
+[sub_resource type="VisualShaderNodeScalarClamp" id=7]
+
+[sub_resource type="VisualShaderNodeScalarClamp" id=8]
+
+[sub_resource type="VisualShaderNodeScalarClamp" id=9]
+
+[sub_resource type="OpenSimplexNoise" id=10]
+period = 4.4
+
+[sub_resource type="NoiseTexture" id=11]
+as_normalmap = true
+noise = SubResource( 10 )
+
+[sub_resource type="VisualShaderNodeTexture" id=12]
+texture = SubResource( 11 )
+
+[sub_resource type="VisualShader" id=13]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx;
+
+uniform float Metallic;
+uniform float Roughness;
+uniform float Specular;
+uniform sampler2D tex_frg_9;
+uniform float Depth;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// ScalarUniform:2
+	float n_out2p0 = Metallic;
+
+// ScalarClamp:6
+	float n_in6p1 = 0.00000;
+	float n_in6p2 = 1.00000;
+	float n_out6p0 = clamp(n_out2p0, n_in6p1, n_in6p2);
+
+// ScalarUniform:3
+	float n_out3p0 = Roughness;
+
+// ScalarClamp:7
+	float n_in7p1 = 0.00000;
+	float n_in7p2 = 1.00000;
+	float n_out7p0 = clamp(n_out3p0, n_in7p1, n_in7p2);
+
+// ScalarUniform:4
+	float n_out4p0 = Specular;
+
+// ScalarClamp:8
+	float n_in8p1 = 0.00000;
+	float n_in8p2 = 1.00000;
+	float n_out8p0 = clamp(n_out4p0, n_in8p1, n_in8p2);
+
+// Texture:9
+	vec4 tex_frg_9_read = texture(tex_frg_9, UV.xy);
+	vec3 n_out9p0 = tex_frg_9_read.rgb;
+	float n_out9p1 = tex_frg_9_read.a;
+
+// ScalarUniform:10
+	float n_out10p0 = Depth;
+
+// ScalarClamp:11
+	float n_in11p1 = 0.00000;
+	float n_in11p2 = 1.00000;
+	float n_out11p0 = clamp(n_out10p0, n_in11p1, n_in11p2);
+
+// Output:0
+	METALLIC = n_out6p0;
+	ROUGHNESS = n_out7p0;
+	SPECULAR = n_out8p0;
+	NORMALMAP = n_out9p0;
+	NORMALMAP_DEPTH = n_out11p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -97, 18 )
+nodes/fragment/0/position = Vector2( 600, 140 )
+nodes/fragment/2/node = SubResource( 3 )
+nodes/fragment/2/position = Vector2( 20, 260 )
+nodes/fragment/3/node = SubResource( 4 )
+nodes/fragment/3/position = Vector2( 100, 340 )
+nodes/fragment/4/node = SubResource( 5 )
+nodes/fragment/4/position = Vector2( 40, 420 )
+nodes/fragment/5/node = SubResource( 6 )
+nodes/fragment/5/position = Vector2( 0, 80 )
+nodes/fragment/6/node = SubResource( 7 )
+nodes/fragment/6/position = Vector2( 280, 200 )
+nodes/fragment/7/node = SubResource( 8 )
+nodes/fragment/7/position = Vector2( 360, 280 )
+nodes/fragment/8/node = SubResource( 9 )
+nodes/fragment/8/position = Vector2( 360, 380 )
+nodes/fragment/9/node = SubResource( 12 )
+nodes/fragment/9/position = Vector2( 140, 480 )
+nodes/fragment/10/node = SubResource( 1 )
+nodes/fragment/10/position = Vector2( -20, 600 )
+nodes/fragment/11/node = SubResource( 2 )
+nodes/fragment/11/position = Vector2( 240, 540 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 6, 0, 6, 0, 0, 2, 3, 0, 7, 0, 7, 0, 0, 3, 4, 0, 8, 0, 8, 0, 0, 4, 9, 0, 0, 8, 10, 0, 11, 0, 11, 0, 0, 9 )
+
+[resource]
+shader = SubResource( 13 )
+shader_param/Metallic = 1.0
+shader_param/Roughness = 0.0
+shader_param/Specular = null
+shader_param/Depth = 0.046

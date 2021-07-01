@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/zappity-voice.ogg-4f803df9ffbd41f9c3559a54f0201087.oggstr"
+
+[deps]
+
+source_file="res://assets/weeks/zappity/zappity/zappity-voice.ogg"
+dest_files=[ "res://.import/zappity-voice.ogg-4f803df9ffbd41f9c3559a54f0201087.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

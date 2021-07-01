@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bf-voice.ogg-0c83988a813ab3d64fb2908b227b957e.oggstr"
+
+[deps]
+
+source_file="res://assets/weeks/zappity/zappity/bf-voice.ogg"
+dest_files=[ "res://.import/bf-voice.ogg-0c83988a813ab3d64fb2908b227b957e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

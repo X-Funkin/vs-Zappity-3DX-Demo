@@ -10,11 +10,23 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
+"class": "Arrow_Track",
+"language": "GDScript",
+"path": "res://assets/scripts/Arrow Track.gd"
+}, {
+"base": "Node2D",
+"class": "Note",
+"language": "GDScript",
+"path": "res://assets/scripts/Note.gd"
+}, {
+"base": "Node2D",
 "class": "OS_Box",
 "language": "GDScript",
 "path": "res://assets/scripts/OS Box.gd"
 } ]
 _global_script_class_icons={
+"Arrow_Track": "",
+"Note": "",
 "OS_Box": ""
 }
 

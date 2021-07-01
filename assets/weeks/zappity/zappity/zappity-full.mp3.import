@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zappity-full.mp3-e20abf7ea3697dcbc87cdc80e1ecbf7c.mp3str"
+
+[deps]
+
+source_file="res://assets/weeks/zappity/zappity/zappity-full.mp3"
+dest_files=[ "res://.import/zappity-full.mp3-e20abf7ea3697dcbc87cdc80e1ecbf7c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
