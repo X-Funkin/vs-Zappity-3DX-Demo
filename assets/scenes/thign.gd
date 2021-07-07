@@ -27,22 +27,36 @@ func set_zoom(n_zoom):
 func get_zoom():
 	return zoom_level
 
-var testwav : AudioStreamSample = load("res://assets/sounds/zappity-voice.wav")
+var testwav : AudioStreamSample = load("res://assets/sounds/Bruh Sound Effect #2.wav")
 
 #var testwav : AudioStreamSample = load("res://assets/sounds/test.wav")
 func update_transform():
 	var top = height
 	var bottom = -height
-	var t0 = song_time-pow(10.0,zoom_level)
-	var t1 = song_time+pow(10.0,zoom_level)
-	transform.origin.y = -(-2.0*(height*height)/(t0-t1)+t0)
-	transform.y.y = -2.0*height/(t0-t1)
-#func _process(delta):
-#	update_transform()
+	var st0 = (song_time-pow(10.0,zoom_level))*1000.0
+	var st1 = (song_time+pow(10.0,zoom_level))*1000.0
+#	t0 = 0.0
+#	t1 = 1.0
+	transform.origin.y = (st0*(2.0*height)/(st0-st1)-height)/1000.0
+	transform.y.y = -2.0*height/(st0-st1)
+var thinguytiem = 0.0
+func _process(delta):
+	thinguytiem += delta
+	if thinguytiem >= 1.0:
+		var st0 = (song_time-pow(10.0,zoom_level))*1000.0
+		var st1 = (song_time+pow(10.0,zoom_level))*1000.0
+#		print("ueyaoralsdfg", transform)
+#		print(zoom_level)
+#		print((song_time+pow(10.0,zoom_level))*1000.0, " ", (song_time-pow(10.0,zoom_level))*1000.0)
+#		print(-((st0-st1)/(-2.0)+st0)/1000.0)
+#		print(st0-st1)
+#		print(st0)
+		thinguytiem = 0.0
+	update_transform()
 #	pass
 
 var sample_start = 0
-var sample_end = int(1543424)
+var sample_end = int(20200)
 var sample_step = 1
 func _ready():
 	var N = get_sample(100, testwav)
@@ -104,7 +118,7 @@ func _draw():
 #		points.append(Vector2(1000.0*float(get_sample_16(sample, testwav))/32767.0, float(sample)/1.0))
 #		var new_point = Vector2(1000.0*float(get_sample_16(sample, testwav))/32767.0, float(sample)/1.0)
 		buff.data_array = [wavdata[sample*4+2], wavdata[sample*4+3]]
-		var new_point = Vector2(1000.0*buff.get_16()/32767.0, float(sample)/44100.0)
+		var new_point = Vector2(1000.0*buff.get_16()/32767.0, 1000.0*float(sample)/44100.0)
 		draw_line(point, new_point, Color("FF0000"))
 		point = new_point
 #		points.append(Vector2(float(get_sample_16(sample, testwav))/32767.0, float(sample)/float(testwav.mix_rate)))

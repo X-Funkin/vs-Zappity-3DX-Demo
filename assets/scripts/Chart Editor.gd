@@ -10,6 +10,7 @@ var tast : float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$"Arrow Track/AnimationPlayer".play("scaling ithaisgfnl")
 	pass
 	var test2 = load("res://assets/sounds/test.wav")
 	var testwav : AudioStreamSample = load("res://assets/sounds/test.wav")

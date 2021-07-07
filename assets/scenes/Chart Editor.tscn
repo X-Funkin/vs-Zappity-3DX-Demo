@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/scenes/Arrow Track.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/scripts/Chart Editor.gd" type="Script" id=2]
@@ -6,15 +6,51 @@
 [ext_resource path="res://assets/weeks/zappity/zappity/inst.ogg" type="AudioStream" id=4]
 [ext_resource path="res://assets/weeks/zappity/zappity/bf-voice.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/scenes/thign.gd" type="Script" id=6]
+[ext_resource path="res://assets/images/debug_texture.png" type="Texture" id=7]
+[ext_resource path="res://assets/sounds/zappity-voice.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/scenes/Waveform Visualizer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/scripts/Song Chart Transform.gd" type="Script" id=10]
+[ext_resource path="res://assets/scenes/Waveform Amplitude.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/scenes/Waveform Display.tscn" type="PackedScene" id=12]
+
+[sub_resource type="Animation" id=1]
+resource_name = "scaling ithaisgfnl"
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
 
 [node name="Chart Editor" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, 420 )
+rotating = true
 current = true
 
 [node name="Arrow Track" parent="." instance=ExtResource( 1 )]
-position = Vector2( 333.354, -263.509 )
+position = Vector2( 480, 0 )
+scale = Vector2( 0.952665, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Arrow Track"]
+"anims/scaling ithaisgfnl" = SubResource( 1 )
 
 [node name="Enemy Voice" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
@@ -28,21 +64,42 @@ bus = "BF Voice"
 stream = ExtResource( 4 )
 bus = "Instrumentals"
 
-[node name="Position2D" type="Position2D" parent="."]
-position = Vector2( -577.359, 0 )
-scale = Vector2( 1, 180 )
-
-[node name="Position2D" type="Position2D" parent="Position2D"]
-scale = Vector2( 1, 50 )
-
-[node name="Position2D" type="Position2D" parent="Position2D/Position2D"]
-scale = Vector2( 1, 100 )
-
-[node name="Position2D" type="Position2D" parent="Position2D/Position2D/Position2D"]
-position = Vector2( 0, -0.126 )
-scale = Vector2( 1, 0.01 )
-
-[node name="thign" type="Node2D" parent="Position2D/Position2D/Position2D/Position2D"]
+[node name="thign" type="Node2D" parent="."]
+visible = false
+position = Vector2( -200, 0 )
+scale = Vector2( 0.194, 1 )
 script = ExtResource( 6 )
-height = 540.0
-song_time = 4.0
+height = 1080.0
+song_time = 222.862
+zoom_level = -1.524
+
+[node name="Sprite" type="Sprite" parent="thign"]
+visible = false
+texture = ExtResource( 7 )
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 1920, 0, -1920, 0 )
+width = 4.0
+
+[node name="Song Chart Transform" type="Position2D" parent="."]
+position = Vector2( -480, 0 )
+scale = Vector2( 0.481, 1 )
+script = ExtResource( 10 )
+
+[node name="Song Position" type="Position2D" parent="Song Chart Transform"]
+
+[node name="Sprite2" type="Sprite" parent="Song Chart Transform/Song Position"]
+texture = ExtResource( 7 )
+
+[node name="Waveform Amplitude" parent="Song Chart Transform/Song Position" instance=ExtResource( 11 )]
+visible = false
+wavefile = ExtResource( 8 )
+
+[node name="Waveform Visualizer" parent="Song Chart Transform/Song Position" instance=ExtResource( 9 )]
+visible = false
+modulate = Color( 1, 0, 0, 1 )
+wav_file = ExtResource( 8 )
+
+[node name="Waveform Display" parent="Song Chart Transform/Song Position" instance=ExtResource( 12 )]
+wav_file = ExtResource( 8 )
