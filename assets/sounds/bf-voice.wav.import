@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bf-voice.wav-07eb502b1048a9775f65fd0c86562b4e.sample"
+
+[deps]
+
+source_file="res://assets/sounds/bf-voice.wav"
+dest_files=[ "res://.import/bf-voice.wav-07eb502b1048a9775f65fd0c86562b4e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

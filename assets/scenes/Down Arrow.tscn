@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/images/NOTE_assets.png" type="Texture" id=1]
+[ext_resource path="res://assets/scenes/Down Arrow.gd" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
+resource_local_to_scene = true
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 235, 157, 153 )
@@ -59,6 +61,7 @@ tracks/0/keys = {
 }
 
 [node name="Down Arrow" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="Down Arrow Sprite" type="Sprite" parent="."]
 texture = SubResource( 1 )
@@ -67,3 +70,5 @@ texture = SubResource( 1 )
 "anims/Down Arrow Confirm" = SubResource( 2 )
 "anims/Down Arrow Default" = SubResource( 3 )
 "anims/Down Arrow Press" = SubResource( 4 )
+
+[connection signal="animation_finished" from="Down Arrow Animation" to="." method="_on_Down_Arrow_Animation_animation_finished"]

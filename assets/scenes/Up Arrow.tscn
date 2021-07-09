@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/images/NOTE_assets.png" type="Texture" id=1]
+[ext_resource path="res://assets/scenes/Up Arrow.gd" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
+resource_local_to_scene = true
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 784, 232, 157, 153 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "Up Arrow Confirm"
 length = 0.166667
 step = 0.0416667
@@ -24,8 +26,7 @@ tracks/0/keys = {
 "values": [ Rect2( 476, 0, 236, 232 ), Rect2( 712, 0, 236, 232 ), Rect2( 948, 231, 214, 206 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Up Arrow Default"
+[sub_resource type="Animation" id=3]
 length = 0.0416667
 step = 0.0416667
 tracks/0/type = "value"
@@ -41,8 +42,7 @@ tracks/0/keys = {
 "values": [ Rect2( 784, 232, 157, 153 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Up Arrow Press"
+[sub_resource type="Animation" id=4]
 length = 0.166667
 step = 0.0416667
 tracks/0/type = "value"
@@ -59,11 +59,14 @@ tracks/0/keys = {
 }
 
 [node name="Up Arrow" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="Up Arrow Sprite" type="Sprite" parent="."]
 texture = SubResource( 1 )
 
 [node name="Up Arrow Animation" type="AnimationPlayer" parent="."]
-"anims/Up Arrow Confirm" = SubResource( 4 )
-"anims/Up Arrow Default" = SubResource( 2 )
-"anims/Up Arrow Press" = SubResource( 3 )
+"anims/Up Arrow Confirm" = SubResource( 2 )
+"anims/Up Arrow Default" = SubResource( 3 )
+"anims/Up Arrow Press" = SubResource( 4 )
+
+[connection signal="animation_finished" from="Up Arrow Animation" to="." method="_on_Up_Arrow_Animation_animation_finished"]

@@ -17,7 +17,7 @@ func set_zoom(n_zoom):
 	zoom_level = n_zoom
 func get_zoom():
 	return zoom_level
-
+signal zoom_updated
 func zoom(pos, zoom_lvl):
 #	var song_zero = $"Song Position".global_transform.xform_inv(Vector2(0,0))
 #	scale.y *= pow(10.0,zoom_lvl)
@@ -28,6 +28,8 @@ func zoom(pos, zoom_lvl):
 	var local_cursor = $"Song Position".global_transform.affine_inverse()*Vector2(0,pos)
 	print("LOCAL CURSOR POSITION: ", local_cursor)
 	scale.y *= 1.0+zoom_lvl
+	if scale.y < 1.0/5.0:
+		scale.y = 1.0/5.0
 	var new_cursor = $"Song Position".global_transform.affine_inverse()*Vector2(0,pos)
 	print("NEW CURSOR POSITTION: ", new_cursor)
 	var new_song_zero = $"Song Position".global_transform.affine_inverse()*Vector2(0,0)
@@ -36,11 +38,17 @@ func zoom(pos, zoom_lvl):
 	$"Song Position".position.y += new_cursor.y-local_cursor.y
 	print("song position ", $"Song Position".position.y)
 	#$"Song Position".position.y -= new_cursor.y-local_cursor.y
-	$"Song Position/Waveform Display".set_visible_length(1000.0/scale.y)
+#	$"Song Position/Waveform Display".set_visible_length(1000.0/scale.y)
+	emit_signal("zoom_updated")
 func scroll(pxl):
 	var offset = Vector2(0,pxl)/$"Song Position".global_scale
 	$"Song Position".position.y += offset.y
-	
+	emit_signal("zoom_updated")
+
+func recieve_songtime(s_time):
+	$"Song Position".position.y = -s_time
+	emit_signal("zoom_updated")
+
 var zoom_speed = 0.1
 var scroll_speed = 50
 func _input(event):
@@ -58,12 +66,14 @@ func _input(event):
 			else:
 				scroll(-scroll_speed)
 	if event.is_action_pressed("ui_accept"):
-		print("\n\nZOOM IN")
-		zoom(512, zoom_speed)
+#		print("\n\nZOOM IN")
+#		zoom(512, zoom_speed)
+		get_parent().play()
 		
 	if event.is_action_pressed("ui_cancel"):
 		print("\n\nZOOM OUT")
-		zoom(512, -zoom_speed)
+#		zoom(512, -zoom_speed)
+		get_parent().stop()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

@@ -19,6 +19,7 @@ func _ready():
 	var visinst = wavevis.instance()
 	ampinst.wavefile = wav_file
 	visinst.wav_file = wav_file
+	visinst.chunk_size = 4410
 	ampinst.name = "Waveform Amplitude"
 	visinst.name = "Waveform Visualizer"
 	add_child(ampinst)

@@ -1,0 +1,45 @@
+extends Area2D
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
+func _process(delta):
+	$"Up Note".position.y = get_global_mouse_position().y
+
+func mouse_entered():
+	print("|ya eahy")
+
+func _on_Player_Editor_Area_mouse_entered():
+	print("ye aaahh")
+	$"Up Note".visible = true
+
+
+func _on_Player_Editor_Area_mouse_exited():
+	print("AAE AOEOAE AEOOOA AA EOAAA EOOOEE EE")
+	$"Up Note".visible = false
+
+
+signal placed_note(note, pos)
+func _on_Player_Editor_Area_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.is_pressed():
+		print(event.as_text())
+		print("pos ", get_global_mouse_position())
+		if event.button_index == BUTTON_LEFT:
+			print("left click at ", get_global_mouse_position())
+			var n_note = Note.new()
+			n_note.note_type = 2
+			n_note.live = true
+			n_note.hit_time = get_parent().get_parent().song_time_transform(get_global_mouse_position().y)
+			print("n_notehiteimg ", n_note.hit_time)
+			get_parent().add_note(n_note)

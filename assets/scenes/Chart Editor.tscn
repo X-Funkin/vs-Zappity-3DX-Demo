@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://assets/scenes/Arrow Track.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/scripts/Chart Editor.gd" type="Script" id=2]
@@ -10,10 +10,58 @@
 [ext_resource path="res://assets/sounds/zappity-voice.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/scenes/Waveform Visualizer.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/scripts/Song Chart Transform.gd" type="Script" id=10]
-[ext_resource path="res://assets/scenes/Waveform Amplitude.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/scenes/Waveform Display.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/scenes/Right Note.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/scenes/Down Note.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/sounds/bf-voice.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sounds/inst.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/scenes/Player Editor Area.gd" type="Script" id=15]
+[ext_resource path="res://assets/scenes/Left Note.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/scenes/Down Arrow Edit.gd" type="Script" id=17]
+[ext_resource path="res://assets/scenes/Up Note.tscn" type="PackedScene" id=18]
+[ext_resource path="res://assets/scenes/Up Arrow Edit.gd" type="Script" id=19]
+[ext_resource path="res://assets/scenes/Right Arrow Edit.gd" type="Script" id=20]
+[ext_resource path="res://assets/scenes/Instrumentals.gd" type="Script" id=21]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="VisualShaderNodeColorConstant" id=1]
+
+[sub_resource type="VisualShader" id=2]
+code = "shader_type canvas_item;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Color:2
+	vec3 n_out2p0 = vec3(1.000000, 1.000000, 1.000000);
+	float n_out2p1 = 1.000000;
+
+// Output:0
+	COLOR.rgb = n_out2p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/2/node = SubResource( 1 )
+nodes/fragment/2/position = Vector2( 240, 140 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 0, 0 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="QuadMesh" id=4]
+size = Vector2( 2000, 1000 )
+
+[sub_resource type="Animation" id=6]
 resource_name = "scaling ithaisgfnl"
 loop = true
 tracks/0/type = "bezier"
@@ -37,8 +85,106 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5, 1 )
 }
 
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 80, 2000 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "scaling ithaisgfnl"
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+
+[sub_resource type="Animation" id=7]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
 [node name="Chart Editor" type="Node2D"]
 script = ExtResource( 2 )
+
+[node name="Song Chart Transform" type="Position2D" parent="." groups=[
+"Song Time Recievers",
+]]
+script = ExtResource( 10 )
+
+[node name="Song Position" type="Position2D" parent="Song Chart Transform"]
+
+[node name="Sprite2" type="Sprite" parent="Song Chart Transform/Song Position"]
+visible = false
+scale = Vector2( 1, 9999 )
+texture = ExtResource( 7 )
+
+[node name="Waveform Z" type="Position2D" parent="Song Chart Transform/Song Position"]
+position = Vector2( -480, 0 )
+scale = Vector2( 0.243, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Waveform Visualizer" parent="Song Chart Transform/Song Position/Waveform Z" instance=ExtResource( 9 )]
+wav_file = ExtResource( 8 )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Song Chart Transform/Song Position/Waveform Z"]
+visible = false
+material = SubResource( 3 )
+mesh = SubResource( 4 )
+
+[node name="Waveform BF" type="Position2D" parent="Song Chart Transform/Song Position"]
+position = Vector2( 480, 0 )
+scale = Vector2( 0.243, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Waveform Visualizer" parent="Song Chart Transform/Song Position/Waveform BF" instance=ExtResource( 9 )]
+wav_file = ExtResource( 13 )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Song Chart Transform/Song Position/Waveform BF"]
+visible = false
+material = SubResource( 3 )
+mesh = SubResource( 4 )
+
+[node name="Waveform Inst" type="Position2D" parent="Song Chart Transform/Song Position"]
+scale = Vector2( 0.243, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Waveform Visualizer" parent="Song Chart Transform/Song Position/Waveform Inst" instance=ExtResource( 9 )]
+wav_file = ExtResource( 14 )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Song Chart Transform/Song Position/Waveform Inst"]
+visible = false
+material = SubResource( 3 )
+mesh = SubResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, 420 )
@@ -47,10 +193,137 @@ current = true
 
 [node name="Arrow Track" parent="." instance=ExtResource( 1 )]
 position = Vector2( 480, 0 )
-scale = Vector2( 0.952665, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Arrow Track"]
-"anims/scaling ithaisgfnl" = SubResource( 1 )
+"anims/scaling ithaisgfnl" = SubResource( 6 )
+
+[node name="Left Arrow Edit" type="Area2D" parent="Arrow Track"]
+position = Vector2( -240, 0 )
+script = ExtResource( 15 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track/Left Arrow Edit"]
+shape = SubResource( 8 )
+
+[node name="Left Note" parent="Arrow Track/Left Arrow Edit" instance=ExtResource( 16 )]
+visible = false
+modulate = Color( 1, 1, 1, 0.5 )
+
+[node name="Guild Line" type="Line2D" parent="Arrow Track/Left Arrow Edit/Left Note"]
+points = PoolVector2Array( -3000, 0, 3000, 0 )
+default_color = Color( 1, 0, 1, 1 )
+
+[node name="Down Arrow Edit" type="Area2D" parent="Arrow Track"]
+position = Vector2( -80, 0 )
+script = ExtResource( 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track/Down Arrow Edit"]
+shape = SubResource( 8 )
+
+[node name="Down Note" parent="Arrow Track/Down Arrow Edit" instance=ExtResource( 12 )]
+visible = false
+modulate = Color( 1, 1, 1, 0.5 )
+
+[node name="Guild Line" type="Line2D" parent="Arrow Track/Down Arrow Edit/Down Note"]
+points = PoolVector2Array( -3000, 0, 3000, 0 )
+default_color = Color( 0, 1, 1, 1 )
+
+[node name="Up Arrow Edit" type="Area2D" parent="Arrow Track"]
+position = Vector2( 80, 0 )
+script = ExtResource( 19 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track/Up Arrow Edit"]
+shape = SubResource( 8 )
+
+[node name="Up Note" parent="Arrow Track/Up Arrow Edit" instance=ExtResource( 18 )]
+visible = false
+modulate = Color( 1, 1, 1, 0.501961 )
+
+[node name="Guild Line" type="Line2D" parent="Arrow Track/Up Arrow Edit/Up Note"]
+points = PoolVector2Array( -3000, 0, 3000, 0 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="Right Arrow Edit" type="Area2D" parent="Arrow Track"]
+position = Vector2( 240, 0 )
+script = ExtResource( 20 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track/Right Arrow Edit"]
+shape = SubResource( 8 )
+
+[node name="Right Note" parent="Arrow Track/Right Arrow Edit" instance=ExtResource( 11 )]
+visible = false
+modulate = Color( 1, 1, 1, 0.501961 )
+
+[node name="Guild Line" type="Line2D" parent="Arrow Track/Right Arrow Edit/Right Note"]
+points = PoolVector2Array( -3000, 0, 3000, 0 )
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Arrow Track2" parent="." instance=ExtResource( 1 )]
+position = Vector2( -480, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Arrow Track2"]
+"anims/scaling ithaisgfnl" = SubResource( 9 )
+
+[node name="Left Arrow Edit" type="Area2D" parent="Arrow Track2"]
+position = Vector2( -240, 0 )
+script = ExtResource( 15 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track2/Left Arrow Edit"]
+shape = SubResource( 8 )
+
+[node name="Left Note" parent="Arrow Track2/Left Arrow Edit" instance=ExtResource( 16 )]
+visible = false
+modulate = Color( 1, 1, 1, 0.5 )
+
+[node name="Guild Line2" type="Line2D" parent="Arrow Track2/Left Arrow Edit/Left Note"]
+position = Vector2( 1440, 0 )
+points = PoolVector2Array( -3000, 0, 3000, 0 )
+default_color = Color( 1, 0, 1, 1 )
+
+[node name="Down Arrow Edit" type="Area2D" parent="Arrow Track2"]
+position = Vector2( -80, 0 )
+script = ExtResource( 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track2/Down Arrow Edit"]
+shape = SubResource( 8 )
+
+[node name="Down Note" parent="Arrow Track2/Down Arrow Edit" instance=ExtResource( 12 )]
+visible = false
+modulate = Color( 1, 1, 1, 0.5 )
+
+[node name="Guild Line3" type="Line2D" parent="Arrow Track2/Down Arrow Edit/Down Note"]
+position = Vector2( 1280, 0 )
+points = PoolVector2Array( -3000, 0, 3000, 0 )
+default_color = Color( 0, 1, 1, 1 )
+
+[node name="Up Arrow Edit" type="Area2D" parent="Arrow Track2"]
+position = Vector2( 80, 0 )
+script = ExtResource( 19 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track2/Up Arrow Edit"]
+shape = SubResource( 8 )
+
+[node name="Up Note" parent="Arrow Track2/Up Arrow Edit" instance=ExtResource( 18 )]
+visible = false
+modulate = Color( 1, 1, 1, 0.501961 )
+
+[node name="Guild Line4" type="Line2D" parent="Arrow Track2/Up Arrow Edit/Up Note"]
+points = PoolVector2Array( -3000, 0, 3000, 0 )
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="Right Arrow Edit" type="Area2D" parent="Arrow Track2"]
+position = Vector2( 240, 0 )
+script = ExtResource( 20 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track2/Right Arrow Edit"]
+shape = SubResource( 8 )
+
+[node name="Right Note" parent="Arrow Track2/Right Arrow Edit" instance=ExtResource( 11 )]
+visible = false
+modulate = Color( 1, 1, 1, 0.501961 )
+
+[node name="Guild Line5" type="Line2D" parent="Arrow Track2/Right Arrow Edit/Right Note"]
+points = PoolVector2Array( -3000, 0, 3000, 0 )
+default_color = Color( 1, 0, 0, 1 )
 
 [node name="Enemy Voice" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
@@ -63,6 +336,7 @@ bus = "BF Voice"
 [node name="Instrumentals" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 bus = "Instrumentals"
+script = ExtResource( 21 )
 
 [node name="thign" type="Node2D" parent="."]
 visible = false
@@ -82,24 +356,36 @@ visible = false
 points = PoolVector2Array( 1920, 0, -1920, 0 )
 width = 4.0
 
-[node name="Song Chart Transform" type="Position2D" parent="."]
-position = Vector2( -480, 0 )
-scale = Vector2( 0.481, 1 )
-script = ExtResource( 10 )
-
-[node name="Song Position" type="Position2D" parent="Song Chart Transform"]
-
-[node name="Sprite2" type="Sprite" parent="Song Chart Transform/Song Position"]
-texture = ExtResource( 7 )
-
-[node name="Waveform Amplitude" parent="Song Chart Transform/Song Position" instance=ExtResource( 11 )]
+[node name="Right Note" parent="." instance=ExtResource( 11 )]
 visible = false
-wavefile = ExtResource( 8 )
+position = Vector2( -860, 0 )
+rotation = 0.475598
 
-[node name="Waveform Visualizer" parent="Song Chart Transform/Song Position" instance=ExtResource( 9 )]
-visible = false
-modulate = Color( 1, 0, 0, 1 )
-wav_file = ExtResource( 8 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Right Note"]
+anims/SPIIIIIN = SubResource( 7 )
 
-[node name="Waveform Display" parent="Song Chart Transform/Song Position" instance=ExtResource( 12 )]
-wav_file = ExtResource( 8 )
+[connection signal="zoom_updated" from="Song Chart Transform" to="." method="_on_Song_Chart_Transform_zoom_updated"]
+[connection signal="input_event" from="Arrow Track/Left Arrow Edit" to="Arrow Track/Left Arrow Edit" method="_on_Player_Editor_Area_input_event"]
+[connection signal="mouse_entered" from="Arrow Track/Left Arrow Edit" to="Arrow Track/Left Arrow Edit" method="_on_Player_Editor_Area_mouse_entered"]
+[connection signal="mouse_exited" from="Arrow Track/Left Arrow Edit" to="Arrow Track/Left Arrow Edit" method="_on_Player_Editor_Area_mouse_exited"]
+[connection signal="input_event" from="Arrow Track/Down Arrow Edit" to="Arrow Track/Down Arrow Edit" method="_on_Player_Editor_Area_input_event"]
+[connection signal="mouse_entered" from="Arrow Track/Down Arrow Edit" to="Arrow Track/Down Arrow Edit" method="_on_Player_Editor_Area_mouse_entered"]
+[connection signal="mouse_exited" from="Arrow Track/Down Arrow Edit" to="Arrow Track/Down Arrow Edit" method="_on_Player_Editor_Area_mouse_exited"]
+[connection signal="input_event" from="Arrow Track/Up Arrow Edit" to="Arrow Track/Up Arrow Edit" method="_on_Player_Editor_Area_input_event"]
+[connection signal="mouse_entered" from="Arrow Track/Up Arrow Edit" to="Arrow Track/Up Arrow Edit" method="_on_Player_Editor_Area_mouse_entered"]
+[connection signal="mouse_exited" from="Arrow Track/Up Arrow Edit" to="Arrow Track/Up Arrow Edit" method="_on_Player_Editor_Area_mouse_exited"]
+[connection signal="input_event" from="Arrow Track/Right Arrow Edit" to="Arrow Track/Right Arrow Edit" method="_on_Player_Editor_Area_input_event"]
+[connection signal="mouse_entered" from="Arrow Track/Right Arrow Edit" to="Arrow Track/Right Arrow Edit" method="_on_Player_Editor_Area_mouse_entered"]
+[connection signal="mouse_exited" from="Arrow Track/Right Arrow Edit" to="Arrow Track/Right Arrow Edit" method="_on_Player_Editor_Area_mouse_exited"]
+[connection signal="input_event" from="Arrow Track2/Left Arrow Edit" to="Arrow Track2/Left Arrow Edit" method="_on_Player_Editor_Area_input_event"]
+[connection signal="mouse_entered" from="Arrow Track2/Left Arrow Edit" to="Arrow Track2/Left Arrow Edit" method="_on_Player_Editor_Area_mouse_entered"]
+[connection signal="mouse_exited" from="Arrow Track2/Left Arrow Edit" to="Arrow Track2/Left Arrow Edit" method="_on_Player_Editor_Area_mouse_exited"]
+[connection signal="input_event" from="Arrow Track2/Down Arrow Edit" to="Arrow Track2/Down Arrow Edit" method="_on_Player_Editor_Area_input_event"]
+[connection signal="mouse_entered" from="Arrow Track2/Down Arrow Edit" to="Arrow Track2/Down Arrow Edit" method="_on_Player_Editor_Area_mouse_entered"]
+[connection signal="mouse_exited" from="Arrow Track2/Down Arrow Edit" to="Arrow Track2/Down Arrow Edit" method="_on_Player_Editor_Area_mouse_exited"]
+[connection signal="input_event" from="Arrow Track2/Up Arrow Edit" to="Arrow Track2/Up Arrow Edit" method="_on_Player_Editor_Area_input_event"]
+[connection signal="mouse_entered" from="Arrow Track2/Up Arrow Edit" to="Arrow Track2/Up Arrow Edit" method="_on_Player_Editor_Area_mouse_entered"]
+[connection signal="mouse_exited" from="Arrow Track2/Up Arrow Edit" to="Arrow Track2/Up Arrow Edit" method="_on_Player_Editor_Area_mouse_exited"]
+[connection signal="input_event" from="Arrow Track2/Right Arrow Edit" to="Arrow Track2/Right Arrow Edit" method="_on_Player_Editor_Area_input_event"]
+[connection signal="mouse_entered" from="Arrow Track2/Right Arrow Edit" to="Arrow Track2/Right Arrow Edit" method="_on_Player_Editor_Area_mouse_entered"]
+[connection signal="mouse_exited" from="Arrow Track2/Right Arrow Edit" to="Arrow Track2/Right Arrow Edit" method="_on_Player_Editor_Area_mouse_exited"]
