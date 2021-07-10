@@ -42,4 +42,4 @@ func _on_Player_Editor_Area_input_event(viewport, event, shape_idx):
 			n_note.live = true
 			n_note.hit_time = get_parent().get_parent().song_time_transform(get_global_mouse_position().y)
 			print("n_notehiteimg ", n_note.hit_time)
-			get_parent().add_note(n_note)
+			get_parent().add_editor_note(n_note)

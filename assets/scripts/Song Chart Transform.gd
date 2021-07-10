@@ -76,10 +76,44 @@ func _input(event):
 		get_parent().stop()
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+var scroll_damp = 1000.0
+var click_scrolling = false
+var scrolling_speed = 0.0
+var scroll_direction = 0
+
+func _process(delta):
+	if !click_scrolling:
+		if sign(scrolling_speed) == scroll_direction:
+			scroll(scrolling_speed*delta)
+			scrolling_speed += -scroll_damp*delta*scroll_direction
+	
+func _on_Center_Track_input_event(viewport, event : InputEvent, shape_idx):
+	if event is InputEventMouseButton and event.is_pressed():
+		print(event.as_text())
+		print("pos ", get_global_mouse_position())
+		if event.button_index == BUTTON_LEFT:
+			print("yeah click center track lol")
+			click_scrolling = true
+			return 0
+	if event is InputEventMouseButton and !event.is_pressed():
+		print(event.as_text())
+		print("pos ", get_global_mouse_position())
+		if event.button_index == BUTTON_LEFT:
+			print("yeah UNclick center track lol")
+			click_scrolling = false
+			
+			return 0
+	if click_scrolling and event is InputEventMouseMotion:
+#		print(event.relative)
+		if Input.is_key_pressed(KEY_SHIFT):
+			zoom(get_global_mouse_position().y, -event.relative.y/100.0)
+		else:
+			scrolling_speed = event.speed.y
+			scroll_direction = sign(scrolling_speed)
+			scroll(event.relative.y)
+	

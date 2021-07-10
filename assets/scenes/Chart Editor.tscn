@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://assets/scenes/Arrow Track.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/scripts/Chart Editor.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://assets/scenes/Up Arrow Edit.gd" type="Script" id=19]
 [ext_resource path="res://assets/scenes/Right Arrow Edit.gd" type="Script" id=20]
 [ext_resource path="res://assets/scenes/Instrumentals.gd" type="Script" id=21]
+[ext_resource path="res://assets/scenes/Center Track.gd" type="Script" id=22]
 
 [sub_resource type="VisualShaderNodeColorConstant" id=1]
 
@@ -61,7 +62,7 @@ shader = SubResource( 2 )
 [sub_resource type="QuadMesh" id=4]
 size = Vector2( 2000, 1000 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "scaling ithaisgfnl"
 loop = true
 tracks/0/type = "bezier"
@@ -85,10 +86,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5, 1 )
 }
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 80, 2000 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=7]
 resource_name = "scaling ithaisgfnl"
 loop = true
 tracks/0/type = "bezier"
@@ -112,7 +113,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5, 1 )
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
@@ -126,6 +127,9 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0.0, 360.0 ]
 }
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 160, 1000 )
 
 [node name="Chart Editor" type="Node2D"]
 script = ExtResource( 2 )
@@ -193,16 +197,18 @@ current = true
 
 [node name="Arrow Track" parent="." instance=ExtResource( 1 )]
 position = Vector2( 480, 0 )
+chart_file = "res://assets/weeks/zappity/zappity/"
+chart_channel = "boyfriend"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Arrow Track"]
-"anims/scaling ithaisgfnl" = SubResource( 6 )
+"anims/scaling ithaisgfnl" = SubResource( 5 )
 
 [node name="Left Arrow Edit" type="Area2D" parent="Arrow Track"]
 position = Vector2( -240, 0 )
 script = ExtResource( 15 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track/Left Arrow Edit"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="Left Note" parent="Arrow Track/Left Arrow Edit" instance=ExtResource( 16 )]
 visible = false
@@ -217,7 +223,7 @@ position = Vector2( -80, 0 )
 script = ExtResource( 17 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track/Down Arrow Edit"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="Down Note" parent="Arrow Track/Down Arrow Edit" instance=ExtResource( 12 )]
 visible = false
@@ -232,7 +238,7 @@ position = Vector2( 80, 0 )
 script = ExtResource( 19 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track/Up Arrow Edit"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="Up Note" parent="Arrow Track/Up Arrow Edit" instance=ExtResource( 18 )]
 visible = false
@@ -247,7 +253,7 @@ position = Vector2( 240, 0 )
 script = ExtResource( 20 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track/Right Arrow Edit"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="Right Note" parent="Arrow Track/Right Arrow Edit" instance=ExtResource( 11 )]
 visible = false
@@ -259,16 +265,18 @@ default_color = Color( 1, 0, 0, 1 )
 
 [node name="Arrow Track2" parent="." instance=ExtResource( 1 )]
 position = Vector2( -480, 0 )
+chart_file = "res://assets/weeks/zappity/zappity/"
+chart_channel = "zappity"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Arrow Track2"]
-"anims/scaling ithaisgfnl" = SubResource( 9 )
+"anims/scaling ithaisgfnl" = SubResource( 7 )
 
 [node name="Left Arrow Edit" type="Area2D" parent="Arrow Track2"]
 position = Vector2( -240, 0 )
 script = ExtResource( 15 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track2/Left Arrow Edit"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="Left Note" parent="Arrow Track2/Left Arrow Edit" instance=ExtResource( 16 )]
 visible = false
@@ -284,7 +292,7 @@ position = Vector2( -80, 0 )
 script = ExtResource( 17 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track2/Down Arrow Edit"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="Down Note" parent="Arrow Track2/Down Arrow Edit" instance=ExtResource( 12 )]
 visible = false
@@ -300,7 +308,7 @@ position = Vector2( 80, 0 )
 script = ExtResource( 19 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track2/Up Arrow Edit"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="Up Note" parent="Arrow Track2/Up Arrow Edit" instance=ExtResource( 18 )]
 visible = false
@@ -315,7 +323,7 @@ position = Vector2( 240, 0 )
 script = ExtResource( 20 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow Track2/Right Arrow Edit"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="Right Note" parent="Arrow Track2/Right Arrow Edit" instance=ExtResource( 11 )]
 visible = false
@@ -359,10 +367,20 @@ width = 4.0
 [node name="Right Note" parent="." instance=ExtResource( 11 )]
 visible = false
 position = Vector2( -860, 0 )
-rotation = 0.475598
+rotation = 5.99165
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Right Note"]
-anims/SPIIIIIN = SubResource( 7 )
+anims/SPIIIIIN = SubResource( 8 )
+
+[node name="Center Track" type="Area2D" parent="."]
+script = ExtResource( 22 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Center Track"]
+shape = SubResource( 9 )
+
+[node name="Snippet Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
 
 [connection signal="zoom_updated" from="Song Chart Transform" to="." method="_on_Song_Chart_Transform_zoom_updated"]
 [connection signal="input_event" from="Arrow Track/Left Arrow Edit" to="Arrow Track/Left Arrow Edit" method="_on_Player_Editor_Area_input_event"]
@@ -389,3 +407,5 @@ anims/SPIIIIIN = SubResource( 7 )
 [connection signal="input_event" from="Arrow Track2/Right Arrow Edit" to="Arrow Track2/Right Arrow Edit" method="_on_Player_Editor_Area_input_event"]
 [connection signal="mouse_entered" from="Arrow Track2/Right Arrow Edit" to="Arrow Track2/Right Arrow Edit" method="_on_Player_Editor_Area_mouse_entered"]
 [connection signal="mouse_exited" from="Arrow Track2/Right Arrow Edit" to="Arrow Track2/Right Arrow Edit" method="_on_Player_Editor_Area_mouse_exited"]
+[connection signal="input_event" from="Center Track" to="Song Chart Transform" method="_on_Center_Track_input_event"]
+[connection signal="timeout" from="Snippet Timer" to="." method="_on_Snippet_Timer_timeout"]

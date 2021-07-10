@@ -2,6 +2,7 @@ extends Node2D
 class_name Note
 
 export(float) var hit_time
+export(float) var hold_time
 export(int) var note_type
 export(bool) var live
 export(bool) var player_note
