@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/images/NOTE_assets.png" type="Texture" id=1]
+[ext_resource path="res://assets/scenes/Note Hold.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+resource_local_to_scene = true
+flags = 2
+atlas = ExtResource( 1 )
+region = Rect2( 1370, 449, 50, 44 )
+
+[sub_resource type="AtlasTexture" id=2]
+resource_local_to_scene = true
+flags = 2
+atlas = ExtResource( 1 )
+region = Rect2( 1170, 447, 50, 64 )
+
+[node name="Note Hold" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Down Note Hold Transform" type="Position2D" parent="."]
+
+[node name="Down Note Hold" type="Sprite" parent="Down Note Hold Transform"]
+texture = SubResource( 1 )
+offset = Vector2( 0, 22 )
+
+[node name="Down Note Hold End" type="Sprite" parent="Down Note Hold Transform/Down Note Hold"]
+position = Vector2( 0, 42 )
+texture = SubResource( 2 )
+offset = Vector2( 0, 32 )

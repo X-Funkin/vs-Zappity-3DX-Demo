@@ -24,19 +24,19 @@ func zoom(pos, zoom_lvl):
 	#transform.y.y *= pow(10.0,zoom_lvl)
 #	return 0
 	var song_zero = $"Song Position".global_transform.affine_inverse()*Vector2(0,0)
-	print("SONG ZERO: ", song_zero)
+#	print("SONG ZERO: ", song_zero)
 	var local_cursor = $"Song Position".global_transform.affine_inverse()*Vector2(0,pos)
-	print("LOCAL CURSOR POSITION: ", local_cursor)
+#	print("LOCAL CURSOR POSITION: ", local_cursor)
 	scale.y *= 1.0+zoom_lvl
 	if scale.y < 1.0/5.0:
 		scale.y = 1.0/5.0
 	var new_cursor = $"Song Position".global_transform.affine_inverse()*Vector2(0,pos)
-	print("NEW CURSOR POSITTION: ", new_cursor)
+#	print("NEW CURSOR POSITTION: ", new_cursor)
 	var new_song_zero = $"Song Position".global_transform.affine_inverse()*Vector2(0,0)
-	print("NEW SONG ZERO: ", new_song_zero)
-	print("DIFF: ", new_cursor.y-local_cursor.y)
+#	print("NEW SONG ZERO: ", new_song_zero)
+#	print("DIFF: ", new_cursor.y-local_cursor.y)
 	$"Song Position".position.y += new_cursor.y-local_cursor.y
-	print("song position ", $"Song Position".position.y)
+#	print("song position ", $"Song Position".position.y)
 	#$"Song Position".position.y -= new_cursor.y-local_cursor.y
 #	$"Song Position/Waveform Display".set_visible_length(1000.0/scale.y)
 	emit_signal("zoom_updated")

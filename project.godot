@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Vs Zappity"
-run/main_scene="res://Main3D.tscn"
+run/main_scene="res://basic menu.tscn"
 config/icon="res://icon.png"
 
 [display]

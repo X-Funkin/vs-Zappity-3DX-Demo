@@ -15,17 +15,18 @@ var DownNote : PackedScene = load("res://assets/scenes/Down Note.tscn")
 var UpNote : PackedScene = load("res://assets/scenes/Up Note.tscn")
 var RightNote : PackedScene = load("res://assets/scenes/Right Note.tscn")
 var EditorNote : PackedScene = load("res://assets/scenes/Editor Note.tscn")
+onready var DownHold : PackedScene = load("res://assets/scenes/Down Note Hold.tscn")
 
 func set_scroll_speed(n_speed):
 	scroll_speed = n_speed
-	for AFOSAHGD in get_children():
-		print(AFOSAHGD.name)
-	print(name)
-	print($"Left Track".name)
-	print($"Left Track/Left Arrow".name)
-	print($"Left Track/Left Arrow/Left Notes Transform".name)
-	print($"Left Track/Left Arrow/Left Notes Transform/Left Notes".name)
-	print($"Left Track/Left Arrow/Left Notes Transform/Left Notes".name)
+#	for AFOSAHGD in get_children():
+#		print(AFOSAHGD.name)
+#	print(name)
+#	print($"Left Track".name)
+#	print($"Left Track/Left Arrow".name)
+#	print($"Left Track/Left Arrow/Left Notes Transform".name)
+#	print($"Left Track/Left Arrow/Left Notes Transform/Left Notes".name)
+#	print($"Left Track/Left Arrow/Left Notes Transform/Left Notes".name)
 	$"Left Track/Left Arrow/Left Notes Transform".scale.y = scroll_speed
 	$"Down Track/Down Arrow/Down Notes Transform".scale.y = scroll_speed
 	$"Up Track/Up Arrow/Up Notes Transform".scale.y = scroll_speed
@@ -33,12 +34,20 @@ func set_scroll_speed(n_speed):
 	
 	for node in $"Left Track/Left Arrow/Left Notes Transform/Left Notes".get_children():
 		node.scale.y = 1.0/scroll_speed
+		node.scale_set(1.0/scroll_speed)
+#		node.set_global_scale(1.0/scroll_speed)
 	for node in $"Down Track/Down Arrow/Down Notes Transform/Down Notes".get_children():
 		node.scale.y = 1.0/scroll_speed
+		node.scale_set(1.0/scroll_speed)
+#		node.set_global_scale(1.0/scroll_speed)
 	for node in $"Up Track/Up Arrow/Up Notes Transform/Up Notes".get_children():
 		node.scale.y = 1.0/scroll_speed
+		node.scale_set(1.0/scroll_speed)
+#		node.set_global_scale(1.0/scroll_speed)
 	for node in $"Right Track/Right Arrow/Right Notes Transform/Right Notes".get_children():
 		node.scale.y = 1.0/scroll_speed
+		node.scale_set(1.0/scroll_speed)
+#		node.set_global_scale(1.0/scroll_speed)
 func get_scroll_speed():
 	return scroll_speed
 
@@ -93,9 +102,11 @@ func add_editor_note(n_note : Note):
 		0:
 			var l_inst = LeftNote.instance()
 			l_inst.add_child(e_inst)
+			$"Left Track/Left Arrow/Left Notes Transform/Left Notes".add_child(l_inst)
 			l_inst.hit_time = n_note.hit_time
 			l_inst.live = n_note.live
-			$"Left Track/Left Arrow/Left Notes Transform/Left Notes".add_child(l_inst)
+			l_inst.hold_time = n_note.hold_time
+			l_inst.hold_note = n_note.hold_note
 			l_inst.position.y = n_note.hit_time
 			l_inst.global_scale.y = 1.0
 			print("yeah added note lol ", l_inst.transform)
@@ -103,26 +114,34 @@ func add_editor_note(n_note : Note):
 		1:
 			var d_inst = DownNote.instance()
 			d_inst.add_child(e_inst)
+			$"Down Track/Down Arrow/Down Notes Transform/Down Notes".add_child(d_inst)
 			d_inst.hit_time = n_note.hit_time
 			d_inst.live = n_note.live
+			d_inst.note_hold = DownHold
+			d_inst.hold_time = n_note.hold_time
+#			d_inst.hold_note = n_note.hold_note
 			print("DOWEAOSDFK")
-			$"Down Track/Down Arrow/Down Notes Transform/Down Notes".add_child(d_inst)
 			d_inst.position.y = n_note.hit_time
 			d_inst.global_scale.y = 1.0
+			
 		2:
 			var u_inst = UpNote.instance()
 			u_inst.add_child(e_inst)
+			$"Up Track/Up Arrow/Up Notes Transform/Up Notes".add_child(u_inst)
 			u_inst.hit_time = n_note.hit_time
 			u_inst.live = n_note.live
-			$"Up Track/Up Arrow/Up Notes Transform/Up Notes".add_child(u_inst)
+			u_inst.hold_time = n_note.hold_time
+			u_inst.hold_note = n_note.hold_note
 			u_inst.position.y = n_note.hit_time
 			u_inst.global_scale.y = 1.0
 		3:
 			var r_inst = RightNote.instance()
 			r_inst.add_child(e_inst)
+			$"Right Track/Right Arrow/Right Notes Transform/Right Notes".add_child(r_inst)
 			r_inst.hit_time = n_note.hit_time
 			r_inst.live = n_note.live
-			$"Right Track/Right Arrow/Right Notes Transform/Right Notes".add_child(r_inst)
+			r_inst.hold_time = n_note.hold_time
+			r_inst.hold_note = n_note.hold_note
 			r_inst.position.y = n_note.hit_time
 			r_inst.global_scale.y = 1.0
 		
