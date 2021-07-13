@@ -16,6 +16,7 @@ note_type = 2
 note_hold = ExtResource( 3 )
 
 [node name="Note Hold" parent="." instance=ExtResource( 4 )]
+visible = false
 
 [node name="Up Note Sprite" type="Sprite" parent="."]
 texture = SubResource( 1 )

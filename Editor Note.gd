@@ -28,4 +28,7 @@ func _on_Note_Area_mouse_exited():
 func _on_Note_Area_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_index == BUTTON_RIGHT:
+			if Input.is_key_pressed(KEY_SHIFT):
+				get_parent().hold_note = false
+				return 0
 			get_parent().queue_free()

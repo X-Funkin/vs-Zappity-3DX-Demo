@@ -3,7 +3,7 @@ class_name Note
 
 export(int) var note_type #setget set_note_type, get_note_type
 export(float) var hit_time
-export(bool) var hold_note = true setget set_hold_note, get_hold_note
+export(bool) var hold_note = false setget set_hold_note, get_hold_note
 export(float) var hold_time setget set_hold_time, get_hold_time
 export(bool) var live
 export(bool) var player_note

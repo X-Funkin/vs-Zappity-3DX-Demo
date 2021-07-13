@@ -133,6 +133,7 @@ extents = Vector2( 160, 1000 )
 
 [node name="Chart Editor" type="Node2D"]
 script = ExtResource( 2 )
+song = "zappity"
 
 [node name="Song Chart Transform" type="Position2D" parent="." groups=[
 "Song Time Recievers",
@@ -143,7 +144,6 @@ script = ExtResource( 10 )
 
 [node name="Sprite2" type="Sprite" parent="Song Chart Transform/Song Position"]
 visible = false
-scale = Vector2( 1, 9999 )
 texture = ExtResource( 7 )
 
 [node name="Waveform Z" type="Position2D" parent="Song Chart Transform/Song Position"]
@@ -382,6 +382,30 @@ shape = SubResource( 9 )
 wait_time = 0.2
 one_shot = true
 
+[node name="Import Button" type="Button" parent="."]
+margin_left = -942.703
+margin_top = -99.2342
+margin_right = -849.703
+margin_bottom = -79.2342
+rect_scale = Vector2( 1.77902, 1.77902 )
+input_pass_on_modal_close_click = false
+text = "Import Chart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Export Button" type="Button" parent="."]
+margin_left = 772.134
+margin_top = -99.2342
+margin_right = 865.134
+margin_bottom = -79.2342
+rect_scale = Vector2( 1.77902, 1.77902 )
+input_pass_on_modal_close_click = false
+text = "Export Chart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="zoom_updated" from="Song Chart Transform" to="." method="_on_Song_Chart_Transform_zoom_updated"]
 [connection signal="input_event" from="Arrow Track/Left Arrow Edit" to="Arrow Track/Left Arrow Edit" method="_on_Player_Editor_Area_input_event"]
 [connection signal="mouse_entered" from="Arrow Track/Left Arrow Edit" to="Arrow Track/Left Arrow Edit" method="_on_Player_Editor_Area_mouse_entered"]
@@ -409,3 +433,5 @@ one_shot = true
 [connection signal="mouse_exited" from="Arrow Track2/Right Arrow Edit" to="Arrow Track2/Right Arrow Edit" method="_on_Player_Editor_Area_mouse_exited"]
 [connection signal="input_event" from="Center Track" to="Song Chart Transform" method="_on_Center_Track_input_event"]
 [connection signal="timeout" from="Snippet Timer" to="." method="_on_Snippet_Timer_timeout"]
+[connection signal="pressed" from="Import Button" to="." method="_on_Import_Button_pressed"]
+[connection signal="pressed" from="Export Button" to="." method="_on_Export_Button_pressed"]
