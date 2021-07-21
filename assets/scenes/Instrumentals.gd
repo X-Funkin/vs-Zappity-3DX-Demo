@@ -9,7 +9,7 @@ extends AudioStreamPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
+export(float) var offset = 0.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var song_time = 0.0
@@ -21,5 +21,5 @@ func _process(delta):
 		if diff < 0 and abs(diff)<0.3:
 			current_time = song_time + delta
 		song_time = current_time
-		get_tree().call_group("Song Time Recievers", "recieve_songtime",1000.0*song_time-15.5*1.0)
+		get_tree().call_group("Song Time Recievers", "recieve_songtime",1000.0*song_time+offset)
 #	pass

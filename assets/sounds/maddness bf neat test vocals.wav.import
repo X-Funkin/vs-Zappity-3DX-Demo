@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/maddness bf neat test vocals.wav-26d773f5aeb8773b69694e4b17f990dc.sample"
+
+[deps]
+
+source_file="res://assets/sounds/maddness bf neat test vocals.wav"
+dest_files=[ "res://.import/maddness bf neat test vocals.wav-26d773f5aeb8773b69694e4b17f990dc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

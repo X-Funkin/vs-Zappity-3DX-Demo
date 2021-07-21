@@ -17,7 +17,7 @@ export(PackedScene) onready var note_hold
 # var b = "text"
 var active = true
 var enemy_hit = false
-
+var playing_hold = false
 # Called when the node enters the scene tree for the first time.
 
 #func set_note_type(n_type):
@@ -74,11 +74,20 @@ func scale_set(n_scale):
 #	$"Down Note Hold Transform".scale.y = 1.0/scale.y
 #	$"Down Note Hold Transform/Down Note Hold/Down Note Hold End".global_scale.y = 1
 func _ready():
-	pass # Replace with function body.
+#	scale = scale
+#	scale_set(scale.y)
+	$"Note Hold".played_time = -hit_time
+	$"Note Hold".hold_time = hold_time
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+var ughghihgg = false
+
 func _process(delta):
+	if !ughghihgg:
+		ughghihgg = true
+		$"Note Hold".played_time = -hit_time
+		$"Note Hold".hold_time = hold_time
 	if live:
 		if hold_note:
 			if (-get_parent().position.y >= hit_time) and (-get_parent().position.y < hit_time+hold_time) and active:
@@ -88,17 +97,26 @@ func _process(delta):
 				position.y = -get_parent().position.y
 #				global_position.y = 0.0
 				$"Note Hold".played_time = -get_parent().position.y-hit_time
+				if !playing_hold:
+					add_to_group("Song Time Recievers")
+				playing_hold = true
 				return 0
 			if (-get_parent().position.y >= hit_time+hold_time) and active:
 				visible = false
 				position.y = -get_parent().position.y
 				$"Note Hold".played_time = 0.0
 				active = false
+				playing_hold = false
+				remove_from_group("Song Time Recievers")
 				return 0
 			if (-get_parent().position.y <= hit_time+hold_time) and !active:
 				active = true
 				visible = true
-				$"Note Hold".played_time = -get_parent().position.y-hit_time
+				playing_hold = false
+				$"Note Hold".played_time = -hit_time
+				$"Note Hold".hold_time = hold_time
+#				$"Note Hold".played_time = -get_parent().position.y-hit_time
+				position.y = hit_time
 				return 0
 		if -get_parent().position.y > hit_time and active:
 			visible = false
@@ -110,3 +128,7 @@ func _process(delta):
 			visible = true
 			return 0
 #	pass
+
+
+func recieve_songtime(s_time):
+	position.y = s_time

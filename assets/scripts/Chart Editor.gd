@@ -8,11 +8,76 @@ extends Node2D
 var test = AudioStreamOGGVorbis.new()
 var tast : float = 0.0
 
+export(float) var song_time
+
 export(float) var song_cursor = 0.0
 export(bool) var snapping = true
 export(float) var BPM = 240
+export(float) var snap_offset
 export(String) var song
 export(Dictionary) var testionary
+var editor_chart_data : Dictionary = {}
+export(AudioStreamSample) var enemy_vocals setget set_enemy_vocals, get_enemy_vocals
+export(AudioStreamSample) var instrumentals setget set_instrumentals, get_instrumentals
+export(AudioStreamSample) var player_vocals setget set_player_vocals, get_player_vocals
+
+export(String) var enemy_vocals_dir
+export(String) var instrumentals_dir
+export(String) var player_vocals_dir
+
+export(String) var chart_dir
+export(String) var chart_file
+
+var show_grid = true
+var show_grid_playback = true
+var autosave = false
+var autosave_time = 10
+var playback_offset = 0
+var export_as_copies = false
+var show_waveforms_playback = true
+
+var load_enemy_waveform = true
+var load_instrumentals_waveform = true
+var load_player_waveform = true
+
+func set_enemy_vocals(n_vocals : AudioStreamSample):
+#	load("res://")
+	enemy_vocals = n_vocals
+	var waveform_obj = $"Song Chart Transform/Song Position/Waveform Z/Waveform Visualizer"
+	waveform_obj.wav_file = n_vocals
+	
+	if waveform_obj.auto_draw:
+		waveform_obj.reload_waveforms()
+	$"Enemy Voice".stream = n_vocals
+	
+func get_enemy_vocals():
+	return enemy_vocals
+
+func set_player_vocals(n_vocals : AudioStreamSample):
+	player_vocals = n_vocals
+	var waveform_obj = $"Song Chart Transform/Song Position/Waveform BF/Waveform Visualizer"
+	waveform_obj.wav_file = n_vocals
+	
+	if waveform_obj.auto_draw:
+		waveform_obj.reload_waveforms()
+	$"Player Voice".stream = n_vocals
+
+func get_player_vocals():
+	return player_vocals
+
+func set_instrumentals(n_vocals : AudioStreamSample):
+	instrumentals = n_vocals
+	var waveform_obj = $"Song Chart Transform/Song Position/Waveform Inst/Waveform Visualizer"
+	waveform_obj.wav_file = n_vocals
+	
+	if waveform_obj.auto_draw:
+		waveform_obj.reload_waveforms()
+	$"Instrumentals".stream = n_vocals
+
+func get_instrumentals():
+	return instrumentals
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"Right Note/AnimationPlayer".play("SPIIIIIN")
@@ -29,8 +94,12 @@ func _ready():
 func _process(delta):
 	if snapping:
 		var step_sec = 60.0/(BPM*4.0*max(1.0,floor($"Song Chart Transform".scale.y)))
-		var snapped_song_pos = stepify(song_time_transform(get_global_mouse_position().y), step_sec*1000.0)
+		var snapped_song_pos = stepify(song_time_transform(get_global_mouse_position().y), step_sec*1000.0)+snap_offset
 		song_cursor = inv_song_time_transform(snapped_song_pos)
+	else: song_cursor = get_global_mouse_position().y
+	$"Beat Snap Guides".material.set_shader_param("Trans",$"Song Chart Transform/Song Position".global_transform.affine_inverse())
+	$"Beat Snap Guides".material.set_shader_param("BPM",BPM)
+	$"Beat Snap Guides".material.set_shader_param("Snap_Offset",snap_offset)
 #	song_cursor = 512.0
 func play_snippet():
 	var start_time = song_time_transform(get_global_mouse_position().y)
@@ -54,17 +123,27 @@ func _input(event):
 		if Input.is_key_pressed(KEY_CONTROL):
 			play_snippet()
 	if event.is_action_pressed("save"):
-		export_chart("res://assets/weeks/zappity/zappity/", "testchart")
+		simple_export_fnf_chart("res://assets/weeks/zappity/zappity/", "testchart")
+#		export_chart("res://assets/weeks/zappity/zappity/", "testchart")
+		
+	if event.is_action_pressed("play_audio"):
+		if !$"Instrumentals".playing:
+			play()
+		else:
+			stop()
 func play():
 	var start_time = max(song_time_transform(0.0),0.0)
 	$"Enemy Voice".play(start_time/1000.0)
 	$"Player Voice".play(start_time/1000.0)
 	$"Instrumentals".play(start_time/1000.0)
-
+	$"Beat Snap Guides".material.set_shader_param("Show_Grid",float(show_grid_playback and show_grid))
+	$"Song Chart Transform/Song Position".modulate.a = float(show_waveforms_playback)
 func stop():
 	$"Enemy Voice".stop()
 	$"Player Voice".stop()
 	$"Instrumentals".stop()
+	$"Beat Snap Guides".material.set_shader_param("Show_Grid",float(show_grid))
+	$"Song Chart Transform/Song Position".modulate.a = 1.0
 
 func song_time_transform(pos):
 	return ($"Song Chart Transform/Song Position".global_transform.affine_inverse()*Vector2(0,pos)).y
@@ -124,13 +203,13 @@ func export_fnf_chart(folder, file):
 	var player_notes = $"Arrow Track".get_notes()
 	var player_note_array = []
 	for note in player_notes:
-		player_note_array += [[note.hit_time, note.note_type, note.hold_time]]
+		player_note_array += [[note.hit_time, note.note_type, note.hold_time*float(note.hold_note)]]
 	player_note_array.sort_custom(Note_sorter, "sort_notes")
 	
 	var enemy_notes = $"Arrow Track2".get_notes()
 	var enemy_note_array = []
 	for note in enemy_notes:
-		enemy_note_array += [[note.hit_time, note.note_type, note.hold_time]]
+		enemy_note_array += [[note.hit_time, note.note_type, note.hold_time*float(note.hold_note)]]
 	enemy_note_array.sort_custom(Note_sorter, "sort_notes")
 	
 	var section_length = 8.0*1000.0*60.0/BPM
@@ -231,17 +310,17 @@ func export_fnf_chart(folder, file):
 	save_file.store_string(JSON.print(save_data))
 	save_file.close()
 
-func simple_export_fnf_chart(folder,file):
+func simple_export_fnf_chart(folder,file, as_copy = export_as_copies):
 	var player_notes = $"Arrow Track".get_notes()
 	var player_note_array = []
 	for note in player_notes:
-		player_note_array += [[note.hit_time, note.note_type, note.hold_time]]
+		player_note_array += [[note.hit_time, note.note_type, note.hold_time*float(note.hold_note)]]
 	player_note_array.sort_custom(Note_sorter, "sort_notes")
 	
 	var enemy_notes = $"Arrow Track2".get_notes()
 	var enemy_note_array = []
 	for note in enemy_notes:
-		enemy_note_array += [[note.hit_time, note.note_type, note.hold_time]]
+		enemy_note_array += [[note.hit_time, note.note_type, note.hold_time*float(note.hold_note)]]
 	enemy_note_array.sort_custom(Note_sorter, "sort_notes")
 	
 	var section_length = 8.0*1000.0*60.0/BPM
@@ -266,12 +345,20 @@ func simple_export_fnf_chart(folder,file):
 			note_data["sectionNotes"] += [enemy_note]
 		notes = [note_data]
 		ugh = false
-	save_data["song"] = {"sectionLengths":[],"player1" : "bf", "notes" : notes,"player2":"whittyCrazy","song":"Ballistic-Old","stage":"ballisticAlley","gfVersion":"whitty","validScore":true,"sections":0,"needsVoices":true,"speed":2.6,"bpm":210}
+#	save_data["song"] = {"sectionLengths":[],"player1" : "bf", "notes" : notes,"player2":"whittyCrazy","song":"Ballistic-Old","stage":"ballisticAlley","gfVersion":"whitty","validScore":true,"sections":0,"needsVoices":true,"speed":2.6,"bpm":210}
+	editor_chart_data["song"]["notes"] = notes
 	var c_time = "%s_%s_%s_%s-%s-%s"%[OS.get_datetime()["month"],OS.get_datetime()["day"],OS.get_datetime()["year"],OS.get_datetime()["hour"],OS.get_datetime()["minute"],OS.get_datetime()["second"]]
 	print(c_time)
 	var save_file = File.new()
-	save_file.open("%s%s%s.json"%[folder,file,c_time], File.WRITE)
-	save_file.store_string(JSON.print(save_data))
+	if as_copy:
+		save_file.open("%s_%s.json"%[chart_file,c_time], File.WRITE)
+		save_file.store_string(JSON.print(editor_chart_data))
+		save_file.close()
+		return 0
+	
+	save_file.open(chart_file, File.WRITE)
+#	save_file.open("%s%s%s.json"%[folder,file,c_time], File.WRITE)
+	save_file.store_string(JSON.print(editor_chart_data))
 	save_file.close()
 func import_chart(file_path, player_notes, enemy_notes):
 	var file = File.new()
@@ -289,11 +376,232 @@ func import_chart(file_path, player_notes, enemy_notes):
 		print("AAAAAGHASDFAHS")
 		$"Arrow Track2".import_note(note)
 
+func import_fnf_chart(file_path):
+	var file = File.new()
+	file.open(file_path, File.READ)
+	var content = file.get_as_text()
+	file.close()
+	var file_chart_data = JSON.parse(content).result
+	editor_chart_data = file_chart_data
+	for note_section in file_chart_data["song"]["notes"]:
+		if "bpm" in note_section:
+			BPM = note_section["bpm"]
+			$"BPM/BPM".text = str(BPM)
+		if note_section["mustHitSection"]:
+			for note in note_section["sectionNotes"]:
+				if note[1] > 3:
+					$"Arrow Track2".import_note(note)
+					continue
+				$"Arrow Track".import_note(note)
+			continue
+		for note in note_section["sectionNotes"]:
+			if note[1] > 3:
+				$"Arrow Track".import_note(note)
+				continue
+			$"Arrow Track2".import_note(note)
+	
 
 func _on_Import_Button_pressed():
-	import_chart("res://assets/weeks/zappity/zappity/testchart7_13_2021_2-5-6.txt", "boyfriend_notes", "zappity_notes")
+	$"Chart Import Dialouge".popup()
+#	import_chart("res://assets/weeks/zappity/zappity/testchart7_13_2021_2-5-6.txt", "boyfriend_notes", "zappity_notes")
 
 
 func _on_Export_Button_pressed():
 	print("\n\n\nEXPORTING\n\n")
 	simple_export_fnf_chart("res://assets/weeks/zappity/zappity/", "fnftestchart_")
+
+
+func _on_Load_Enemy_Vocals_pressed():
+	if enemy_vocals_dir == "":
+		if OS.has_feature("editor"):
+			# Running from an editor binary.
+			# `path` will contain the absolute path to `hello.txt` located in the project root.
+			enemy_vocals_dir = ProjectSettings.globalize_path("res://")
+		else:
+			enemy_vocals_dir = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
+	$"Enemy Vocals File Dialog".current_dir = enemy_vocals_dir
+	$"Enemy Vocals File Dialog".popup()
+
+
+func _on_Enemy_Vocals_File_Dialog_file_selected(path):
+	var n_vocals = load(path)
+	set_enemy_vocals(n_vocals)
+
+
+func _on_Chart_Import_Dialouge_file_selected(path):
+	chart_file = path
+	$"Arrow Track".clear_notes()
+	$"Arrow Track2".clear_notes()
+	import_fnf_chart(path)
+
+
+func _on_Instrumentals_File_Dialog_file_selected(path):
+	var n_vocals = load(path)
+	set_instrumentals(n_vocals)
+
+
+func _on_Player_Vocals_File_Dialog_file_selected(path):
+	var n_vocals = load(path)
+	set_player_vocals(n_vocals)
+
+func _on_Load_Instrumentals_pressed():
+	$"Instrumentals File Dialog".popup()
+
+
+func _on_Load_Player_Vocals_pressed():
+	$"Player Vocals File Dialog".popup()
+
+
+func _on_LineEdit_text_entered(new_text):
+	BPM = float(new_text)
+	$"BPM/Snap Offset".release_focus()
+	$BPM/BPM.release_focus()
+
+
+func _on_Snap_Offset_text_entered(new_text):
+	snap_offset = float(new_text)
+	$"BPM/Snap Offset".release_focus()
+	$BPM/BPM.release_focus()
+
+
+
+func _on_CheckBox_toggled(button_pressed):
+	snapping = button_pressed
+	
+
+func recieve_songtime(s_time):
+	song_time = s_time
+	$"Arrow Track".song_time = s_time
+	$"Arrow Track2".song_time = s_time
+
+
+func _on_Show_Enemy_Waveform_toggled(button_pressed):
+	$"Song Chart Transform/Song Position/Waveform Z".modulate.a = float(button_pressed)
+
+
+func _on_Show_Instrumentals_Waveform_toggled(button_pressed):
+	$"Song Chart Transform/Song Position/Waveform Inst".modulate.a = float(button_pressed)
+
+
+func _on_Show_Player_Waveform_toggled(button_pressed):
+	$"Song Chart Transform/Song Position/Waveform BF".modulate.a = float(button_pressed)
+
+
+
+func _on_Options_Button_pressed():
+#	$"PopupMenu".popup()
+	$"Settings Popup".popup()
+
+
+func _on_SnappingPlayback_toggled(button_pressed):
+	show_grid_playback = button_pressed
+	if $"Instrumentals".playing:
+		$"Beat Snap Guides".material.set_shader_param("Show_Grid",float(button_pressed))
+
+
+func _on_AlwaysCopy_toggled(button_pressed):
+	export_as_copies = button_pressed
+
+
+func _on_AutoSave_toggled(button_pressed):
+	autosave = button_pressed
+	$"Settings Popup/VBoxContainer/AutoSaveTime".modulate.a = 0.5*float(button_pressed)+0.5
+	$AutoSaveTimer.wait_time = 60.0*autosave_time
+	if button_pressed:
+		$AutoSaveTimer.start()
+
+
+func _on_AutoSaveLineEdit_text_entered(new_text):
+	autosave_time = float(new_text)
+	$AutoSaveTimer.wait_time = 60.0*autosave_time
+
+
+func _on_PlaybackOffsetLineEdit_text_entered(new_text):
+	playback_offset = float(new_text)
+	$Instrumentals.offset = playback_offset
+
+func _on_GridLineEdit_text_entered(new_text):
+	$"Beat Snap Guides".material.set_shader_param("Primary_Width",float(new_text))
+
+
+func _on_SubgridLineEdit_text_entered(new_text):
+	$"Beat Snap Guides".material.set_shader_param("Secondary_Width",float(new_text))
+
+
+func _on_BGColorPicker_color_changed(color):
+	$"Beat Snap Guides".material.set_shader_param("Background_Color",color)
+
+
+func _on_GridPrimaryColorPicker_color_changed(color):
+	$"Beat Snap Guides".material.set_shader_param("Primary_LInes",color)
+
+
+func _on_GridSecondaryColorPicker_color_changed(color):
+	$"Beat Snap Guides".material.set_shader_param("Secondary_Lines",color)
+
+
+func _on_EnemyVocalsColorPicker_color_changed(color):
+	$"Song Chart Transform/Song Position/Waveform Z/Waveform Visualizer".modulate = color
+
+
+func _on_InstrumentalsColorPicker_color_changed(color):
+	$"Song Chart Transform/Song Position/Waveform Inst/Waveform Visualizer".modulate = color
+
+
+func _on_PlayerVocalsColorPicker_color_changed(color):
+	$"Song Chart Transform/Song Position/Waveform BF/Waveform Visualizer".modulate = color
+
+
+func _on_CheckBox2_toggled(button_pressed):
+	show_grid = button_pressed
+	$"Beat Snap Guides".material.set_shader_param("Show_Grid",float(button_pressed))
+
+
+func _on_Load_Enemy_Waveform_toggled(button_pressed):
+	$"Song Chart Transform/Song Position/Waveform Z/Waveform Visualizer".auto_draw = button_pressed
+	$"Song Chart Transform/Song Position/Waveform Z/Waveform Visualizer".visible = button_pressed
+	load_enemy_waveform = button_pressed
+
+func _on_Load_Instrumentals_Waveform_toggled(button_pressed):
+	$"Song Chart Transform/Song Position/Waveform Inst/Waveform Visualizer".auto_draw = button_pressed
+	$"Song Chart Transform/Song Position/Waveform Inst/Waveform Visualizer".visible = button_pressed
+	load_instrumentals_waveform = button_pressed
+
+
+func _on_Load_Player_Waveform_toggled(button_pressed):
+	$"Song Chart Transform/Song Position/Waveform BF/Waveform Visualizer".auto_draw = button_pressed
+	$"Song Chart Transform/Song Position/Waveform BF/Waveform Visualizer".visible = button_pressed
+	load_player_waveform = button_pressed
+
+
+func _on_WaveformPlayback_toggled(button_pressed):
+	show_waveforms_playback = button_pressed
+	if $"Instrumentals".playing:
+		$"Song Chart Transform/Song Position".modulate.a = float(button_pressed)
+
+
+func _on_Arrow_Track_added_editor_note():
+	$"Song Chart Transform".emit_signal("zoom_updated")
+#	$"Arrow Track".scroll_speed = $"Song Chart Transform".scale.y
+#	$"Arrow Track".song_time = -$"Song Chart Transform/Song Position".position.y
+#
+#	$"Arrow Track2".scroll_speed = $"Song Chart Transform".scale.y
+#	$"Arrow Track2".song_time = -$"Song Chart Transform/Song Position".position.y
+
+
+
+
+func _on_Left_Arrow_Edit_added_hold():
+	$"Song Chart Transform".emit_signal("zoom_updated")
+
+
+func _on_Down_Arrow_Edit_added_hold():
+	$"Song Chart Transform".emit_signal("zoom_updated")
+
+
+func _on_Up_Arrow_Edit_added_hold():
+	$"Song Chart Transform".emit_signal("zoom_updated")
+
+
+func _on_Right_Arrow_Edit_added_hold():
+	$"Song Chart Transform".emit_signal("zoom_updated")

@@ -3,15 +3,15 @@
 [ext_resource path="res://assets/images/NOTE_assets.png" type="Texture" id=1]
 [ext_resource path="res://assets/scenes/Note Hold.gd" type="Script" id=2]
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=1]
 resource_local_to_scene = true
-flags = 2
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1270, 447, 50, 44 )
 
 [sub_resource type="AtlasTexture" id=2]
 resource_local_to_scene = true
-flags = 2
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1070, 442, 50, 64 )
 
@@ -21,7 +21,7 @@ script = ExtResource( 2 )
 [node name="Right Note Hold Transform" type="Position2D" parent="."]
 
 [node name="Right Note Hold" type="Sprite" parent="Right Note Hold Transform"]
-texture = SubResource( 3 )
+texture = SubResource( 1 )
 offset = Vector2( 0, 22 )
 
 [node name="Right Note Hold End" type="Sprite" parent="Right Note Hold Transform/Right Note Hold"]

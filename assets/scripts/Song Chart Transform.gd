@@ -65,15 +65,15 @@ func _input(event):
 				zoom(get_global_mouse_position().y, -zoom_speed)
 			else:
 				scroll(-scroll_speed)
-	if event.is_action_pressed("ui_accept"):
-#		print("\n\nZOOM IN")
-#		zoom(512, zoom_speed)
-		get_parent().play()
-		
-	if event.is_action_pressed("ui_cancel"):
-		print("\n\nZOOM OUT")
-#		zoom(512, -zoom_speed)
-		get_parent().stop()
+#	if event.is_action_pressed("ui_accept"):
+##		print("\n\nZOOM IN")
+##		zoom(512, zoom_speed)
+#		get_parent().play()
+#
+#	if event.is_action_pressed("ui_cancel"):
+#		print("\n\nZOOM OUT")
+##		zoom(512, -zoom_speed)
+#		get_parent().stop()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass

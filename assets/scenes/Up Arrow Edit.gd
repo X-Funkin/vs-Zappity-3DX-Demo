@@ -32,6 +32,7 @@ func _on_Player_Editor_Area_mouse_exited():
 
 
 signal placed_note(note, pos)
+signal added_hold
 func _on_Player_Editor_Area_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.is_pressed():
 		print(event.as_text())
@@ -46,9 +47,10 @@ func _on_Player_Editor_Area_input_event(viewport, event, shape_idx):
 						if note.hit_time < click_song_pos:
 							if note.hit_time > nearest_note.hit_time:
 								nearest_note = note
-					nearest_note.hold_note = true
-					nearest_note.hold_time = click_song_pos-nearest_note.hit_time
-					
+					if nearest_note.hit_time < click_song_pos:
+						nearest_note.hold_note = true
+						nearest_note.hold_time = click_song_pos-nearest_note.hit_time
+						emit_signal("added_hold")
 				return 0
 		if event.button_index == BUTTON_LEFT:
 			print("left click at ", get_global_mouse_position())

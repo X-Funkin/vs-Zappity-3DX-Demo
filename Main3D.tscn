@@ -135,7 +135,6 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -229.639, -14.1478 )
 modes/cull = 2
 modes/specular = 4
 nodes/fragment/0/position = Vector2( 520, 120 )
@@ -298,7 +297,6 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -97, 18 )
 nodes/fragment/2/node = SubResource( 26 )
 nodes/fragment/2/position = Vector2( -20, 120 )
 nodes/fragment/3/node = SubResource( 27 )
@@ -519,7 +517,7 @@ current = true
 fov = 76.0
 
 [node name="basic screen" type="CSGMesh" parent="."]
-transform = Transform( 3.18357, 0, 0, 0, 2.78316e-07, 3.18357, 0, -3.18357, 2.78316e-07, 0.00117779, 1.82087, -1.66756 )
+transform = Transform( 3.95998, 0, 0, 0, -1.73096e-07, 3.95998, 0, -3.95998, -1.73096e-07, 0.00117779, 1.90585, -1.66756 )
 mesh = SubResource( 2 )
 material = SubResource( 19 )
 
@@ -556,7 +554,7 @@ mesh = SubResource( 21 )
 material = SubResource( 23 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25033, 0, -0.39799 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.436, 0, -0.398 )
 material_override = SubResource( 35 )
 offset = Vector2( 0, 125 )
 texture = ExtResource( 3 )
@@ -577,6 +575,7 @@ render_target_update_mode = 3
 
 [node name="Audio Tracks" type="Spatial" parent="."]
 script = ExtResource( 7 )
+offset = -15.5
 
 [node name="Zappity Voice" type="AudioStreamPlayer" parent="Audio Tracks"]
 stream = ExtResource( 6 )
@@ -590,5 +589,7 @@ bus = "BF Voice"
 stream = ExtResource( 8 )
 volume_db = -4.181
 bus = "Instrumentals"
+
+[connection signal="finished" from="Audio Tracks/Instrumentals" to="Audio Tracks" method="_on_Instrumentals_finished"]
 
 [editable path="cube room"]

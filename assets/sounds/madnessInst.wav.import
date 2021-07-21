@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/madnessInst.wav-c71a4d8bdbaa1a2d185ceb3ba10396fe.sample"
+
+[deps]
+
+source_file="res://assets/sounds/madnessInst.wav"
+dest_files=[ "res://.import/madnessInst.wav-c71a4d8bdbaa1a2d185ceb3ba10396fe.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
