@@ -156,7 +156,7 @@ func add_editor_note(n_note : Note):
 
 
 
-func import_note(n_note):
+func import_editor_note(n_note):
 	var e_inst = EditorNote.instance()
 	match int(n_note[1])%4:
 		0:
@@ -204,6 +204,54 @@ func import_note(n_note):
 			r_inst.position.y = n_note[0]
 			r_inst.global_scale.y = 1.0
 		
+
+func import_note(n_note):
+	match int(n_note[1])%4:
+		0:
+			var l_inst : Note = LeftNote.instance()
+			$"Left Track/Left Arrow/Left Notes Transform/Left Notes".add_child(l_inst)
+			l_inst.hit_time = n_note[0]
+			l_inst.live = true
+			l_inst.hold_time = n_note[2]
+			l_inst.hold_note = (n_note[2]>0)
+			l_inst.position.y = n_note[0]
+			l_inst.global_scale.y = 1.0
+			l_inst.player_note = player_track
+			print("yeah added note lol ", l_inst.transform)
+			print("lgobal ", l_inst.global_transform)
+		1:
+			var d_inst = DownNote.instance()
+			$"Down Track/Down Arrow/Down Notes Transform/Down Notes".add_child(d_inst)
+			d_inst.hit_time = n_note[0]
+			d_inst.live = true
+			d_inst.hold_time = n_note[2]
+			d_inst.hold_note = (n_note[2]>0)
+			d_inst.position.y = n_note[0]
+			d_inst.global_scale.y = 1.0
+			d_inst.player_note = player_track
+			
+		2:
+			var u_inst = UpNote.instance()
+			$"Up Track/Up Arrow/Up Notes Transform/Up Notes".add_child(u_inst)
+			u_inst.hit_time = n_note[0]
+			u_inst.live = true
+			u_inst.hold_time = n_note[2]
+			u_inst.hold_note = (n_note[2]>0)
+			u_inst.position.y = n_note[0]
+			u_inst.global_scale.y = 1.0
+			u_inst.player_note = player_track
+			
+		3:
+			var r_inst = RightNote.instance()
+			$"Right Track/Right Arrow/Right Notes Transform/Right Notes".add_child(r_inst)
+			r_inst.hit_time = n_note[0]
+			r_inst.live = true
+			r_inst.hold_time = n_note[2]
+			r_inst.hold_note = (n_note[2]>0)
+			r_inst.position.y = n_note[0]
+			r_inst.global_scale.y = 1.0
+			r_inst.player_note = player_track
+
 
 
 func load_notes():
@@ -297,6 +345,55 @@ func _ready():
 func recieve_input(event):
 	pass
 
+func recieve_player_input(event : InputEvent):
+	if player_track:
+		if event.is_action_pressed("note_left"):
+#			print("eyarhaosf player hit lieft loool")
+			$"Left Track/Left Arrow".play_press()
+			return 0
+		if event.is_action_pressed("note_down"):
+			$"Down Track/Down Arrow".play_press()
+			return 0
+		if event.is_action_pressed("note_up"):
+			$"Up Track/Up Arrow".play_press()
+			return 0
+		if event.is_action_pressed("note_right"):
+			$"Right Track/Right Arrow".play_press()
+			return 0
+		
+		if event.is_action_released("note_left"):
+#			print("eyarhaosf player hit lieft loool")
+			$"Left Track/Left Arrow".set_default()
+			return 0
+		if event.is_action_released("note_down"):
+			$"Down Track/Down Arrow".set_default()
+			return 0
+		if event.is_action_released("note_up"):
+			$"Up Track/Up Arrow".set_default()
+			return 0
+		if event.is_action_released("note_right"):
+			$"Right Track/Right Arrow".set_default()
+			return 0
+		
+
+#func _input(event):
+#	print("aiofy ", event)
+#	if player_track:
+#		if event.is_action_pressed("note_left"):
+#			print("eyarhaosf player hit lieft loool")
+#			$"Left Track/Left Arrow".play_hit()
+#			return 0
+#		if event.is_action_pressed("note_down"):
+#			$"Down Track/Down Arrow".play_hit()
+#			return 0
+#		if event.is_action_pressed("note_up"):
+#			$"Up Track/Up Arrow".play_hit()
+#			return 0
+#		if event.is_action_pressed("note_right"):
+#			$"Right Track/Right Arrow".play_hit()
+#			return 0
+		
+
 func recieve_hit(note : Note, hit_error):
 	match note.note_type:
 		0:
@@ -316,6 +413,19 @@ func recieve_songtime(s_time):
 		YEAHIGOTIT = true
 		print("YEAHIGOTIT ", song_time)
 #		print(self.print_tree())
+
+func recieve_player_hit(note : Note, hit_error):
+	match note.note_type:
+		0:
+			$"Left Track/Left Arrow".play_hit()
+		1:
+			$"Down Track/Down Arrow".play_hit()
+		2:
+			$"Up Track/Up Arrow".play_hit()
+		3:
+			$"Right Track/Right Arrow".play_hit()
+	note.despawn()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -1,0 +1,168 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/scenes/playersprite.tres" type="Texture" id=1]
+[ext_resource path="res://assets/scenes/BF.gd" type="Script" id=2]
+
+[sub_resource type="VisualShaderNodeTexture" id=1]
+texture = ExtResource( 1 )
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=6]
+constant = 0.2
+
+[sub_resource type="VisualShader" id=2]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx;
+
+uniform sampler2D tex_frg_2;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Texture:2
+	vec4 tex_frg_2_read = texture(tex_frg_2, UV.xy);
+	vec3 n_out2p0 = tex_frg_2_read.rgb;
+	float n_out2p1 = tex_frg_2_read.a;
+
+// Scalar:3
+	float n_out3p0 = 0.200000;
+
+// Output:0
+	ALBEDO = n_out2p0;
+	ALPHA = n_out2p1;
+	ALPHA_SCISSOR = n_out3p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -208.237, 182.5 )
+nodes/fragment/0/position = Vector2( 440, 80 )
+nodes/fragment/2/node = SubResource( 1 )
+nodes/fragment/2/position = Vector2( -60, 160 )
+nodes/fragment/3/node = SubResource( 6 )
+nodes/fragment/3/position = Vector2( 180, 380 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 0, 0, 2, 1, 0, 1, 3, 0, 0, 18 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "Note Down"
+length = 0.166667
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("BF Sprite:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Rect2( 6640, 509, 374, 357 ), Rect2( 7024, 509, 373, 362 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Note Left"
+length = 0.166667
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("BF Sprite:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 988, 383, 406 ), Rect2( 393, 988, 374, 404 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Note Right"
+length = 0.166667
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("BF Sprite:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Rect2( 1929, 988, 408, 405 ), Rect2( 2347, 988, 408, 407 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Note Up"
+length = 0.166667
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("BF Sprite:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Rect2( 3580, 988, 369, 446 ), Rect2( 3959, 988, 376, 441 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+length = 0.541667
+loop = true
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("BF Sprite:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 2344, 406, 392 ), Rect2( 416, 2344, 408, 393 ), Rect2( 834, 2344, 405, 398 ), Rect2( 1249, 2344, 410, 411 ), Rect2( 1669, 2344, 408, 412 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BF Sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 196 ), Vector2( 0, 205 ) ]
+}
+
+[node name="BF" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="BF Sprite" type="Sprite3D" parent="."]
+material_override = SubResource( 3 )
+offset = Vector2( 0, 196 )
+texture = ExtResource( 1 )
+
+[node name="BF Animations" type="AnimationPlayer" parent="."]
+"anims/Note Down" = SubResource( 7 )
+"anims/Note Left" = SubResource( 5 )
+"anims/Note Right" = SubResource( 8 )
+"anims/Note Up" = SubResource( 9 )
+anims/idle = SubResource( 4 )

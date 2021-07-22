@@ -7,6 +7,7 @@ export(bool) var hold_note = false setget set_hold_note, get_hold_note
 export(float) var hold_time setget set_hold_time, get_hold_time
 export(bool) var live
 export(bool) var player_note
+export(float) var hit_window = 120.0
 #export(PackedScene) var note_hold
 export(PackedScene) onready var note_hold
 
@@ -18,6 +19,7 @@ export(PackedScene) onready var note_hold
 var active = true
 var enemy_hit = false
 var playing_hold = false
+var scorable = false
 # Called when the node enters the scene tree for the first time.
 
 #func set_note_type(n_type):
@@ -88,7 +90,7 @@ func _process(delta):
 		ughghihgg = true
 		$"Note Hold".played_time = -hit_time
 		$"Note Hold".hold_time = hold_time
-	if live:
+	if live and !player_note:
 		if hold_note:
 			if (-get_parent().position.y >= hit_time) and (-get_parent().position.y < hit_time+hold_time) and active:
 #				visible = true
@@ -127,7 +129,71 @@ func _process(delta):
 			active = true
 			visible = true
 			return 0
-#	pass
+		return 0
+	if live and active:
+		if -get_parent().position.y >= hit_time-hit_window and !scorable:
+#			if !scorable:
+			scorable = true
+			add_to_score_group()
+			return 0
+		if -get_parent().position.y < hit_time-hit_window and scorable:
+#			if scorable:
+			scorable = false
+			remove_from_score_group()
+			return 0
+		if -get_parent().position.y > hit_time+hit_window:
+			print("iojafyiopauhfldksajghfdlkjsaghflksahflkjdsaf UUGUHA\n\nalksfjsaf\n\nfnalsdfkjas")
+			despawn()
+			return 0
+		return 0
+	if live and !active:
+		if -get_parent().position.y < hit_time-hit_window:
+			spawn()
+#			active = false
+#			if scorable:
+#				remove_from_score_group()
+#			scorable = false
+#			visible = false
+#			despawn()
+	
+#			despawn()
+			#	pass
+
+func despawn():
+	active = false
+	if scorable:
+		remove_from_score_group()
+	scorable = false
+	visible = false
+
+func spawn():
+	active = true
+	visible = true
+	remove_from_score_group()
+	scorable = false
+func add_to_score_group():
+	add_to_group("Scorable Notes")
+	match note_type:
+		0:
+			add_to_group("Left Scorable Notes")
+		1:
+			add_to_group("Down Scorable Notes")
+		2:
+			add_to_group("Up Scorable Notes")
+		3:
+			add_to_group("Right Scorable Notes")
+
+func remove_from_score_group():
+	remove_from_group("Scorable Notes")
+	match note_type:
+		0:
+			remove_from_group("Left Scorable Notes")
+		1:
+			remove_from_group("Down Scorable Notes")
+		2:
+			remove_from_group("Up Scorable Notes")
+		3:
+			remove_from_group("Right Scorable Notes")
 
 
 func recieve_songtime(s_time):

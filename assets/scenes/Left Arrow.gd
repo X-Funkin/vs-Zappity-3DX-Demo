@@ -10,6 +10,10 @@ extends Node2D
 func _ready():
 	pass # Replace with function body.
 
+func play_press():
+	$"Left Arrow Animation".play("Left Arrow Press")
+
+
 func play_hit():
 	$"Left Arrow Animation".stop()
 	$"Left Arrow Animation".play("Left Arrow Confirm")
@@ -22,4 +26,5 @@ func set_default():
 	$"Left Arrow Animation".play("Left Arrow Default")
 
 func _on_Left_Arrow_Animation_animation_finished(anim_name):
-	set_default()
+	if anim_name[-1] == "m":
+		set_default()

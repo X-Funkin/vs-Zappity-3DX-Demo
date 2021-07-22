@@ -10,6 +10,10 @@ extends Node2D
 func _ready():
 	pass # Replace with function body.
 
+func play_press():
+	$"Up Arrow Animation".play("Up Arrow Press")
+
+
 func play_hit():
 	$"Up Arrow Animation".stop()
 	$"Up Arrow Animation".play("Up Arrow Confirm")
@@ -22,4 +26,5 @@ func set_default():
 	$"Up Arrow Animation".play("Up Arrow Default")
 
 func _on_Up_Arrow_Animation_animation_finished(anim_name):
-	set_default()
+	if anim_name[-1] == "m":
+		set_default()
