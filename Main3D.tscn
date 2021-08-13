@@ -136,6 +136,7 @@ void light() {
 
 }
 "
+graph_offset = Vector2( -132.5, 182.5 )
 modes/cull = 2
 modes/specular = 4
 nodes/fragment/0/position = Vector2( 520, 120 )
@@ -298,6 +299,7 @@ void light() {
 
 }
 "
+graph_offset = Vector2( -132.5, 182.5 )
 nodes/fragment/2/node = SubResource( 26 )
 nodes/fragment/2/position = Vector2( -20, 120 )
 nodes/fragment/3/node = SubResource( 27 )
@@ -508,7 +510,7 @@ script = ExtResource( 2 )
 [node name="BF" parent="." groups=[
 "Player Hit Recievers",
 ] instance=ExtResource( 10 )]
-transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 1, 2.25962, 0, -0.596237 )
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 1, 3.16968, 0, -1.22972 )
 
 [node name="Ground" type="CSGMesh" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.07518, 0 )
@@ -517,7 +519,7 @@ mesh = SubResource( 1 )
 material = ExtResource( 5 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45605, 3.515 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45605, 3.79175 )
 keep_aspect = 0
 current = true
 fov = 76.0
@@ -539,6 +541,7 @@ position = Vector2( 960, 540 )
 
 [node name="OmniLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23057e-05, 3.04151, 0.513502 )
+light_energy = 3.36
 omni_range = 7.33978
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -560,7 +563,7 @@ mesh = SubResource( 21 )
 material = SubResource( 23 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.436, 0, -0.398 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.11056, 0, -0.94498 )
 material_override = SubResource( 35 )
 offset = Vector2( 0, 125 )
 texture = ExtResource( 3 )

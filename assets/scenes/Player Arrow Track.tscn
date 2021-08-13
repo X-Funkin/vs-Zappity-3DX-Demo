@@ -33,7 +33,7 @@ tracks/1/keys = {
 "Player Input Recievers",
 "Song Time Recievers",
 ] instance=ExtResource( 1 )]
-scroll_speed = 2.8
+scroll_speed = 2.4
 chart_file = "res://assets/weeks/zappity/zappity/fnftestchart_7_13_2021_3-36-34.json"
 auto_load_chart = true
 player_track = true
