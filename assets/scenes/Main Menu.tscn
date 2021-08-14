@@ -1,0 +1,891 @@
+[gd_scene load_steps=157 format=2]
+
+[ext_resource path="res://assets/scripts/Main Menu.gd" type="Script" id=1]
+[ext_resource path="res://assets/scenes/FNF Text.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/scenes/Start Screen Character.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/images/logo bumpin/logo bumpin0003.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/logo bumpin/logo bumpin0000.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/logo bumpin/logo bumpin0001.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/logo bumpin/logo bumpin0002.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/logo bumpin/logo bumpin0007.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/logo bumpin/logo bumpin0008.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/logo bumpin/logo bumpin0009.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/logo bumpin/logo bumpin0005.png" type="Texture" id=11]
+[ext_resource path="res://assets/images/logo bumpin/logo bumpin0004.png" type="Texture" id=12]
+[ext_resource path="res://assets/images/logo bumpin/logo bumpin0006.png" type="Texture" id=13]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0016.png" type="Texture" id=14]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0003.png" type="Texture" id=15]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0029.png" type="Texture" id=16]
+[ext_resource path="res://assets/images/logo bumpin/logo bumpin0013.png" type="Texture" id=17]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0009.png" type="Texture" id=18]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0008.png" type="Texture" id=19]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0014.png" type="Texture" id=20]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0001.png" type="Texture" id=21]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0007.png" type="Texture" id=22]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0003.png" type="Texture" id=23]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0006.png" type="Texture" id=24]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0020.png" type="Texture" id=25]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0027.png" type="Texture" id=26]
+[ext_resource path="res://assets/images/titleENter/ENTER PRESSED0000.png" type="Texture" id=27]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0008.png" type="Texture" id=28]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0009.png" type="Texture" id=29]
+[ext_resource path="res://assets/images/logo bumpin/logo bumpin0012.png" type="Texture" id=30]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0010.png" type="Texture" id=31]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0012.png" type="Texture" id=32]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0016.png" type="Texture" id=33]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0012.png" type="Texture" id=34]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0013.png" type="Texture" id=35]
+[ext_resource path="res://assets/images/titleENter/ENTER PRESSED0007.png" type="Texture" id=36]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0002.png" type="Texture" id=37]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0015.png" type="Texture" id=38]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0017.png" type="Texture" id=39]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0013.png" type="Texture" id=40]
+[ext_resource path="res://assets/images/logo bumpin/logo bumpin0014.png" type="Texture" id=41]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0018.png" type="Texture" id=42]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0023.png" type="Texture" id=43]
+[ext_resource path="res://assets/images/titleENter/ENTER PRESSED0006.png" type="Texture" id=44]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0006.png" type="Texture" id=45]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0007.png" type="Texture" id=46]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0010.png" type="Texture" id=47]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0004.png" type="Texture" id=48]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0002.png" type="Texture" id=49]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0004.png" type="Texture" id=50]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0018.png" type="Texture" id=51]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0026.png" type="Texture" id=52]
+[ext_resource path="res://assets/images/titleENter/ENTER PRESSED0008.png" type="Texture" id=53]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0028.png" type="Texture" id=54]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0011.png" type="Texture" id=55]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0000.png" type="Texture" id=56]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0017.png" type="Texture" id=57]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0005.png" type="Texture" id=58]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0019.png" type="Texture" id=59]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0021.png" type="Texture" id=60]
+[ext_resource path="res://assets/images/titleENter/ENTER PRESSED0003.png" type="Texture" id=61]
+[ext_resource path="res://assets/images/logo bumpin/logo bumpin0011.png" type="Texture" id=62]
+[ext_resource path="res://assets/images/titleENter/ENTER PRESSED0001.png" type="Texture" id=63]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0024.png" type="Texture" id=64]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0011.png" type="Texture" id=65]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0015.png" type="Texture" id=66]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0001.png" type="Texture" id=67]
+[ext_resource path="res://assets/images/titleENter/ENTER PRESSED0005.png" type="Texture" id=68]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0005.png" type="Texture" id=69]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0025.png" type="Texture" id=70]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0014.png" type="Texture" id=71]
+[ext_resource path="res://assets/images/logo bumpin/logo bumpin0010.png" type="Texture" id=72]
+[ext_resource path="res://assets/images/gfdancinmenu/gfDance0022.png" type="Texture" id=73]
+[ext_resource path="res://assets/images/titleENter/ENTER PRESSED0002.png" type="Texture" id=74]
+[ext_resource path="res://assets/images/titleENter/ENTER PRESSED0004.png" type="Texture" id=75]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0000.png" type="Texture" id=76]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0022.png" type="Texture" id=77]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0024.png" type="Texture" id=78]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0023.png" type="Texture" id=79]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0020.png" type="Texture" id=80]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0019.png" type="Texture" id=81]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0021.png" type="Texture" id=82]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0031.png" type="Texture" id=83]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0040.png" type="Texture" id=84]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0039.png" type="Texture" id=85]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0025.png" type="Texture" id=86]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0042.png" type="Texture" id=87]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0044.png" type="Texture" id=88]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0027.png" type="Texture" id=89]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0028.png" type="Texture" id=90]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0032.png" type="Texture" id=91]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0035.png" type="Texture" id=92]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0038.png" type="Texture" id=93]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0037.png" type="Texture" id=94]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0041.png" type="Texture" id=95]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0030.png" type="Texture" id=96]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0026.png" type="Texture" id=97]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0036.png" type="Texture" id=98]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0043.png" type="Texture" id=99]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0029.png" type="Texture" id=100]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0033.png" type="Texture" id=101]
+[ext_resource path="res://assets/images/titleENter/Press Enter to Begin0034.png" type="Texture" id=102]
+[ext_resource path="res://assets/images/start screen ref.png" type="Texture" id=103]
+[ext_resource path="res://assets/sounds/confirmMenu.ogg" type="AudioStream" id=104]
+
+[sub_resource type="Animation" id=1]
+resource_name = "opening text lol"
+length = 9.463
+step = 0.294
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/FNF Text:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.176, 2.94 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer/FNF Text2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4.116, 5.88 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CenterContainer/FNF Text3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 5.88 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CenterContainer/FNF Text:visible_lines")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.176, 2.352 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CenterContainer/FNF Text2:visible_lines")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 4.116, 5.292 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 3 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CenterContainer/FNF Text3:visible_lines")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 6.468, 7.056, 7.644 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="VisualShaderNodeVec3Uniform" id=22]
+uniform_name = "Offset_3"
+
+[sub_resource type="VisualShaderNodeExpression" id=23]
+size = Vector2( 291.001, 45 )
+expression = "vec4 tex = texture(Viewportyeah, uv.xy);
+color = tex.rgb;
+alpha = tex.a;"
+
+[sub_resource type="VisualShaderNodeExpression" id=24]
+size = Vector2( 420.001, -66 )
+expression = "vec4 tex = texture(Viewportyeah, uv.xy);
+color = tex.rgb;
+alpha = tex.a;"
+
+[sub_resource type="VisualShaderNodeVectorOp" id=25]
+
+[sub_resource type="VisualShaderNodeExpression" id=26]
+size = Vector2( 445, -4 )
+expression = "vec4 tex = texture(Viewportyeah, uv.xy);
+color = tex.rgb;
+alpha = tex.a;"
+
+[sub_resource type="VisualShaderNodeVectorOp" id=27]
+
+[sub_resource type="VisualShaderNodeVectorScalarMix" id=28]
+
+[sub_resource type="VisualShaderNodeColorUniform" id=29]
+uniform_name = "Color_1"
+
+[sub_resource type="VisualShaderNodeColorUniform" id=30]
+uniform_name = "Color_2"
+
+[sub_resource type="VisualShaderNodeColorUniform" id=31]
+uniform_name = "Color_3"
+
+[sub_resource type="VisualShaderNodeVectorScalarMix" id=32]
+
+[sub_resource type="VisualShaderNodeVectorScalarMix" id=33]
+
+[sub_resource type="VisualShaderNodeVectorScalarMix" id=34]
+
+[sub_resource type="VisualShaderNodeInput" id=39]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVectorScalarMix" id=40]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 1, 1, 1 ), 2, 0.0 ]
+
+[sub_resource type="VisualShaderNodeVectorClamp" id=41]
+
+[sub_resource type="VisualShaderNodeVectorClamp" id=42]
+
+[sub_resource type="VisualShaderNodeVectorClamp" id=43]
+
+[sub_resource type="VisualShaderNodeVectorClamp" id=44]
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id=45]
+
+[sub_resource type="VisualShaderNodeInput" id=14]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeCompare" id=46]
+default_input_values = [ 0, 0.0, 1, 0.5, 2, 0.495 ]
+
+[sub_resource type="VisualShaderNodeScalarOp" id=47]
+default_input_values = [ 0, 0.0, 1, 1.0 ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarOp" id=48]
+operator = 2
+
+[sub_resource type="VisualShaderNodeCompare" id=49]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0, 0, 0 ), 2, 1e-05 ]
+type = 1
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id=50]
+
+[sub_resource type="VisualShaderNodeCompare" id=51]
+default_input_values = [ 0, 0.0, 1, 0.5, 2, 0.495 ]
+
+[sub_resource type="VisualShaderNodeCompare" id=52]
+default_input_values = [ 0, 0.0, 1, 0.5, 2, 0.495 ]
+
+[sub_resource type="VisualShaderNodeCompare" id=53]
+default_input_values = [ 0, 0.0, 1, 0.5, 2, 0.495 ]
+
+[sub_resource type="VisualShaderNodeScalarOp" id=54]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id=19]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeScalarOp" id=55]
+default_input_values = [ 0, 0.0, 1, 1.0 ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id=20]
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id=21]
+size = Vector2( 447, 220 )
+expression = "uniform sampler2D Viewportyeah;"
+
+[sub_resource type="VisualShaderNodeExpression" id=35]
+size = Vector2( 102, 10 )
+expression = "vec4 tex = texture(Viewportyeah, uv.xy);
+color = tex.rgb;
+alpha = tex.a;"
+
+[sub_resource type="VisualShaderNodeVec3Uniform" id=36]
+uniform_name = "Offset_1"
+
+[sub_resource type="VisualShaderNodeVec3Uniform" id=37]
+uniform_name = "Offset_2"
+
+[sub_resource type="VisualShader" id=15]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+uniform vec4 Color_3 : hint_color;
+uniform vec3 Offset_3;
+uniform vec4 Color_2 : hint_color;
+uniform vec3 Offset_2;
+uniform vec4 Color_1 : hint_color;
+uniform vec3 Offset_1;
+
+
+// GlobalExpression:0
+	uniform sampler2D Viewportyeah;
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// ColorUniform:19
+	vec3 n_out19p0 = Color_3.rgb;
+	float n_out19p1 = Color_3.a;
+
+// Input:23
+	vec3 n_out23p0 = vec3(UV, 0.0);
+
+// Input:3
+	vec3 n_out3p0 = vec3(SCREEN_UV, 0.0);
+
+// VectorScalarMix:24
+	float n_in24p2 = 0.00000;
+	vec3 n_out24p0 = mix(n_out23p0, n_out3p0, n_in24p2);
+
+// VectorUniform:10
+	vec3 n_out10p0 = Offset_3;
+
+// VectorOp:15
+	vec3 n_out15p0 = n_out24p0 + n_out10p0;
+
+// VectorClamp:28
+	vec3 n_in28p1 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_in28p2 = vec3(1.00000, 1.00000, 1.00000);
+	vec3 n_out28p0 = clamp(n_out15p0, n_in28p1, n_in28p2);
+
+// Expression:14
+	vec3 n_out14p0;
+	float n_out14p1;
+	n_out14p0 = vec3(0.0, 0.0, 0.0);
+	n_out14p1 = 0.0;
+	{
+		vec4 tex = texture(Viewportyeah, n_out28p0.xy);
+		n_out14p0 = tex.rgb;
+		n_out14p1 = tex.a;
+	}
+
+// ScalarOp:31
+	float n_in31p1 = 1.00000;
+	float n_out31p0 = n_out14p1 * n_in31p1;
+
+// VectorScalarMix:22
+	vec3 n_in22p0 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_out22p0 = mix(n_in22p0, n_out19p0, n_out31p0);
+
+// ColorUniform:18
+	vec3 n_out18p0 = Color_2.rgb;
+	float n_out18p1 = Color_2.a;
+
+// VectorUniform:9
+	vec3 n_out9p0 = Offset_2;
+
+// VectorOp:13
+	vec3 n_out13p0 = n_out24p0 + n_out9p0;
+
+// VectorClamp:27
+	vec3 n_in27p1 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_in27p2 = vec3(1.00000, 1.00000, 1.00000);
+	vec3 n_out27p0 = clamp(n_out13p0, n_in27p1, n_in27p2);
+
+// Expression:12
+	vec3 n_out12p0;
+	float n_out12p1;
+	n_out12p0 = vec3(0.0, 0.0, 0.0);
+	n_out12p1 = 0.0;
+	{
+		vec4 tex = texture(Viewportyeah, n_out27p0.xy);
+		n_out12p0 = tex.rgb;
+		n_out12p1 = tex.a;
+	}
+
+// ScalarOp:40
+	float n_in40p1 = 1.00000;
+	float n_out40p0 = n_out12p1 * n_in40p1;
+
+// VectorScalarMix:21
+	vec3 n_out21p0 = mix(n_out22p0, n_out18p0, n_out40p0);
+
+// ColorUniform:17
+	vec3 n_out17p0 = Color_1.rgb;
+	float n_out17p1 = Color_1.a;
+
+// VectorUniform:8
+	vec3 n_out8p0 = Offset_1;
+
+// VectorOp:5
+	vec3 n_out5p0 = n_out24p0 + n_out8p0;
+
+// VectorClamp:26
+	vec3 n_in26p1 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_in26p2 = vec3(1.00000, 1.00000, 1.00000);
+	vec3 n_out26p0 = clamp(n_out5p0, n_in26p1, n_in26p2);
+
+// Expression:11
+	vec3 n_out11p0;
+	float n_out11p1;
+	n_out11p0 = vec3(0.0, 0.0, 0.0);
+	n_out11p1 = 0.0;
+	{
+		vec4 tex = texture(Viewportyeah, n_out26p0.xy);
+		n_out11p0 = tex.rgb;
+		n_out11p1 = tex.a;
+	}
+
+// VectorScalarMix:20
+	vec3 n_out20p0 = mix(n_out21p0, n_out17p0, n_out11p1);
+
+// VectorClamp:25
+	vec3 n_in25p1 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_in25p2 = vec3(1.00000, 1.00000, 1.00000);
+	vec3 n_out25p0 = clamp(n_out24p0, n_in25p1, n_in25p2);
+
+// Expression:7
+	vec3 n_out7p0;
+	float n_out7p1;
+	n_out7p0 = vec3(0.0, 0.0, 0.0);
+	n_out7p1 = 0.0;
+	{
+		vec4 tex = texture(Viewportyeah, n_out25p0.xy);
+		n_out7p0 = tex.rgb;
+		n_out7p1 = tex.a;
+	}
+
+// VectorScalarMix:16
+	vec3 n_out16p0 = mix(n_out20p0, n_out7p0, n_out7p1);
+
+// Output:0
+	COLOR.rgb = n_out16p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -466.24, 563.389 )
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2( 1180, -60 )
+nodes/fragment/3/node = SubResource( 14 )
+nodes/fragment/3/position = Vector2( -1200, 220 )
+nodes/fragment/4/node = SubResource( 19 )
+nodes/fragment/4/position = Vector2( -640, 640 )
+nodes/fragment/5/node = SubResource( 20 )
+nodes/fragment/5/position = Vector2( -640, 280 )
+nodes/fragment/6/node = SubResource( 21 )
+nodes/fragment/6/position = Vector2( -1820, 20 )
+nodes/fragment/6/size = Vector2( 447, 220 )
+nodes/fragment/6/input_ports = ""
+nodes/fragment/6/output_ports = ""
+nodes/fragment/6/expression = "uniform sampler2D Viewportyeah;"
+nodes/fragment/7/node = SubResource( 35 )
+nodes/fragment/7/position = Vector2( -280, 80 )
+nodes/fragment/7/size = Vector2( 102, 10 )
+nodes/fragment/7/input_ports = "0,1,uv;"
+nodes/fragment/7/output_ports = "0,1,color;1,0,alpha;"
+nodes/fragment/7/expression = "vec4 tex = texture(Viewportyeah, uv.xy);
+color = tex.rgb;
+alpha = tex.a;"
+nodes/fragment/8/node = SubResource( 36 )
+nodes/fragment/8/position = Vector2( -880, 340 )
+nodes/fragment/9/node = SubResource( 37 )
+nodes/fragment/9/position = Vector2( -880, 400 )
+nodes/fragment/10/node = SubResource( 22 )
+nodes/fragment/10/position = Vector2( -880, 460 )
+nodes/fragment/11/node = SubResource( 23 )
+nodes/fragment/11/position = Vector2( -280, 240 )
+nodes/fragment/11/size = Vector2( 291.001, 45 )
+nodes/fragment/11/input_ports = "0,1,uv;"
+nodes/fragment/11/output_ports = "0,1,color;1,0,alpha;"
+nodes/fragment/11/expression = "vec4 tex = texture(Viewportyeah, uv.xy);
+color = tex.rgb;
+alpha = tex.a;"
+nodes/fragment/12/node = SubResource( 24 )
+nodes/fragment/12/position = Vector2( -280, 380 )
+nodes/fragment/12/size = Vector2( 420.001, -66 )
+nodes/fragment/12/input_ports = "0,1,uv;"
+nodes/fragment/12/output_ports = "0,1,color;1,0,alpha;"
+nodes/fragment/12/expression = "vec4 tex = texture(Viewportyeah, uv.xy);
+color = tex.rgb;
+alpha = tex.a;"
+nodes/fragment/13/node = SubResource( 25 )
+nodes/fragment/13/position = Vector2( -620, 400 )
+nodes/fragment/14/node = SubResource( 26 )
+nodes/fragment/14/position = Vector2( -260, 780 )
+nodes/fragment/14/size = Vector2( 445, -4 )
+nodes/fragment/14/input_ports = "0,1,uv;"
+nodes/fragment/14/output_ports = "0,1,color;1,0,alpha;"
+nodes/fragment/14/expression = "vec4 tex = texture(Viewportyeah, uv.xy);
+color = tex.rgb;
+alpha = tex.a;"
+nodes/fragment/15/node = SubResource( 27 )
+nodes/fragment/15/position = Vector2( -620, 520 )
+nodes/fragment/16/node = SubResource( 28 )
+nodes/fragment/16/position = Vector2( 940, -60 )
+nodes/fragment/17/node = SubResource( 29 )
+nodes/fragment/17/position = Vector2( 520, 160 )
+nodes/fragment/18/node = SubResource( 30 )
+nodes/fragment/18/position = Vector2( 260, 280 )
+nodes/fragment/19/node = SubResource( 31 )
+nodes/fragment/19/position = Vector2( 240, 620 )
+nodes/fragment/20/node = SubResource( 32 )
+nodes/fragment/20/position = Vector2( 720, 160 )
+nodes/fragment/21/node = SubResource( 33 )
+nodes/fragment/21/position = Vector2( 600, 280 )
+nodes/fragment/22/node = SubResource( 34 )
+nodes/fragment/22/position = Vector2( 540, 460 )
+nodes/fragment/23/node = SubResource( 39 )
+nodes/fragment/23/position = Vector2( -1080, 160 )
+nodes/fragment/24/node = SubResource( 40 )
+nodes/fragment/24/position = Vector2( -860, 200 )
+nodes/fragment/25/node = SubResource( 41 )
+nodes/fragment/25/position = Vector2( -580, 140 )
+nodes/fragment/26/node = SubResource( 42 )
+nodes/fragment/26/position = Vector2( -460, 280 )
+nodes/fragment/27/node = SubResource( 43 )
+nodes/fragment/27/position = Vector2( -460, 400 )
+nodes/fragment/28/node = SubResource( 44 )
+nodes/fragment/28/position = Vector2( -540, 740 )
+nodes/fragment/29/node = SubResource( 45 )
+nodes/fragment/29/position = Vector2( -340, 960 )
+nodes/fragment/30/node = SubResource( 46 )
+nodes/fragment/30/position = Vector2( -60, 980 )
+nodes/fragment/31/node = SubResource( 47 )
+nodes/fragment/31/position = Vector2( 340, 760 )
+nodes/fragment/33/node = SubResource( 48 )
+nodes/fragment/33/position = Vector2( 180, 1000 )
+nodes/fragment/34/node = SubResource( 49 )
+nodes/fragment/34/position = Vector2( 720, 500 )
+nodes/fragment/35/node = SubResource( 50 )
+nodes/fragment/35/position = Vector2( -240, 540 )
+nodes/fragment/36/node = SubResource( 51 )
+nodes/fragment/36/position = Vector2( 20, 500 )
+nodes/fragment/37/node = SubResource( 52 )
+nodes/fragment/37/position = Vector2( -40, 1160 )
+nodes/fragment/38/node = SubResource( 53 )
+nodes/fragment/38/position = Vector2( 20, 600 )
+nodes/fragment/39/node = SubResource( 54 )
+nodes/fragment/39/position = Vector2( 320, 480 )
+nodes/fragment/40/node = SubResource( 55 )
+nodes/fragment/40/position = Vector2( 440, 340 )
+nodes/fragment/connections = PoolIntArray( 8, 0, 5, 1, 9, 0, 13, 1, 10, 0, 15, 1, 7, 1, 16, 2, 11, 1, 20, 2, 17, 0, 20, 1, 21, 0, 20, 0, 22, 0, 21, 0, 18, 0, 21, 1, 19, 0, 22, 1, 3, 0, 24, 1, 23, 0, 24, 0, 24, 0, 5, 0, 24, 0, 13, 0, 24, 0, 15, 0, 20, 0, 16, 0, 7, 0, 16, 1, 24, 0, 25, 0, 25, 0, 7, 0, 5, 0, 26, 0, 26, 0, 11, 0, 13, 0, 27, 0, 27, 0, 12, 0, 15, 0, 28, 0, 28, 0, 14, 0, 28, 0, 29, 0, 29, 0, 30, 0, 14, 1, 31, 0, 31, 0, 22, 2, 27, 0, 35, 0, 29, 1, 37, 0, 37, 0, 33, 1, 30, 0, 33, 0, 35, 0, 36, 0, 35, 1, 38, 0, 36, 0, 39, 0, 12, 1, 40, 0, 40, 0, 21, 2, 38, 0, 39, 1, 16, 0, 0, 0 )
+
+[sub_resource type="ViewportTexture" id=38]
+flags = 2
+viewport_path = NodePath("Start Menu/Viewport")
+
+[sub_resource type="ShaderMaterial" id=17]
+resource_local_to_scene = true
+shader = SubResource( 15 )
+shader_param/Color_3 = Color( 0.219608, 0.254902, 0.733333, 1 )
+shader_param/Offset_3 = Vector3( 0.016, 0.02, 0 )
+shader_param/Color_2 = null
+shader_param/Offset_2 = Vector3( 0.011, 0.026, 0 )
+shader_param/Color_1 = Color( 1, 0.247059, 0.67451, 1 )
+shader_param/Offset_1 = Vector3( -0.003, 0.019, 0 )
+shader_param/Viewportyeah = SubResource( 38 )
+
+[sub_resource type="QuadMesh" id=18]
+size = Vector2( 1920, 1080 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 72 ), ExtResource( 62 ), ExtResource( 30 ), ExtResource( 17 ), ExtResource( 41 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 56 ), ExtResource( 67 ), ExtResource( 49 ), ExtResource( 15 ), ExtResource( 50 ), ExtResource( 58 ), ExtResource( 45 ), ExtResource( 22 ), ExtResource( 19 ), ExtResource( 18 ), ExtResource( 47 ), ExtResource( 65 ), ExtResource( 32 ), ExtResource( 40 ), ExtResource( 20 ), ExtResource( 66 ), ExtResource( 33 ), ExtResource( 57 ), ExtResource( 51 ), ExtResource( 59 ), ExtResource( 25 ), ExtResource( 60 ), ExtResource( 73 ), ExtResource( 43 ), ExtResource( 64 ), ExtResource( 70 ), ExtResource( 52 ), ExtResource( 26 ), ExtResource( 54 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 76 ), ExtResource( 21 ), ExtResource( 37 ), ExtResource( 23 ), ExtResource( 48 ), ExtResource( 69 ), ExtResource( 24 ), ExtResource( 46 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 31 ), ExtResource( 55 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 71 ), ExtResource( 38 ), ExtResource( 14 ), ExtResource( 39 ), ExtResource( 42 ), ExtResource( 81 ), ExtResource( 80 ), ExtResource( 82 ), ExtResource( 77 ), ExtResource( 79 ), ExtResource( 78 ), ExtResource( 86 ), ExtResource( 97 ), ExtResource( 89 ), ExtResource( 90 ), ExtResource( 100 ), ExtResource( 96 ), ExtResource( 83 ), ExtResource( 91 ), ExtResource( 101 ), ExtResource( 102 ), ExtResource( 92 ), ExtResource( 98 ), ExtResource( 94 ), ExtResource( 93 ), ExtResource( 85 ), ExtResource( 84 ), ExtResource( 95 ), ExtResource( 87 ), ExtResource( 99 ), ExtResource( 88 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 63 ), ExtResource( 74 ), ExtResource( 61 ), ExtResource( 75 ), ExtResource( 68 ), ExtResource( 44 ), ExtResource( 36 ), ExtResource( 53 ) ],
+"loop": true,
+"name": "confirm",
+"speed": 24.0
+} ]
+
+[sub_resource type="VisualShaderNodeTextureUniform" id=7]
+uniform_name = "TextureUniform"
+
+[sub_resource type="VisualShaderNodeInput" id=8]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeColorConstant" id=12]
+
+[sub_resource type="VisualShader" id=9]
+code = "shader_type canvas_item;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Color:4
+	vec3 n_out4p0 = vec3(1.000000, 1.000000, 1.000000);
+	float n_out4p1 = 1.000000;
+
+// Output:0
+	COLOR.rgb = n_out4p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -97.0762, 0 )
+mode = 1
+flags/light_only = false
+nodes/fragment/2/node = SubResource( 7 )
+nodes/fragment/2/position = Vector2( 100, 100 )
+nodes/fragment/3/node = SubResource( 8 )
+nodes/fragment/3/position = Vector2( -200, 140 )
+nodes/fragment/4/node = SubResource( 12 )
+nodes/fragment/4/position = Vector2( 120, 0 )
+nodes/fragment/connections = PoolIntArray( 3, 0, 2, 0, 4, 0, 0, 0 )
+
+[sub_resource type="ShaderMaterial" id=11]
+resource_local_to_scene = true
+shader = SubResource( 9 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "start menu lol"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("ColorRect:color:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("ColorRect:color:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("ColorRect:color:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("ColorRect:color:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.780382, -0.0662387, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../Opening Text:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=6]
+
+[node name="Main Menu" type="Node2D"]
+script = ExtResource( 1 )
+character = NodePath("Start Menu/Viewport/Start Screen Character/Girlfriend")
+enter_animation = "Cheer"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1920.0
+margin_top = -1080.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Opening Text" type="Control" parent="."]
+margin_left = -960.0
+margin_top = -540.0
+margin_right = 960.0
+margin_bottom = 540.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Opening Text Animations" type="AnimationPlayer" parent="Opening Text"]
+"anims/opening text lol" = SubResource( 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Opening Text"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FNF Text" parent="Opening Text/CenterContainer" instance=ExtResource( 2 )]
+visible = false
+margin_left = 697.0
+margin_top = 467.0
+margin_right = 1223.0
+margin_bottom = 613.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 526, 146 )
+text = "xdx engine
+by xfunkin"
+visible_lines = 0
+
+[node name="ColorRect" type="ColorRect" parent="Opening Text/CenterContainer"]
+visible = false
+margin_left = 710.0
+margin_top = 290.0
+margin_right = 1210.0
+margin_bottom = 790.0
+rect_min_size = Vector2( 500, 500 )
+
+[node name="FNF Text2" parent="Opening Text/CenterContainer" instance=ExtResource( 2 )]
+visible = false
+margin_left = 533.0
+margin_top = 467.0
+margin_right = 1386.0
+margin_bottom = 613.0
+rect_min_size = Vector2( 853, 146 )
+text = "new engine
+new possibilities"
+visible_lines = 0
+
+[node name="FNF Text3" parent="Opening Text/CenterContainer" instance=ExtResource( 2 )]
+visible = false
+margin_left = 803.0
+margin_top = 431.0
+margin_right = 1117.0
+margin_bottom = 649.0
+rect_min_size = Vector2( 314, 218 )
+text = "friday
+night
+funkin"
+visible_lines = 0
+
+[node name="Start Menu" type="Node2D" parent="."]
+visible = false
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Start Menu"]
+material = SubResource( 17 )
+mesh = SubResource( 18 )
+
+[node name="logo" type="AnimatedSprite" parent="Start Menu"]
+position = Vector2( -480.749, -164.383 )
+scale = Vector2( 1.50789, 1.50789 )
+frames = SubResource( 2 )
+frame = 5
+playing = true
+
+[node name="gf" type="AnimatedSprite" parent="Start Menu"]
+visible = false
+modulate = Color( 1, 1, 1, 0.780392 )
+position = Vector2( 383.541, 54.9536 )
+scale = Vector2( 1.27826, 1.27826 )
+frames = SubResource( 3 )
+frame = 10
+
+[node name="Enter" type="AnimatedSprite" parent="Start Menu"]
+position = Vector2( 310.957, 394.41 )
+scale = Vector2( 1.50811, 1.50811 )
+frames = SubResource( 4 )
+frame = 9
+playing = true
+
+[node name="ColorRect" type="ColorRect" parent="Start Menu"]
+material = SubResource( 11 )
+margin_left = -1920.0
+margin_top = -1080.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 3840, 2160 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Start Menu"]
+"anims/start menu lol" = SubResource( 5 )
+
+[node name="Viewport" type="Viewport" parent="Start Menu"]
+size = Vector2( 1920, 1080 )
+transparent_bg = true
+usage = 0
+render_target_update_mode = 3
+
+[node name="Start Screen Character" parent="Start Menu/Viewport" instance=ExtResource( 3 )]
+
+[node name="start screen ref" type="Sprite" parent="Start Menu"]
+visible = false
+modulate = Color( 1, 1, 1, 0.427451 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 103 )
+
+[node name="Enter Timer" type="Timer" parent="Start Menu"]
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Start Menu"]
+stream = ExtResource( 104 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/fade in" = SubResource( 6 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[connection signal="animation_finished" from="Opening Text/Opening Text Animations" to="." method="_on_Opening_Text_Animations_animation_finished"]
+[connection signal="animation_finished" from="Start Menu/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="Start Menu/Enter Timer" to="." method="_on_Enter_Timer_timeout"]
+
+[editable path="Start Menu/Viewport/Start Screen Character"]

@@ -10,24 +10,198 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
+"class": "Arrow",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Arrow.gd"
+}, {
+"base": "Node2D",
+"class": "ArrowTrack",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Note Track.gd"
+}, {
+"base": "Node2D",
 "class": "Arrow_Track",
 "language": "GDScript",
 "path": "res://assets/scripts/Arrow Track.gd"
 }, {
+"base": "Character",
+"class": "Boyfriend",
+"language": "GDScript",
+"path": "res://assets/characters/boyfriend/Boyfriend.gd"
+}, {
+"base": "Node2D",
+"class": "Character",
+"language": "GDScript",
+"path": "res://Character.gd"
+}, {
+"base": "Character",
+"class": "DaddyDearest",
+"language": "GDScript",
+"path": "res://assets/weeks/week 1/assets/characters/daddy_dearest/Daddy Dearest.gd"
+}, {
+"base": "Arrow",
+"class": "DownArrow",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Down Arrow.gd"
+}, {
+"base": "HoldNote",
+"class": "DownHoldNote",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Down Hold Note.gd"
+}, {
+"base": "Note",
+"class": "DownNote",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Down Note.gd"
+}, {
+"base": "NoteLane",
+"class": "DownNoteLane",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Down Note Lane.gd"
+}, {
+"base": "Node2D",
+"class": "GameWeek",
+"language": "GDScript",
+"path": "res://assets/scripts/Game Week.gd"
+}, {
+"base": "Character",
+"class": "Girlfriend",
+"language": "GDScript",
+"path": "res://assets/characters/girlfriend/Girlfriend.gd"
+}, {
+"base": "Node2D",
+"class": "HealtBar",
+"language": "GDScript",
+"path": "res://assets/scripts/Health Bar.gd"
+}, {
+"base": "Note",
+"class": "HoldNote",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Hold Note.gd"
+}, {
+"base": "Node2D",
+"class": "JudgmentParicles",
+"language": "GDScript",
+"path": "res://assets/scenes/Judment Particles.gd"
+}, {
+"base": "Arrow",
+"class": "LeftArrow",
+"language": "GDScript",
+"path": "res://Left Arrow.gd"
+}, {
+"base": "HoldNote",
+"class": "LeftHoldNote",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Left Hold Note.gd"
+}, {
+"base": "Note",
+"class": "LeftNote",
+"language": "GDScript",
+"path": "res://Left Note.gd"
+}, {
+"base": "NoteLane",
+"class": "LeftNoteLane",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Left Note Lane.gd"
+}, {
+"base": "Node2D",
+"class": "MenuScreens",
+"language": "GDScript",
+"path": "res://Menu Screens.gd"
+}, {
 "base": "Node2D",
 "class": "Note",
 "language": "GDScript",
-"path": "res://assets/scripts/Note.gd"
+"path": "res://Note.gd"
+}, {
+"base": "Position2D",
+"class": "NoteLane",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Note Lane.gd"
 }, {
 "base": "Node2D",
 "class": "OS_Box",
 "language": "GDScript",
 "path": "res://assets/scripts/OS Box.gd"
+}, {
+"base": "Arrow",
+"class": "RightArrow",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Right Arrow.gd"
+}, {
+"base": "HoldNote",
+"class": "RightHoldNote",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Right Hold Note.gd"
+}, {
+"base": "Note",
+"class": "RightNote",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Right Note.gd"
+}, {
+"base": "NoteLane",
+"class": "RightNoteLane",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Right Note Lane.gd"
+}, {
+"base": "Arrow",
+"class": "UpArrow",
+"language": "GDScript",
+"path": "res://Up Arrow.gd"
+}, {
+"base": "HoldNote",
+"class": "UpHoldNote",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Up Hold Note.gd"
+}, {
+"base": "Note",
+"class": "UpNote",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Up Note.gd"
+}, {
+"base": "NoteLane",
+"class": "UpNoteLane",
+"language": "GDScript",
+"path": "res://assets/scenes/notes/Up Note Lane.gd"
+}, {
+"base": "GameWeek",
+"class": "WeekSong",
+"language": "GDScript",
+"path": "res://assets/scripts/Week Song.gd"
 } ]
 _global_script_class_icons={
+"Arrow": "",
+"ArrowTrack": "",
 "Arrow_Track": "",
+"Boyfriend": "res://assets/characters/boyfriend/Boyfriend Icon.png",
+"Character": "",
+"DaddyDearest": "res://assets/weeks/week 1/assets/characters/daddy_dearest/Daddy Dearest Icon.png",
+"DownArrow": "res://assets/images/NOTE_assets/arrowDOWN0000.png",
+"DownHoldNote": "",
+"DownNote": "res://assets/images/NOTE_assets/blue0000.png",
+"DownNoteLane": "",
+"GameWeek": "",
+"Girlfriend": "res://assets/characters/girlfriend/Girlfriend Icon.png",
+"HealtBar": "",
+"HoldNote": "",
+"JudgmentParicles": "",
+"LeftArrow": "res://assets/images/NOTE_assets/arrowLEFT0000.png",
+"LeftHoldNote": "",
+"LeftNote": "res://assets/images/NOTE_assets/purple0000.png",
+"LeftNoteLane": "",
+"MenuScreens": "",
 "Note": "",
-"OS_Box": ""
+"NoteLane": "",
+"OS_Box": "",
+"RightArrow": "res://assets/images/NOTE_assets/arrowRIGHT0000.png",
+"RightHoldNote": "",
+"RightNote": "res://assets/images/NOTE_assets/red0000.png",
+"RightNoteLane": "",
+"UpArrow": "res://assets/images/NOTE_assets/arrowUP0000.png",
+"UpHoldNote": "",
+"UpNote": "res://assets/images/NOTE_assets/green0000.png",
+"UpNoteLane": "",
+"WeekSong": ""
 }
 
 [application]
@@ -35,6 +209,10 @@ _global_script_class_icons={
 config/name="Vs Zappity"
 run/main_scene="res://basic menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GameData="*res://assets/data/Game Data.gd"
 
 [display]
 
