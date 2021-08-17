@@ -7,6 +7,7 @@ extends Node2D
 export(int, "XML Convert", "Contrast Max") var mode
 
 # Called when the node enters the scene tree for the first time.
+
 func _ready():
 	$Control/OptionButton.add_item("Convert XML Sprite Sheet", 0)
 	$Control/OptionButton.add_item("maximise contrast", 1)
@@ -41,10 +42,16 @@ func _on_Image_File_Box_file_selected(path):
 	
 #	$Control/CenterContainer/Sprite.texture = tex
 	
+var thingy_path = ""
+
+func _input(event):
+	if event.is_action("ui_accept"):
+		_on_XML_File_Box_file_selected(thingy_path)
 
 var sprite_sheet_data : Array = []
 
 func _on_XML_File_Box_file_selected(path):
+	thingy_path = path
 	sprite_sheet_data = []
 	var XMLParse = XMLParser.new()
 	var ye = XMLParse.open(path)

@@ -124,6 +124,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://assets/scripts/OS Box.gd"
 }, {
+"base": "Node2D",
+"class": "OldNote",
+"language": "GDScript",
+"path": "res://assets/scripts/Note.gd"
+}, {
 "base": "Arrow",
 "class": "RightArrow",
 "language": "GDScript",
@@ -193,6 +198,7 @@ _global_script_class_icons={
 "Note": "",
 "NoteLane": "",
 "OS_Box": "",
+"OldNote": "",
 "RightArrow": "res://assets/images/NOTE_assets/arrowRIGHT0000.png",
 "RightHoldNote": "",
 "RightNote": "res://assets/images/NOTE_assets/red0000.png",
@@ -207,7 +213,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Vs Zappity"
-run/main_scene="res://basic menu.tscn"
+run/main_scene="res://assets/scenes/Menu Screens.tscn"
 config/icon="res://icon.png"
 
 [autoload]

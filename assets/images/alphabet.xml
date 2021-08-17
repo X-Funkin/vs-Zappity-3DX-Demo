@@ -2,18 +2,18 @@
 <TextureAtlas imagePath="alphabet.png">
 	<!-- Created with Adobe Animate version 20.0.0.17400 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="hashtag 0000" x="0" y="0" width="39" height="44"/>
-	<SubTexture name="hashtag 0001" x="0" y="0" width="39" height="44"/>
-	<SubTexture name="hashtag 0002" x="49" y="0" width="39" height="44"/>
-	<SubTexture name="hashtag 0003" x="49" y="0" width="39" height="44"/>
+	<SubTexture name="hashtag 0000" x="0" y="0" width="47" height="54"/>
+	<SubTexture name="hashtag 0001" x="0" y="0" width="47" height="54"/>
+	<SubTexture name="hashtag 0002" x="47" y="0" width="49" height="54"/>
+	<SubTexture name="hashtag 0003" x="47" y="0" width="49" height="54"/>
 	<SubTexture name="dollarsign 0000" x="98" y="0" width="40" height="64"/>
 	<SubTexture name="dollarsign 0001" x="98" y="0" width="40" height="64"/>
 	<SubTexture name="dollarsign 0002" x="148" y="0" width="39" height="63" frameX="0" frameY="0" frameWidth="40" frameHeight="64"/>
 	<SubTexture name="dollarsign 0003" x="148" y="0" width="39" height="63" frameX="0" frameY="0" frameWidth="40" frameHeight="64"/>
-	<SubTexture name="%0000" x="197" y="0" width="46" height="52"/>
-	<SubTexture name="%0001" x="197" y="0" width="46" height="52"/>
-	<SubTexture name="%0002" x="253" y="0" width="45" height="52" frameX="0" frameY="0" frameWidth="46" frameHeight="52"/>
-	<SubTexture name="%0003" x="253" y="0" width="45" height="52" frameX="0" frameY="0" frameWidth="46" frameHeight="52"/>
+	<SubTexture name="percent 0000" x="197" y="0" width="46" height="52"/>
+	<SubTexture name="percent 0001" x="197" y="0" width="46" height="52"/>
+	<SubTexture name="percent 0002" x="253" y="0" width="45" height="52" frameX="0" frameY="0" frameWidth="46" frameHeight="52"/>
+	<SubTexture name="percent 0003" x="253" y="0" width="45" height="52" frameX="0" frameY="0" frameWidth="46" frameHeight="52"/>
 	<SubTexture name="amp0000" x="308" y="0" width="36" height="58"/>
 	<SubTexture name="amp0001" x="308" y="0" width="36" height="58"/>
 	<SubTexture name="amp0002" x="354" y="0" width="36" height="58"/>

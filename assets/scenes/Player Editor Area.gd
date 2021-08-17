@@ -42,7 +42,7 @@ func _on_Player_Editor_Area_input_event(viewport, event, shape_idx):
 			if Input.is_key_pressed(KEY_SHIFT):
 				var notes = get_parent().get_left_notes()
 				if notes != []:
-					var nearest_note : Note = notes[0]
+					var nearest_note : OldNote = notes[0]
 					for note in notes:
 						if note.hit_time < click_song_pos:
 							if note.hit_time > nearest_note.hit_time:
@@ -53,7 +53,7 @@ func _on_Player_Editor_Area_input_event(viewport, event, shape_idx):
 						emit_signal("added_hold")
 				return 0
 			print("left click at ", get_global_mouse_position())
-			var n_note = Note.new()
+			var n_note = OldNote.new()
 			n_note.note_type = 0
 			n_note.live = true
 			n_note.hit_time = click_song_pos

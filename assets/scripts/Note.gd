@@ -1,5 +1,5 @@
 extends Node2D
-#class_name Note
+class_name OldNote
 
 export(int) var note_type #setget set_note_type, get_note_type
 export(float) var hit_time

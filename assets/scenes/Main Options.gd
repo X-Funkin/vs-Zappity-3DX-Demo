@@ -15,6 +15,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().call_group("Menu Switchers", "switch_to_main")
@@ -23,3 +24,13 @@ func _on_Gameplay_Options_Button_pressed():
 	get_tree().call_group("Options Menu Switchers", "switch_to_gameplay_options")
 	
 	pass # Replace with function body.
+
+func _on_Controls_Options_Button_pressed():
+	get_tree().call_group("Options Menu Switchers", "switch_to_control_options")
+	pass # Replace with function body.
+
+
+func _on_Chart_Editor_Button_pressed():
+	get_tree().change_scene("res://assets/scenes/Chart Editor.tscn")
+	pass # Replace with function body.
+

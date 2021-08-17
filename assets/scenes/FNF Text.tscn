@@ -3,17 +3,21 @@
 [ext_resource path="res://FNF Text.gd" type="Script" id=1]
 
 [node name="FNF Text" type="Control"]
-margin_right = 110.0
-margin_bottom = 33.5
+margin_right = 192.0
+margin_bottom = 66.0
+rect_min_size = Vector2( 192, 66 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+text = "test"
 alignment = 1
 visible_lines = -1
 textvbox = NodePath("VBoxContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 192.0
+margin_bottom = 66.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -33,3 +37,9 @@ margin_bottom = -2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+editor_only = false

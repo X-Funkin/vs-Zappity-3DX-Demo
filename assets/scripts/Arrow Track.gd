@@ -70,7 +70,7 @@ func set_song_time(n_time):
 func get_song_time():
 	return song_time
 
-func add_note(n_note : Note):
+func add_note(n_note : OldNote):
 	match n_note.note_type:
 		0:
 			var l_inst = LeftNote.instance()
@@ -106,7 +106,7 @@ func add_note(n_note : Note):
 		
 signal added_editor_note
 
-func add_editor_note(n_note : Note):
+func add_editor_note(n_note : OldNote):
 	var e_inst = EditorNote.instance()
 	match n_note.note_type:
 		0:

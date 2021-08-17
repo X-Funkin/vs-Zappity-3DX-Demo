@@ -24,7 +24,9 @@ func _input(event):
 #		resume()
 
 func exit():
-	get_tree().quit()
+#	get_tree().quit()
+	get_tree().paused = false
+	get_tree().change_scene("res://assets/scenes/Menu Screens.tscn")
 
 func resume():
 	print("resuming")
