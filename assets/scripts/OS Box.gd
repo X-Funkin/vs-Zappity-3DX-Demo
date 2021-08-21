@@ -27,6 +27,7 @@ func set_window_open(n_open):
 func set_name(n_name):
 	window_name = n_name
 	if not is_inside_tree(): yield(self, "ready")
+	$Control/Label.text = n_name
 	#$Label.text = n_name
 
 func get_name():

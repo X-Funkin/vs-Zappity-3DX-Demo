@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://FNF Text.gd" type="Script" id=1]
+[ext_resource path="res://assets/scripts/FNF Text.gd" type="Script" id=1]
 
 [node name="FNF Text" type="Control"]
 margin_right = 192.0

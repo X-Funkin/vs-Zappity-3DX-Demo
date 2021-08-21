@@ -704,3 +704,8 @@ func _on_Center_Track_input_event(viewport, event, shape_idx):
 			pass
 		pass
 	pass # Replace with function body.
+
+
+func _on_Exit_Button_pressed():
+	get_tree().change_scene("res://assets/scenes/Menu Screens.tscn")
+	pass # Replace with function body.

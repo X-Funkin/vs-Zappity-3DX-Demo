@@ -32,12 +32,12 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Character",
 "language": "GDScript",
-"path": "res://Character.gd"
+"path": "res://assets/scripts/Character.gd"
 }, {
 "base": "Spatial",
 "class": "Character3D",
 "language": "GDScript",
-"path": "res://Character3D.gd"
+"path": "res://assets/scripts/Character3D.gd"
 }, {
 "base": "Character",
 "class": "DaddyDearest",
@@ -92,7 +92,7 @@ _global_script_classes=[ {
 "base": "Arrow",
 "class": "LeftArrow",
 "language": "GDScript",
-"path": "res://Left Arrow.gd"
+"path": "res://assets/scripts/Left Arrow.gd"
 }, {
 "base": "HoldNote",
 "class": "LeftHoldNote",
@@ -102,7 +102,7 @@ _global_script_classes=[ {
 "base": "Note",
 "class": "LeftNote",
 "language": "GDScript",
-"path": "res://Left Note.gd"
+"path": "res://assets/scripts/Left Note.gd"
 }, {
 "base": "NoteLane",
 "class": "LeftNoteLane",
@@ -112,7 +112,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "MenuScreens",
 "language": "GDScript",
-"path": "res://Menu Screens.gd"
+"path": "res://assets/scripts/Menu Screens.gd"
 }, {
 "base": "Node2D",
 "class": "Note",
@@ -157,7 +157,7 @@ _global_script_classes=[ {
 "base": "Arrow",
 "class": "UpArrow",
 "language": "GDScript",
-"path": "res://Up Arrow.gd"
+"path": "res://assets/scripts/Up Arrow.gd"
 }, {
 "base": "HoldNote",
 "class": "UpHoldNote",
@@ -209,7 +209,7 @@ _global_script_class_icons={
 "RightHoldNote": "",
 "RightNote": "res://assets/images/NOTE_assets/red0000.png",
 "RightNoteLane": "",
-"UpArrow": "res://assets/images/NOTE_assets/arrowUP0000.png",
+"UpArrow": "",
 "UpHoldNote": "",
 "UpNote": "res://assets/images/NOTE_assets/green0000.png",
 "UpNoteLane": "",
@@ -220,7 +220,8 @@ _global_script_class_icons={
 
 config/name="Vs Zappity"
 run/main_scene="res://assets/scenes/Menu Screens.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://screenshots/screenshot_8-21-2021-3_50_47.png"
+config/icon="res://zappity icon buuuuh.png"
 
 [autoload]
 

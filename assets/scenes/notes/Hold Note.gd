@@ -103,7 +103,7 @@ func update_scale():
 	if not is_inside_tree(): yield(self, 'ready')
 	var hold_node = get_node(hold_note_body)
 	hold_node.scale.y = (hold_time/float(hold_node.texture.get_height()))/scale.y
-	get_node(hold_note_end).scale.y = 1.0/hold_node.scale.y
+	get_node(hold_note_end).scale.y = 1.0/hold_node.scale.y*GameData.data.settings.scroll_direction
 	self.played_amount = played_amount
 
 func check_holding():
@@ -126,6 +126,7 @@ func score_note():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+#	get_node(hold_note_end).scale.y *= -GameData.data.settings.scroll_direction
 	pass # Replace with function body.
 
 

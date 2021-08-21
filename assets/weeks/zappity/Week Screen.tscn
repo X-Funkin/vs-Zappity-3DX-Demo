@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Week Screen.gd" type="Script" id=1]
+[ext_resource path="res://assets/scripts/Week Screen.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/campaing assets/EASY0000.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/campaing assets/NORMAL0000.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/campaing assets/HARD0000.png" type="Texture" id=4]
@@ -36,13 +36,13 @@ font_data = ExtResource( 10 )
 [node name="Week Screen" type="Node2D"]
 script = ExtResource( 1 )
 week_name = "Zappity"
-TOP_TEXT = "Shocking"
+TOP_TEXT = "ZAPPITY DEMO"
 week_menu_image = ExtResource( 5 )
-week_sprite = "res://assets/weeks/week 1/assets/characters/daddy_dearest/Lineart Daddy.tscn"
+week_sprite = "res://assets/weeks/zappity/assets/characters/Zappity/Lineart Zappity.tscn"
 easy_image = ExtResource( 2 )
 normal_image = ExtResource( 3 )
 hard_image = ExtResource( 4 )
-target_string = "res://Main3D.tscn"
+target_string = "res://assets/scenes/Main3D.tscn"
 song_data_file = "res://assets/weeks/zappity/song_data.json"
 week_data_file = "res://assets/weeks/zappity/week_data.json"
 

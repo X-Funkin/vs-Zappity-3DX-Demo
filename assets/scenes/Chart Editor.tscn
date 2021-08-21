@@ -597,7 +597,6 @@ extents = Vector2( 160, 1000 )
 ]]
 script = ExtResource( 2 )
 song = "zappity"
-selection_end = 1000.0
 
 [node name="Song Chart Transform" type="Position2D" parent="." groups=[
 "Song Time Recievers",
@@ -665,12 +664,149 @@ material = SubResource( 59 )
 z_index = -1
 mesh = SubResource( 60 )
 
+[node name="Character" type="Node2D" parent="." groups=[
+"Player Hit Recievers",
+]]
+position = Vector2( 710.135, 795.565 )
+scale = Vector2( 0.573093, 0.573093 )
+script = ExtResource( 3 )
+character_node = NodePath("Boyfriend")
+
+[node name="Boyfriend" parent="Character" instance=ExtResource( 5 )]
+
+[node name="Pose Timer" type="Timer" parent="Character"]
+wait_time = 0.3
+one_shot = true
+
+[node name="Load Character" type="Button" parent="Character"]
+margin_right = 12.0
+margin_bottom = 20.0
+rect_scale = Vector2( 2.06445, 2.06445 )
+text = "Load Character"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FileDialog" type="FileDialog" parent="Character"]
+visible = true
+margin_right = 495.0
+margin_bottom = 500.0
+window_title = "Open a File"
+dialog_text = "Open a Character File"
+mode = 0
+filters = PoolStringArray( "*.tscn" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="Character"]
+margin_left = -89.6737
+margin_right = -31.6737
+margin_bottom = 24.0
+rect_scale = Vector2( 1.53504, 1.53504 )
+text = "1.0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Character"]
+margin_left = -190.647
+margin_top = -2.32922
+margin_right = -150.647
+margin_bottom = 11.6708
+rect_scale = Vector2( 2.48506, 2.48506 )
+text = "Scale"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox" type="CheckBox" parent="Character"]
+margin_left = -88.6364
+margin_top = 48.4729
+margin_right = 36.3636
+margin_bottom = 72.4729
+rect_scale = Vector2( 1.91343, 1.91343 )
+pressed = true
+text = "Show Character"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Character2" type="Node2D" parent="." groups=[
+"Player Hit Recievers",
+]]
+position = Vector2( -638.053, 795.565 )
+scale = Vector2( 0.573093, 0.573093 )
+script = ExtResource( 3 )
+character_node = NodePath("Zappity")
+
+[node name="Zappity" parent="Character2" instance=ExtResource( 4 )]
+
+[node name="Pose Timer" type="Timer" parent="Character2"]
+wait_time = 0.3
+one_shot = true
+
+[node name="Load Character" type="Button" parent="Character2"]
+margin_right = 12.0
+margin_bottom = 20.0
+rect_scale = Vector2( 2.06445, 2.06445 )
+text = "Load Character"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FileDialog" type="FileDialog" parent="Character2"]
+visible = true
+margin_right = 495.0
+margin_bottom = 500.0
+window_title = "Open a File"
+dialog_text = "Open a Character File"
+mode = 0
+filters = PoolStringArray( "*.tscn" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="Character2"]
+margin_left = -89.6737
+margin_right = -31.6737
+margin_bottom = 24.0
+rect_scale = Vector2( 1.53504, 1.53504 )
+text = "1.0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Character2"]
+margin_left = -190.647
+margin_top = -2.32922
+margin_right = -150.647
+margin_bottom = 11.6708
+rect_scale = Vector2( 2.48506, 2.48506 )
+text = "Scale"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox" type="CheckBox" parent="Character2"]
+margin_left = -88.6364
+margin_top = 48.4729
+margin_right = 36.3636
+margin_bottom = 72.4729
+rect_scale = Vector2( 1.91343, 1.91343 )
+pressed = true
+text = "Show Character"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Arrow Track" parent="." groups=[
 "Song Time Recievers",
 ] instance=ExtResource( 1 )]
 position = Vector2( 480, 0 )
 chart_file = "res://assets/weeks/zappity/zappity/"
 chart_channel = "boyfriend"
+player_track = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Arrow Track"]
 "anims/scaling ithaisgfnl" = SubResource( 61 )
@@ -922,10 +1058,7 @@ window_title = "Open a File"
 resizable = true
 dialog_text = "Load Enemy Vocals"
 mode = 0
-access = 2
 filters = PoolStringArray( "*.wav" )
-current_dir = "/godot/vs zappity/vs-Zappity-3DX"
-current_path = "/godot/vs zappity/vs-Zappity-3DX/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -939,10 +1072,7 @@ window_title = "Open a File"
 resizable = true
 dialog_text = "Load Enemy Vocals"
 mode = 0
-access = 2
 filters = PoolStringArray( "*.wav" )
-current_dir = "/godot/vs zappity/vs-Zappity-3DX"
-current_path = "/godot/vs zappity/vs-Zappity-3DX/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -956,10 +1086,7 @@ window_title = "Open a File"
 resizable = true
 dialog_text = "Load Enemy Vocals"
 mode = 0
-access = 2
 filters = PoolStringArray( "*.wav" )
-current_dir = "/godot/vs zappity/vs-Zappity-3DX"
-current_path = "/godot/vs zappity/vs-Zappity-3DX/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1155,10 +1282,20 @@ hide_on_checkable_item_selection = false
 
 [node name="Options Button" type="Button" parent="."]
 margin_left = 803.341
+margin_top = 872.936
+margin_right = 920.341
+margin_bottom = 892.936
+text = "Options"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit Button" type="Button" parent="."]
+margin_left = 803.341
 margin_top = 904.4
 margin_right = 920.341
 margin_bottom = 924.4
-text = "Options and Exit"
+text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1465,26 +1602,17 @@ color = Color( 1, 1, 1, 1 )
 [node name="AutoSaveTimer" type="Timer" parent="."]
 wait_time = 600.0
 
-[node name="Character" type="Node2D" parent="." groups=[
-"Player Hit Recievers",
-]]
-position = Vector2( 710.135, 795.565 )
-scale = Vector2( 0.573093, 0.573093 )
-script = ExtResource( 3 )
-
-[node name="Boyfriend" parent="Character" instance=ExtResource( 5 )]
-
-[node name="Character2" type="Node2D" parent="." groups=[
-"Enemy Hit Recievers",
-]]
-position = Vector2( 710.135, 795.565 )
-scale = Vector2( 0.573093, 0.573093 )
-script = ExtResource( 3 )
-
-[node name="Zappity" parent="Character2" instance=ExtResource( 4 )]
-position = Vector2( -2440.98, 0 )
-
 [connection signal="zoom_updated" from="Song Chart Transform" to="." method="_on_Song_Chart_Transform_zoom_updated"]
+[connection signal="timeout" from="Character/Pose Timer" to="Character" method="_on_Pose_Timer_timeout"]
+[connection signal="pressed" from="Character/Load Character" to="Character" method="_on_Load_Character_pressed"]
+[connection signal="file_selected" from="Character/FileDialog" to="Character" method="_on_FileDialog_file_selected"]
+[connection signal="text_entered" from="Character/LineEdit" to="Character" method="_on_LineEdit_text_entered"]
+[connection signal="toggled" from="Character/CheckBox" to="Character" method="_on_CheckBox_toggled"]
+[connection signal="timeout" from="Character2/Pose Timer" to="Character2" method="_on_Pose_Timer_timeout"]
+[connection signal="pressed" from="Character2/Load Character" to="Character2" method="_on_Load_Character_pressed"]
+[connection signal="file_selected" from="Character2/FileDialog" to="Character2" method="_on_FileDialog_file_selected"]
+[connection signal="text_entered" from="Character2/LineEdit" to="Character2" method="_on_LineEdit_text_entered"]
+[connection signal="toggled" from="Character2/CheckBox" to="Character2" method="_on_CheckBox_toggled"]
 [connection signal="added_editor_note" from="Arrow Track" to="." method="_on_Arrow_Track_added_editor_note"]
 [connection signal="added_hold" from="Arrow Track/Left Arrow Edit" to="." method="_on_Left_Arrow_Edit_added_hold"]
 [connection signal="input_event" from="Arrow Track/Left Arrow Edit" to="Arrow Track/Left Arrow Edit" method="_on_Player_Editor_Area_input_event"]
@@ -1544,6 +1672,7 @@ position = Vector2( -2440.98, 0 )
 [connection signal="value_changed" from="Instrumentals Volume" to="." method="_on_Instrumentals_Volume_value_changed"]
 [connection signal="value_changed" from="Enemy Vocals Volume" to="." method="_on_Enemy_Vocals_Volume_value_changed"]
 [connection signal="pressed" from="Options Button" to="." method="_on_Options_Button_pressed"]
+[connection signal="pressed" from="Exit Button" to="." method="_on_Exit_Button_pressed"]
 [connection signal="toggled" from="Settings Popup/VBoxContainer/SnappingPlayback" to="." method="_on_SnappingPlayback_toggled"]
 [connection signal="toggled" from="Settings Popup/VBoxContainer/WaveformPlayback" to="." method="_on_WaveformPlayback_toggled"]
 [connection signal="toggled" from="Settings Popup/VBoxContainer/AlwaysCopy" to="." method="_on_AlwaysCopy_toggled"]
