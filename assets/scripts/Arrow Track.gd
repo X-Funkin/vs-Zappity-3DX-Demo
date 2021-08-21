@@ -12,11 +12,11 @@ export(bool) var auto_load_chart
 export(bool) var player_track
 #export(String) var input_receivers_group
 
-var LeftNote : PackedScene = load("res://assets/scenes/Left Note.tscn")
-var DownNote : PackedScene = load("res://assets/scenes/Down Note.tscn")
-var UpNote : PackedScene = load("res://assets/scenes/Up Note.tscn")
-var RightNote : PackedScene = load("res://assets/scenes/Right Note.tscn")
-var EditorNote : PackedScene = load("res://assets/scenes/Editor Note.tscn")
+var left_note : PackedScene = load("res://assets/scenes/Left Note.tscn")
+var down_note : PackedScene = load("res://assets/scenes/Down Note.tscn")
+var up_note : PackedScene = load("res://assets/scenes/Up Note.tscn")
+var right_note : PackedScene = load("res://assets/scenes/Right Note.tscn")
+var editor_note : PackedScene = load("res://assets/scenes/Editor Note.tscn")
 onready var DownHold : PackedScene = load("res://assets/scenes/Down Note Hold.tscn")
 
 func set_scroll_speed(n_speed):
@@ -73,7 +73,7 @@ func get_song_time():
 func add_note(n_note : OldNote):
 	match n_note.note_type:
 		0:
-			var l_inst = LeftNote.instance()
+			var l_inst = left_note.instance()
 			l_inst.hit_time = n_note.hit_time
 			l_inst.live = n_note.live
 			$"Left Track/Left Arrow/Left Notes Transform/Left Notes".add_child(l_inst)
@@ -82,7 +82,7 @@ func add_note(n_note : OldNote):
 			print("yeah added note lol ", l_inst.transform)
 			print("lgobal ", l_inst.global_transform)
 		1:
-			var d_inst = DownNote.instance()
+			var d_inst = down_note.instance()
 			d_inst.hit_time = n_note.hit_time
 			d_inst.live = n_note.live
 			print("DOWEAOSDFK")
@@ -90,14 +90,14 @@ func add_note(n_note : OldNote):
 			d_inst.position.y = n_note.hit_time
 			d_inst.global_scale.y = 1.0
 		2:
-			var u_inst = UpNote.instance()
+			var u_inst = up_note.instance()
 			u_inst.hit_time = n_note.hit_time
 			u_inst.live = n_note.live
 			$"Up Track/Up Arrow/Up Notes Transform/Up Notes".add_child(u_inst)
 			u_inst.position.y = n_note.hit_time
 			u_inst.global_scale.y = 1.0
 		3:
-			var r_inst = RightNote.instance()
+			var r_inst = right_note.instance()
 			r_inst.hit_time = n_note.hit_time
 			r_inst.live = n_note.live
 			$"Right Track/Right Arrow/Right Notes Transform/Right Notes".add_child(r_inst)
@@ -107,10 +107,10 @@ func add_note(n_note : OldNote):
 signal added_editor_note
 
 func add_editor_note(n_note : OldNote):
-	var e_inst = EditorNote.instance()
+	var e_inst = editor_note.instance()
 	match n_note.note_type:
 		0:
-			var l_inst = LeftNote.instance()
+			var l_inst = left_note.instance()
 			l_inst.add_child(e_inst)
 			$"Left Track/Left Arrow/Left Notes Transform/Left Notes".add_child(l_inst)
 			l_inst.hit_time = n_note.hit_time
@@ -122,7 +122,7 @@ func add_editor_note(n_note : OldNote):
 			print("yeah added note lol ", l_inst.transform)
 			print("lgobal ", l_inst.global_transform)
 		1:
-			var d_inst = DownNote.instance()
+			var d_inst = down_note.instance()
 			d_inst.add_child(e_inst)
 			$"Down Track/Down Arrow/Down Notes Transform/Down Notes".add_child(d_inst)
 			d_inst.hit_time = n_note.hit_time
@@ -133,7 +133,7 @@ func add_editor_note(n_note : OldNote):
 			d_inst.global_scale.y = 1.0
 			
 		2:
-			var u_inst = UpNote.instance()
+			var u_inst = up_note.instance()
 			u_inst.add_child(e_inst)
 			$"Up Track/Up Arrow/Up Notes Transform/Up Notes".add_child(u_inst)
 			u_inst.hit_time = n_note.hit_time
@@ -143,7 +143,7 @@ func add_editor_note(n_note : OldNote):
 			u_inst.position.y = n_note.hit_time
 			u_inst.global_scale.y = 1.0
 		3:
-			var r_inst = RightNote.instance()
+			var r_inst = right_note.instance()
 			r_inst.add_child(e_inst)
 			$"Right Track/Right Arrow/Right Notes Transform/Right Notes".add_child(r_inst)
 			r_inst.hit_time = n_note.hit_time
@@ -157,10 +157,10 @@ func add_editor_note(n_note : OldNote):
 
 
 func import_editor_note(n_note):
-	var e_inst = EditorNote.instance()
+	var e_inst = editor_note.instance()
 	match int(n_note[1])%4:
 		0:
-			var l_inst = LeftNote.instance()
+			var l_inst = left_note.instance()
 			l_inst.add_child(e_inst)
 			$"Left Track/Left Arrow/Left Notes Transform/Left Notes".add_child(l_inst)
 			l_inst.hit_time = n_note[0]
@@ -172,7 +172,7 @@ func import_editor_note(n_note):
 			print("yeah added note lol ", l_inst.transform)
 			print("lgobal ", l_inst.global_transform)
 		1:
-			var d_inst = DownNote.instance()
+			var d_inst = down_note.instance()
 			d_inst.add_child(e_inst)
 			$"Down Track/Down Arrow/Down Notes Transform/Down Notes".add_child(d_inst)
 			d_inst.hit_time = n_note[0]
@@ -183,7 +183,7 @@ func import_editor_note(n_note):
 			d_inst.global_scale.y = 1.0
 			
 		2:
-			var u_inst = UpNote.instance()
+			var u_inst = up_note.instance()
 			u_inst.add_child(e_inst)
 			$"Up Track/Up Arrow/Up Notes Transform/Up Notes".add_child(u_inst)
 			u_inst.hit_time = n_note[0]
@@ -194,7 +194,7 @@ func import_editor_note(n_note):
 			u_inst.global_scale.y = 1.0
 			
 		3:
-			var r_inst = RightNote.instance()
+			var r_inst = right_note.instance()
 			r_inst.add_child(e_inst)
 			$"Right Track/Right Arrow/Right Notes Transform/Right Notes".add_child(r_inst)
 			r_inst.hit_time = n_note[0]
@@ -208,7 +208,7 @@ func import_editor_note(n_note):
 func import_note(n_note):
 	match int(n_note[1])%4:
 		0:
-			var l_inst : Note = LeftNote.instance()
+			var l_inst = left_note.instance()
 			$"Left Track/Left Arrow/Left Notes Transform/Left Notes".add_child(l_inst)
 			l_inst.hit_time = n_note[0]
 			l_inst.live = true
@@ -220,7 +220,7 @@ func import_note(n_note):
 			print("yeah added note lol ", l_inst.transform)
 			print("lgobal ", l_inst.global_transform)
 		1:
-			var d_inst = DownNote.instance()
+			var d_inst = down_note.instance()
 			$"Down Track/Down Arrow/Down Notes Transform/Down Notes".add_child(d_inst)
 			d_inst.hit_time = n_note[0]
 			d_inst.live = true
@@ -231,7 +231,7 @@ func import_note(n_note):
 			d_inst.player_note = player_track
 			
 		2:
-			var u_inst = UpNote.instance()
+			var u_inst = up_note.instance()
 			$"Up Track/Up Arrow/Up Notes Transform/Up Notes".add_child(u_inst)
 			u_inst.hit_time = n_note[0]
 			u_inst.live = true
@@ -242,7 +242,7 @@ func import_note(n_note):
 			u_inst.player_note = player_track
 			
 		3:
-			var r_inst = RightNote.instance()
+			var r_inst = right_note.instance()
 			$"Right Track/Right Arrow/Right Notes Transform/Right Notes".add_child(r_inst)
 			r_inst.hit_time = n_note[0]
 			r_inst.live = true

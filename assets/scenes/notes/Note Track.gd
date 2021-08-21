@@ -106,6 +106,8 @@ func import_fnf_chart():
 						else:
 							import_note(note)
 	notes = get_notes(true)
+	if player_track:
+		get_tree().call_group("Player Notes Recievers", "recieve_player_note_count", notes.size())
 
 func import_kade_chart():
 	pass
@@ -200,59 +202,61 @@ func get_notes(sorted=false):
 
 
 #funky input stuff
+
+func note_pressed(note_track,note_arrow):
+	note_arrow.play_press()
+	if note_track.holding_note:
+		if note_track.held_note.playing == false:
+			get_tree().call_group("Player Hit Recievers", "recieve_player_hit",note_track.held_note, song_time-note_track.held_note.hit_time)
+		note_track.held_note.playing = true
+
+func note_unpressed(note_track, note_arrow):
+	note_arrow.play_default()
+	print("left note up lol")
+	if note_track.holding_note:
+		print("yeah it's got a hold note baybeee")
+		note_track.held_note.playing = false
+		if abs(note_track.held_note.hit_time+note_track.held_note.hold_time-song_time) < timing_window:
+			note_track.held_note.despawn()
+		else:
+			get_tree().call_group("Player Miss Recievers", "recieve_player_miss", note_track.held_note.note_type)
+
 func recieve_player_left_input(event : InputEvent):
 	if player_track:
+		var note_track = get_node(left_note_track)
+		var note_arrow = get_node(left_arrow)
 		if event.is_pressed():
-			get_node(left_arrow).play_press()
-			if get_node(left_note_track).holding_note:
-				get_node(left_note_track).held_note.playing = true
+			note_pressed(note_track, note_arrow)
 		else:
-			get_node(left_arrow).play_default()
-			print("left note up lol")
-			if get_node(left_note_track).holding_note:
-				print("yeah it's got a hold note baybeee")
-				get_node(left_note_track).held_note.playing = false
-				get_tree().call_group("Player Miss Recievers", "recieve_player_miss", 0)
-		pass
+			note_unpressed(note_track, note_arrow)
 
 func recieve_player_down_input(event : InputEvent):
 	if player_track:
+		var note_track = get_node(down_note_track)
+		var note_arrow = get_node(down_arrow)
 		if event.is_pressed():
-			get_node(down_arrow).play_press()
-			if get_node(down_note_track).holding_note:
-				get_node(down_note_track).held_note.playing = true
+			note_pressed(note_track, note_arrow)
 		else:
-			get_node(down_arrow).play_default()
-			if get_node(down_note_track).holding_note:
-				get_node(down_note_track).held_note.playing = false
-				get_tree().call_group("Player Miss Recievers", "recieve_player_miss", 1)
-		pass
+			note_unpressed(note_track, note_arrow)
+
 
 func recieve_player_up_input(event : InputEvent):
 	if player_track:
+		var note_track = get_node(up_note_track)
+		var note_arrow = get_node(up_arrow)
 		if event.is_pressed():
-			get_node(up_arrow).play_press()
-			if get_node(up_note_track).holding_note:
-				get_node(up_note_track).held_note.playing = true
+			note_pressed(note_track, note_arrow)
 		else:
-			get_node(up_arrow).play_default()
-			if get_node(up_note_track).holding_note:
-				get_node(up_note_track).held_note.playing = false
-				get_tree().call_group("Player Miss Recievers", "recieve_player_miss", 2)
-		pass
+			note_unpressed(note_track, note_arrow)
 
 func recieve_player_right_input(event : InputEvent):
 	if player_track:
+		var note_track = get_node(right_note_track)
+		var note_arrow = get_node(right_arrow)
 		if event.is_pressed():
-			get_node(right_arrow).play_press()
-			if get_node(right_note_track).holding_note:
-				get_node(right_note_track).held_note.playing = true
+			note_pressed(note_track, note_arrow)
 		else:
-			get_node(right_arrow).play_default()
-			if get_node(right_note_track).holding_note:
-				get_node(right_note_track).held_note.playing = false
-				get_tree().call_group("Player Miss Recievers", "recieve_player_miss", 3)
-		pass
+			note_unpressed(note_track, note_arrow)
 
 func recieve_player_hit(note : Note, hit_error):
 	if player_track:

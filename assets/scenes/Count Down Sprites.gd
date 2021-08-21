@@ -1,6 +1,8 @@
 #tool
 extends Node2D
 
+export(int) var count_down_offset
+export(float) var fade_speed = 1 setget set_fade_speed
 export(Texture) var ready_sprite setget set_ready_sprite
 export(Texture) var set_sprite setget set_set_sprite
 export(Texture) var go_sprite setget set_go_sprite
@@ -9,6 +11,12 @@ export(AudioStream) var three_sound setget set_three_sound
 export(AudioStream) var two_sound
 export(AudioStream) var one_sound
 export(AudioStream) var go_sound
+
+func set_fade_speed(n_speed):
+	fade_speed = n_speed
+	if not is_inside_tree(): yield(self, "ready")
+	$"Sprite Animations".playback_speed = n_speed
+
 
 func set_ready_sprite(n_sprite):
 	ready_sprite = n_sprite
@@ -55,7 +63,7 @@ func set_go_sound(n_sound):
 # var b = "text"
 
 func recieve_count_down(count_down):
-	match count_down:
+	match count_down-count_down_offset:
 		0:
 			$"Sprite Animations".play("Go!")
 			$"Go! Sound".play()

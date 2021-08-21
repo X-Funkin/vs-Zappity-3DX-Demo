@@ -7,7 +7,6 @@ extends Position2D
 export(float) var song_time setget set_song_time, get_song_time
 export(float) var zoom_level setget set_zoom, get_zoom
 
-
 func set_song_time(n_time):
 	song_time = n_time
 func get_song_time():
@@ -48,6 +47,7 @@ func scroll(pxl):
 func recieve_songtime(s_time):
 	$"Song Position".position.y = -s_time
 	emit_signal("zoom_updated")
+
 
 var zoom_speed = 0.1
 var scroll_speed = 50

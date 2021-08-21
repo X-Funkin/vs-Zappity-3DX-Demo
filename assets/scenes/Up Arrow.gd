@@ -17,6 +17,12 @@ func play_press():
 func play_hit():
 	$"Up Arrow Animation".stop()
 	$"Up Arrow Animation".play("Up Arrow Confirm")
+	var note = OldNote.new()
+	note.note_type = 2
+	if get_parent().get_parent().player_track:
+		get_tree().call_group("Player Hit Recievers", "recieve_player_hit", note, 0)
+	else:
+		get_tree().call_group("Enemy Hit Recievers", "recieve_enemy_hit", note, 0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

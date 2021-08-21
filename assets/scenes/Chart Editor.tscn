@@ -1,7 +1,10 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=85 format=2]
 
 [ext_resource path="res://assets/scenes/Arrow Track.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/scripts/Chart Editor.gd" type="Script" id=2]
+[ext_resource path="res://assets/scenes/Chart Editor Character.gd" type="Script" id=3]
+[ext_resource path="res://assets/weeks/zappity/assets/characters/Zappity/Zappity.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/characters/boyfriend/Boyfriend.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/scenes/thign.gd" type="Script" id=6]
 [ext_resource path="res://assets/images/debug_texture.png" type="Texture" id=7]
 [ext_resource path="res://assets/scenes/Waveform Visualizer.tscn" type="PackedScene" id=9]
@@ -594,6 +597,7 @@ extents = Vector2( 160, 1000 )
 ]]
 script = ExtResource( 2 )
 song = "zappity"
+selection_end = 1000.0
 
 [node name="Song Chart Transform" type="Position2D" parent="." groups=[
 "Song Time Recievers",
@@ -646,6 +650,10 @@ __meta__ = {
 visible = false
 material = SubResource( 3 )
 mesh = SubResource( 4 )
+
+[node name="Seleciton Highlight" type="Polygon2D" parent="Song Chart Transform/Song Position"]
+color = Color( 0, 0.5, 1, 0.5 )
+polygon = PoolVector2Array( 800, 0, 800, 1, -800, 1, -800, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, 420 )
@@ -1091,6 +1099,54 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Player Vocals Volume" type="HSlider" parent="."]
+margin_left = 360.0
+margin_top = 837.5
+margin_right = 622.0
+margin_bottom = 853.5
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Player Vocals Volume"]
+margin_top = -12.6538
+margin_right = 49.0
+margin_bottom = 1.34619
+text = "Volume"
+
+[node name="Instrumentals Volume" type="HSlider" parent="."]
+margin_left = -137.0
+margin_top = 832.0
+margin_right = 125.0
+margin_bottom = 848.0
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Instrumentals Volume"]
+margin_top = -10.1538
+margin_right = 49.0
+margin_bottom = 3.84619
+text = "Volume"
+
+[node name="Enemy Vocals Volume" type="HSlider" parent="."]
+margin_left = -597.0
+margin_top = 831.0
+margin_right = -335.0
+margin_bottom = 847.0
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Enemy Vocals Volume"]
+margin_top = -13.1538
+margin_right = 49.0
+margin_bottom = 0.846191
+text = "Volume"
+
 [node name="PopupMenu" type="PopupMenu" parent="."]
 margin_right = 20.0
 margin_bottom = 20.0
@@ -1409,6 +1465,25 @@ color = Color( 1, 1, 1, 1 )
 [node name="AutoSaveTimer" type="Timer" parent="."]
 wait_time = 600.0
 
+[node name="Character" type="Node2D" parent="." groups=[
+"Player Hit Recievers",
+]]
+position = Vector2( 710.135, 795.565 )
+scale = Vector2( 0.573093, 0.573093 )
+script = ExtResource( 3 )
+
+[node name="Boyfriend" parent="Character" instance=ExtResource( 5 )]
+
+[node name="Character2" type="Node2D" parent="." groups=[
+"Enemy Hit Recievers",
+]]
+position = Vector2( 710.135, 795.565 )
+scale = Vector2( 0.573093, 0.573093 )
+script = ExtResource( 3 )
+
+[node name="Zappity" parent="Character2" instance=ExtResource( 4 )]
+position = Vector2( -2440.98, 0 )
+
 [connection signal="zoom_updated" from="Song Chart Transform" to="." method="_on_Song_Chart_Transform_zoom_updated"]
 [connection signal="added_editor_note" from="Arrow Track" to="." method="_on_Arrow_Track_added_editor_note"]
 [connection signal="added_hold" from="Arrow Track/Left Arrow Edit" to="." method="_on_Left_Arrow_Edit_added_hold"]
@@ -1444,6 +1519,7 @@ wait_time = 600.0
 [connection signal="mouse_entered" from="Arrow Track2/Right Arrow Edit" to="Arrow Track2/Right Arrow Edit" method="_on_Player_Editor_Area_mouse_entered"]
 [connection signal="mouse_exited" from="Arrow Track2/Right Arrow Edit" to="Arrow Track2/Right Arrow Edit" method="_on_Player_Editor_Area_mouse_exited"]
 [connection signal="input_event" from="Center Track" to="Song Chart Transform" method="_on_Center_Track_input_event"]
+[connection signal="input_event" from="Center Track" to="." method="_on_Center_Track_input_event"]
 [connection signal="timeout" from="Snippet Timer" to="." method="_on_Snippet_Timer_timeout"]
 [connection signal="pressed" from="Import Button" to="." method="_on_Import_Button_pressed"]
 [connection signal="pressed" from="Load Enemy Vocals" to="." method="_on_Load_Enemy_Vocals_pressed"]
@@ -1464,6 +1540,9 @@ wait_time = 600.0
 [connection signal="toggled" from="Load Player Waveform" to="." method="_on_Load_Player_Waveform_toggled"]
 [connection signal="toggled" from="Show Instrumentals Waveform" to="." method="_on_Show_Instrumentals_Waveform_toggled"]
 [connection signal="toggled" from="Show Player Waveform" to="." method="_on_Show_Player_Waveform_toggled"]
+[connection signal="value_changed" from="Player Vocals Volume" to="." method="_on_Player_Vocals_Volume_value_changed"]
+[connection signal="value_changed" from="Instrumentals Volume" to="." method="_on_Instrumentals_Volume_value_changed"]
+[connection signal="value_changed" from="Enemy Vocals Volume" to="." method="_on_Enemy_Vocals_Volume_value_changed"]
 [connection signal="pressed" from="Options Button" to="." method="_on_Options_Button_pressed"]
 [connection signal="toggled" from="Settings Popup/VBoxContainer/SnappingPlayback" to="." method="_on_SnappingPlayback_toggled"]
 [connection signal="toggled" from="Settings Popup/VBoxContainer/WaveformPlayback" to="." method="_on_WaveformPlayback_toggled"]

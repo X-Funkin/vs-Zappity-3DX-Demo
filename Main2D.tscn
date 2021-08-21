@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/scenes/Opening Text.tscn" type="PackedScene" id=1]
 [ext_resource path="res://OS Box.tscn" type="PackedScene" id=2]
@@ -6,8 +6,15 @@
 [ext_resource path="res://assets/scenes/Arrow Window.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/scenes/Player Arrow Track.tscn" type="PackedScene" id=5]
 [ext_resource path="res://hit error label.gd" type="Script" id=6]
+[ext_resource path="res://Main2D.gd" type="Script" id=7]
+[ext_resource path="res://assets/scenes/Countdown Box.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/scenes/Score Window.tscn" type="PackedScene" id=9]
 
-[node name="Main2D" type="Node2D"]
+[node name="Main2D" type="Node2D" groups=[
+"Count Down Recievers",
+"Song Time Recievers",
+]]
+script = ExtResource( 7 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -39,6 +46,8 @@ target_scene = ExtResource( 1 )
 "Enter Recievers",
 ] instance=ExtResource( 2 )]
 position = Vector2( -902.293, -462.077 )
+window_open = false
+window_name = "Zap"
 width = 823
 height = 957
 target_scene = ExtResource( 4 )
@@ -47,13 +56,36 @@ target_scene = ExtResource( 4 )
 "Enter Recievers",
 ] instance=ExtResource( 2 )]
 position = Vector2( 86.5105, -462.077 )
+window_open = false
+window_name = "You"
 width = 823
 height = 957
 target_scene = ExtResource( 5 )
 
+[node name="Countdown Box" parent="." groups=[
+"Enter Recievers",
+] instance=ExtResource( 2 )]
+position = Vector2( -682.822, -462.077 )
+window_open = false
+window_name = "Count!"
+width = 1331
+height = 917
+target_scene = ExtResource( 8 )
+
+[node name="Score Box" parent="." groups=[
+"Enter Recievers",
+] instance=ExtResource( 2 )]
+position = Vector2( -872.327, -479.048 )
+window_open = false
+window_name = "Score"
+width = 1776
+height = 975
+target_scene = ExtResource( 9 )
+
 [node name="hit error label" type="Label" parent="." groups=[
 "Player Hit Recievers",
 ]]
+visible = false
 margin_left = 355.98
 margin_top = 38.1407
 margin_right = 395.98
@@ -64,3 +96,8 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

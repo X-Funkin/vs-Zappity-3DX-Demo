@@ -1,0 +1,248 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/scenes/Score Window.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/judgment text/sick.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/judgment text/good.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/judgment text/bad.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/judgment text/rainbow sick.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/judgment text/shit.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/judgment text/combo.png" type="Texture" id=7]
+[ext_resource path="res://assets/fonts/coolpixelfontlol.tres" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/scenes/Accuracy Gragh.tscn" type="PackedScene" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 73
+outline_size = 9
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=2]
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[node name="Score Window" type="Node2D" groups=[
+"Player Hit Recievers",
+"Player Input Recievers",
+"Player Miss Recievers",
+"Player Notes Recievers",
+"Song Time Recievers",
+]]
+script = ExtResource( 1 )
+combo_count_label = NodePath("combo/Combo Count Label")
+max_count_label = NodePath("rainbow sick/Max Count Label")
+sick_count_label = NodePath("sick/Sick Count Label")
+good_count_label = NodePath("good/Good Count Label")
+bad_count_label = NodePath("bad/Bad Count Label")
+miss_count_label = NodePath("shit/Miss Count Label")
+hue_shift = 0.3
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 1.2, 1.2 )
+
+[node name="combo" type="Sprite" parent="."]
+position = Vector2( -351.242, -421.748 )
+texture = ExtResource( 7 )
+
+[node name="Combo Count Label" type="Label" parent="combo"]
+margin_left = -411.318
+margin_top = -33.654
+margin_right = -164.318
+margin_bottom = 68.346
+grow_horizontal = 0
+size_flags_horizontal = 9
+size_flags_vertical = 12
+custom_fonts/font = SubResource( 1 )
+text = "901x"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shit" type="Sprite" parent="."]
+position = Vector2( -358.095, 369.912 )
+texture = ExtResource( 6 )
+
+[node name="Miss Count Label" type="Label" parent="shit"]
+margin_left = -398.14
+margin_top = -46.5556
+margin_right = -151.14
+margin_bottom = 55.4444
+grow_horizontal = 0
+size_flags_horizontal = 9
+size_flags_vertical = 12
+custom_fonts/font = SubResource( 1 )
+text = "901x"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bad" type="Sprite" parent="."]
+position = Vector2( -390.23, 208.372 )
+texture = ExtResource( 4 )
+
+[node name="Bad Count Label" type="Label" parent="bad"]
+margin_left = -358.846
+margin_top = -38.8327
+margin_right = -111.846
+margin_bottom = 63.1673
+grow_horizontal = 0
+size_flags_horizontal = 9
+size_flags_vertical = 12
+custom_fonts/font = SubResource( 1 )
+text = "901x"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="good" type="Sprite" parent="."]
+position = Vector2( -372.767, 51.9693 )
+texture = ExtResource( 3 )
+
+[node name="Good Count Label" type="Label" parent="good"]
+margin_left = -387.341
+margin_top = -39.1407
+margin_right = -140.341
+margin_bottom = 62.8593
+grow_horizontal = 0
+size_flags_horizontal = 9
+size_flags_vertical = 12
+custom_fonts/font = SubResource( 1 )
+text = "901x"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sick" type="Sprite" parent="."]
+position = Vector2( -322.383, -99.3896 )
+texture = ExtResource( 2 )
+
+[node name="Sick Count Label" type="Label" parent="sick"]
+margin_left = -443.882
+margin_top = -47.1818
+margin_right = -196.882
+margin_bottom = 54.8182
+grow_horizontal = 0
+size_flags_horizontal = 9
+size_flags_vertical = 12
+custom_fonts/font = SubResource( 1 )
+text = "901x"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rainbow sick" type="Sprite" parent="."]
+position = Vector2( -319.009, -248.63 )
+texture = ExtResource( 5 )
+
+[node name="Max Count Label" type="Label" parent="rainbow sick"]
+margin_left = -434.595
+margin_top = -50.7968
+margin_right = -203.595
+margin_bottom = 43.2032
+grow_horizontal = 0
+size_flags_horizontal = 9
+size_flags_vertical = 12
+custom_fonts/font = SubResource( 1 )
+text = "901x"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Accuracy Gragh" parent="." instance=ExtResource( 9 )]
+position = Vector2( 458.852, 233.258 )
+
+[node name="Accuracy Label" type="Label" parent="Accuracy Gragh"]
+margin_left = -254.031
+margin_top = -263.53
+margin_right = -44.0313
+margin_bottom = -241.53
+rect_scale = Vector2( 1.88673, 1.88673 )
+custom_fonts/font = SubResource( 2 )
+text = "Accuracy: 99.20%"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ranks" type="Node2D" parent="."]
+position = Vector2( 491.638, -298.575 )
+scale = Vector2( 1.83042, 1.83042 )
+
+[node name="MAX" type="Node2D" parent="Ranks"]
+visible = false
+rotation = -0.177127
+
+[node name="rainbow sick" type="Sprite" parent="Ranks/MAX"]
+position = Vector2( 14.5564, -4.04172 )
+texture = ExtResource( 5 )
+
+[node name="rainbow sick2" type="Sprite" parent="Ranks/MAX"]
+position = Vector2( -3.40309, -28.7359 )
+texture = ExtResource( 5 )
+
+[node name="Super Sick!" type="Node2D" parent="Ranks"]
+visible = false
+rotation = 0.308443
+
+[node name="rainbow sick" type="Sprite" parent="Ranks/Super Sick!"]
+position = Vector2( 7.99168, -3.04509 )
+texture = ExtResource( 5 )
+
+[node name="Sick!" type="Node2D" parent="Ranks"]
+visible = false
+
+[node name="sick" type="Sprite" parent="Ranks/Sick!"]
+position = Vector2( 4.31235, -0.592163 )
+rotation = -0.332739
+texture = ExtResource( 2 )
+
+[node name="Good!" type="Node2D" parent="Ranks"]
+visible = false
+rotation = 0.40983
+
+[node name="good" type="Sprite" parent="Ranks/Good!"]
+position = Vector2( -10.4052, 3.08719 )
+scale = Vector2( 1.179, 1.179 )
+texture = ExtResource( 3 )
+
+[node name="Bad" type="Node2D" parent="Ranks"]
+visible = false
+rotation = -0.181268
+scale = Vector2( 1.45016, 1.45016 )
+
+[node name="bad" type="Sprite" parent="Ranks/Bad"]
+position = Vector2( -0.593445, -1.81862 )
+texture = ExtResource( 4 )
+
+[node name="MIN" type="Node2D" parent="Ranks"]
+visible = false
+scale = Vector2( 1.34736, 1.34736 )
+
+[node name="shit" type="Sprite" parent="Ranks/MIN"]
+position = Vector2( 1.85941, 3.08719 )
+texture = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 262.747
+margin_top = 457.688
+margin_right = 672.747
+margin_bottom = 541.688
+custom_fonts/font = SubResource( 3 )
+text = "Press Enter to Exit
+or Backspace to retry
+Press F12 to take a screenshot"
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,12 +1,15 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://assets/weeks/week 1/Bopeebo.gd" type="Script" id=1]
 [ext_resource path="res://assets/weeks/week 1/assets/characters/daddy_dearest/Daddy Dearest.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/weeks/week 1/assets/music/Inst.ogg" type="AudioStream" id=3]
-[ext_resource path="res://assets/weeks/week 1/assets/music/Voices.ogg" type="AudioStream" id=4]
-[ext_resource path="res://assets/weeks/week 1/assets/characters/daddy_dearest/Daddy Dearest Icon.png" type="Texture" id=5]
+[ext_resource path="res://assets/weeks/zappity/zappity theme yay-02 bf vocals.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/weeks/zappity/zapzPZPAP_health_icon - Copy.png" type="Texture" id=4]
+[ext_resource path="res://assets/weeks/zappity/zappity theme yay-02 intrumentas.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/weeks/week 1/Fresh.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/weeks/zappity/zapzPZPAP_health_icon3.png" type="Texture" id=7]
+[ext_resource path="res://assets/weeks/zappity/zappity theme yay-02 zappity vocals.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/scenes/Screen Fade.tres" type="Shader" id=9]
+[ext_resource path="res://assets/weeks/zappity/assets/characters/Zappity/Zappity.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/fonts/coolvcrfontlol.tres" type="DynamicFontData" id=12]
 [ext_resource path="res://assets/fonts/coolpixelfontlol.tres" type="DynamicFontData" id=13]
 [ext_resource path="res://assets/scripts/Song Track.gd" type="Script" id=14]
@@ -127,15 +130,16 @@ script = ExtResource( 1 )
 week_name = "Week 1"
 TOP_TEXT = "TOP TEXT"
 song_name = "Bopeebo"
-freeplay_icon = ExtResource( 5 )
+freeplay_icon = ExtResource( 4 )
 easy_chart = "res://assets/weeks/week 1/assets/charts/bopeebo-easy.json"
-normal_chart = "res://assets/weeks/week 1/assets/charts/bopeebo.json"
-hard_chart = "res://assets/weeks/week 1/assets/charts/bopeebo-hard.json"
+normal_chart = "res://assets/weeks/zappity/zappity/zappity-chart-hard.json"
+hard_chart = "res://assets/weeks/zappity/zappity/zappity-chart-hard.json"
+bpm = 240.0
 player_track = NodePath("Camera/Screen Elements/Player Track")
 enemy_track = NodePath("Camera/Screen Elements/Enemy Track")
 player_vocals = NodePath("Sounds/Music/Instrumentals/Player Vocals")
 instrumentals = NodePath("Sounds/Music/Instrumentals")
-enemy_vocals = NodePath("Sounds/Music/Instrumentals/Player Vocals")
+enemy_vocals = NodePath("Sounds/Music/Instrumentals/Enemy Vocals")
 sounds_path = NodePath("Sounds")
 label_thingy = NodePath("Camera/Screen Elements/Label")
 label_thingy_2 = NodePath("Camera/Screen Elements/Text UI/Song Label")
@@ -152,6 +156,7 @@ scale = Vector2( 1.1, 1.1 )
 texture = ExtResource( 45 )
 
 [node name="Girlfriend" parent="." groups=[
+"Enemy Input Recievers",
 "Song Time Recievers",
 ] instance=ExtResource( 52 )]
 
@@ -159,6 +164,7 @@ texture = ExtResource( 45 )
 "Enemy Input Recievers",
 "Song Time Recievers",
 ] instance=ExtResource( 2 )]
+visible = false
 position = Vector2( -417.085, 60.5446 )
 
 [node name="Boyfriend" parent="." groups=[
@@ -167,6 +173,12 @@ position = Vector2( -417.085, 60.5446 )
 "Song Time Recievers",
 ] instance=ExtResource( 53 )]
 position = Vector2( 236.088, 73.0537 )
+bop_on_beat = 2
+
+[node name="Zappity" parent="." groups=[
+"Enemy Input Recievers",
+] instance=ExtResource( 10 )]
+position = Vector2( -301.796, 37.132 )
 
 [node name="stage_light" type="Sprite" parent="."]
 position = Vector2( -889.176, -782.665 )
@@ -207,7 +219,6 @@ scale = Vector2( 0.707, 0.707 )
 current = true
 zoom = Vector2( 0.707, 0.707 )
 script = ExtResource( 15 )
-following_point = true
 following_speed = 7.0
 follow_point = NodePath("../Follow Point")
 
@@ -259,15 +270,16 @@ scale = Vector2( 1.5, 1.5 )
 player_losing_icon = ExtResource( 37 )
 player_icon = ExtResource( 39 )
 player_winning_icon = ExtResource( 39 )
-enemy_losing_icon = ExtResource( 5 )
-enemy_icon = ExtResource( 5 )
-enemy_winning_icon = ExtResource( 5 )
+enemy_losing_icon = ExtResource( 7 )
+enemy_icon = ExtResource( 4 )
+enemy_winning_icon = ExtResource( 4 )
 health_icons_scale = 1.0
 
 [node name="Judgment Particles" parent="Camera/Screen Elements" groups=[
 "Player Hit Recievers",
 "Player Input Recievers",
 ] instance=ExtResource( 50 )]
+position = Vector2( -93.4529, 0 )
 
 [node name="Enemy Judgment Particles" parent="Camera/Screen Elements" groups=[
 "Enemy Input Recievers",
@@ -372,36 +384,35 @@ stream = ExtResource( 41 )
 pause_mode = 1
 
 [node name="Instrumentals" type="AudioStreamPlayer" parent="Sounds/Music"]
-stream = ExtResource( 3 )
-bus = "Player Vocals"
+stream = ExtResource( 5 )
+volume_db = -3.0
 script = ExtResource( 14 )
 offset_ms = -15.5
-bpm = 100.0
+bpm = 240.0
 
 [node name="Count Down Timer" type="Timer" parent="Sounds/Music/Instrumentals"]
 one_shot = true
 
 [node name="Player Vocals" type="AudioStreamPlayer" parent="Sounds/Music/Instrumentals"]
-stream = ExtResource( 4 )
+stream = ExtResource( 3 )
+volume_db = -9.0
 
 [node name="Enemy Vocals" type="AudioStreamPlayer" parent="Sounds/Music/Instrumentals"]
+stream = ExtResource( 8 )
+volume_db = 1.359
 
 [node name="Count Down Sounds" type="Node2D" parent="Sounds"]
 
 [node name="3" type="AudioStreamPlayer" parent="Sounds/Count Down Sounds"]
 stream = ExtResource( 21 )
-bus = "SFX"
 
 [node name="2" type="AudioStreamPlayer" parent="Sounds/Count Down Sounds"]
 stream = ExtResource( 20 )
-bus = "SFX"
 
 [node name="1" type="AudioStreamPlayer" parent="Sounds/Count Down Sounds"]
 stream = ExtResource( 27 )
-bus = "SFX"
 
 [node name="Go!" type="AudioStreamPlayer" parent="Sounds/Count Down Sounds"]
 stream = ExtResource( 19 )
-bus = "SFX"
 
 [connection signal="timeout" from="Sounds/Music/Instrumentals/Count Down Timer" to="Sounds/Music/Instrumentals" method="_on_Count_Down_Timer_timeout"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/zappity theme yay-02 intrumentas.wav-1ee8612d9f223d6ae8a92b2c80121fd4.sample"
+
+[deps]
+
+source_file="res://assets/weeks/zappity/zappity theme yay-02 intrumentas.wav"
+dest_files=[ "res://.import/zappity theme yay-02 intrumentas.wav-1ee8612d9f223d6ae8a92b2c80121fd4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

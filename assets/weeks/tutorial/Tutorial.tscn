@@ -364,7 +364,6 @@ pause_mode = 1
 
 [node name="Instrumentals" type="AudioStreamPlayer" parent="Sounds/Music"]
 stream = ExtResource( 7 )
-bus = "Player Vocals"
 script = ExtResource( 9 )
 offset_ms = -15.5
 bpm = 100.0
@@ -380,18 +379,14 @@ one_shot = true
 
 [node name="3" type="AudioStreamPlayer" parent="Sounds/Count Down Sounds"]
 stream = ExtResource( 24 )
-bus = "SFX"
 
 [node name="2" type="AudioStreamPlayer" parent="Sounds/Count Down Sounds"]
 stream = ExtResource( 23 )
-bus = "SFX"
 
 [node name="1" type="AudioStreamPlayer" parent="Sounds/Count Down Sounds"]
 stream = ExtResource( 21 )
-bus = "SFX"
 
 [node name="Go!" type="AudioStreamPlayer" parent="Sounds/Count Down Sounds"]
 stream = ExtResource( 22 )
-bus = "SFX"
 
 [connection signal="timeout" from="Sounds/Music/Instrumentals/Count Down Timer" to="Sounds/Music/Instrumentals" method="_on_Count_Down_Timer_timeout"]

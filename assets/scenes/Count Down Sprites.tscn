@@ -533,16 +533,12 @@ anims/Set = SubResource( 4 )
 
 [node name="3 Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-bus = "SFX"
 
 [node name="2 Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-bus = "SFX"
 
 [node name="1 Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-bus = "SFX"
 
 [node name="Go! Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-bus = "SFX"

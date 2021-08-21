@@ -8,10 +8,20 @@ export(Texture) var max_judgment
 export(Texture) var sick_judgment
 export(Texture) var good_judgment
 export(Texture) var bad_judgment
+export(Texture) var miss_judgment
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+
+func recieve_player_miss(note_n):
+	var inst = particles_scene.instance()
+	var tex = miss_judgment
+	inst.texture = tex
+	add_child(inst)
+	inst.emitting = true
+
+
 
 func recieve_player_judgment(judgement):
 	var inst = particles_scene.instance()

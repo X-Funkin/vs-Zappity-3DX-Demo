@@ -85,6 +85,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var ughghihgg = false
 
+func reset_hold():
+#	$"Note Hold".played_time = 0.0
+	$"Note Hold".played_time = -hit_time
+	$"Note Hold".hold_time = hold_time
+#				$"Note Hold".played_time = -get_parent().position.y-hit_time
+	position.y = hit_time
+	pass
+
 func _process(delta):
 	if !ughghihgg:
 		ughghihgg = true
@@ -96,6 +104,7 @@ func _process(delta):
 #				visible = true
 				$"Note Hold".hold_time = hold_time
 				get_parent().get_parent().get_parent().play_hit()
+#				get_tree().call_group("Enemy Hit Recievers", "recieve_enemy_hit", self, 0)
 				position.y = -get_parent().position.y
 #				global_position.y = 0.0
 				$"Note Hold".played_time = -get_parent().position.y-hit_time
@@ -110,6 +119,7 @@ func _process(delta):
 				active = false
 				playing_hold = false
 				remove_from_group("Song Time Recievers")
+				reset_hold()
 				return 0
 			if (-get_parent().position.y <= hit_time+hold_time) and !active:
 				active = true
@@ -119,6 +129,7 @@ func _process(delta):
 				$"Note Hold".hold_time = hold_time
 #				$"Note Hold".played_time = -get_parent().position.y-hit_time
 				position.y = hit_time
+#				reset_hold()
 				return 0
 		if -get_parent().position.y > hit_time and active:
 			visible = false
@@ -197,4 +208,7 @@ func remove_from_score_group():
 
 
 func recieve_songtime(s_time):
-	position.y = s_time
+	if s_time > hit_time and s_time < hit_time+hold_time:
+		position.y = s_time
+	else:
+		position.y = hit_time

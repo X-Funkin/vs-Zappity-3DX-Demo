@@ -23,12 +23,7 @@ var player_combo = 0
 # var a = 2
 # var b = "text"
 
-func screenshot():
-	var image = get_viewport().get_texture().get_data()
-	var c_time = "%s_%s_%s_%s-%s-%s"%[OS.get_datetime()["month"],OS.get_datetime()["day"],OS.get_datetime()["year"],OS.get_datetime()["hour"],OS.get_datetime()["minute"],OS.get_datetime()["second"]]
-	print(c_time)
-	image.flip_y()
-	image.save_png("res://screenshot_%s.png"%c_time)
+
 
 # Called when the node enters the scene tree for the first time.
 # Inputs
@@ -44,9 +39,7 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if !get_tree().paused:
 			pause()
-	if event is InputEventKey:
-		if event.scancode == KEY_F12 and event.pressed and !event.is_echo():
-			screenshot()
+
 	_player_input(event)
 	get_tree().call_group("Input Recievers", "recieve_input")
 	if event.is_action("note_left"):
@@ -119,7 +112,7 @@ func recieve_player_right_input(event : InputEvent):
 		score_note("Scorable Right Notes")
 
 func recieve_player_hit(note : Note, hit_error):
-	get_node(player_vocals).volume_db = 0.0
+	get_node(player_vocals).volume_db = -6.0
 
 func recieve_player_miss(note_type):
 	get_node(player_vocals).volume_db = -80.0

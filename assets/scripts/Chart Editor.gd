@@ -28,6 +28,10 @@ export(String) var player_vocals_dir
 export(String) var chart_dir
 export(String) var chart_file
 
+export(float) var selection_start = 0.0 setget set_selection_start
+export(float) var selection_end = 0.0 setget set_selection_end
+
+
 var show_grid = true
 var show_grid_playback = true
 var autosave = false
@@ -77,6 +81,19 @@ func set_instrumentals(n_vocals : AudioStreamSample):
 func get_instrumentals():
 	return instrumentals
 
+func set_selection_start(n_start):
+	selection_start = n_start
+	if not is_inside_tree(): yield(self, "ready")
+	update_selection_highlight()
+
+func set_selection_end(n_end):
+	selection_end = n_end
+	if not is_inside_tree(): yield(self, "ready")
+	update_selection_highlight()
+
+func update_selection_highlight():
+	$"Song Chart Transform/Song Position/Seleciton Highlight".position.y = selection_start
+	$"Song Chart Transform/Song Position/Seleciton Highlight".scale.y = selection_end-selection_start
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -101,6 +118,46 @@ func _process(delta):
 	$"Beat Snap Guides".material.set_shader_param("BPM",BPM)
 	$"Beat Snap Guides".material.set_shader_param("Snap_Offset",snap_offset)
 #	song_cursor = 512.0
+
+func copy_notes():
+	print("COPYING NOTES")
+	var target_track = $"Arrow Track2"
+	if get_global_mouse_position().x > 0.0:
+		target_track = $"Arrow Track"
+	print(target_track.name)
+	for node in get_tree().get_nodes_in_group("Clipboard Notes"):
+		node.remove_from_group("Clipboard Notes")
+#		pass
+	for note in target_track.get_notes():
+		print("testing note ", note.hit_time)
+		if note.hit_time >= selection_start and note.hit_time <= selection_end:
+			print("yeah this goes to the group")
+			note.add_to_group("Clipboard Notes")
+
+func paste_notes():
+	print("PASTING NOTES")
+	var target_track = $"Arrow Track"
+	if get_global_mouse_position().x < 0.0:
+		target_track = $"Arrow Track2"
+	print(target_track.name)
+	var clipboard_notes = get_tree().get_nodes_in_group("Clipboard Notes")
+	clipboard_notes.sort_custom(Note.NoteSorter, "sort_hit_time")
+	var first_hit_time = clipboard_notes[0].hit_time
+	for note in clipboard_notes:
+		var hit_time = note.hit_time
+		note.hit_time = (hit_time-first_hit_time)+song_time_transform(song_cursor)
+		target_track.add_editor_note(note)
+		note.hit_time = hit_time
+
+func delete_notes():
+	var target_track = $"Arrow Track2"
+	if get_global_mouse_position().x > 0.0:
+		target_track = $"Arrow Track"
+	for note in target_track.get_notes():
+		print("testing note ", note.hit_time)
+		if note.hit_time >= selection_start and note.hit_time <= selection_end:
+			note.queue_free()
+
 func play_snippet():
 	var start_time = song_time_transform(get_global_mouse_position().y)
 	
@@ -131,6 +188,17 @@ func _input(event):
 			play()
 		else:
 			stop()
+	if event.is_action_pressed("copy"):
+		copy_notes()
+	if event.is_action_pressed("paste"):
+		paste_notes()
+	if event.is_action_pressed("delete"):
+		delete_notes()
+
+func _notification(what):
+	match what:
+		NOTIFICATION_CRASH:
+			simple_export_fnf_chart("res://assets/weeks/zappity/zappity/", "testchart")
 func play():
 	var start_time = max(song_time_transform(0.0),0.0)
 	$"Enemy Voice".play(start_time/1000.0)
@@ -605,3 +673,34 @@ func _on_Up_Arrow_Edit_added_hold():
 
 func _on_Right_Arrow_Edit_added_hold():
 	$"Song Chart Transform".emit_signal("zoom_updated")
+
+
+func _on_Player_Vocals_Volume_value_changed(value):
+	$"Player Voice".volume_db = linear2db(value/100.0)
+	$"Song Chart Transform/Song Position/Waveform BF/Waveform Visualizer".scale.x = value/100.0
+	pass # Replace with function body.
+
+
+func _on_Instrumentals_Volume_value_changed(value):
+	$"Instrumentals".volume_db = linear2db(value/100.0)
+	$"Song Chart Transform/Song Position/Waveform Inst/Waveform Visualizer".scale.x = value/100.0
+	pass # Replace with function body.
+
+
+func _on_Enemy_Vocals_Volume_value_changed(value):
+	$"Enemy Voice".volume_db = linear2db(value/100.0)
+	$"Song Chart Transform/Song Position/Waveform Z/Waveform Visualizer".scale.x = value/100.0
+	pass # Replace with function body.
+
+
+func _on_Center_Track_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index == BUTTON_RIGHT:
+			if Input.is_key_pressed(KEY_SHIFT):
+				self.selection_end = song_time_transform(song_cursor)
+				return 0
+			self.selection_start = song_time_transform(song_cursor)
+			self.selection_end = selection_start
+			pass
+		pass
+	pass # Replace with function body.

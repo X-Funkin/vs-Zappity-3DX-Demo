@@ -1,11 +1,11 @@
 [gd_scene load_steps=42 format=2]
 
-[ext_resource path="res://assets/weeks/week 1/Bopeebo.gd" type="Script" id=1]
+[ext_resource path="res://assets/weeks/week 1/Fresh.gd" type="Script" id=1]
 [ext_resource path="res://assets/weeks/week 1/assets/characters/daddy_dearest/Daddy Dearest.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/weeks/week 1/assets/music/Fresh_Inst.ogg" type="AudioStream" id=3]
 [ext_resource path="res://assets/weeks/week 1/assets/music/Fresh_Voices.ogg" type="AudioStream" id=4]
 [ext_resource path="res://assets/weeks/week 1/assets/characters/daddy_dearest/Daddy Dearest Icon.png" type="Texture" id=5]
-[ext_resource path="res://assets/weeks/week 1/Dad Battle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/weeks/zappity/ping.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/scenes/Screen Fade.tres" type="Shader" id=9]
 [ext_resource path="res://assets/fonts/coolvcrfontlol.tres" type="DynamicFontData" id=12]
 [ext_resource path="res://assets/fonts/coolpixelfontlol.tres" type="DynamicFontData" id=13]
@@ -124,23 +124,6 @@ shader_param/Invert_Fade = null
 "Song Time Recievers",
 ]]
 script = ExtResource( 1 )
-week_name = "Week 1"
-TOP_TEXT = "TOP TEXT"
-song_name = "Fresh"
-freeplay_icon = ExtResource( 5 )
-easy_chart = "res://assets/weeks/week 1/assets/charts/fresh-easy.json"
-normal_chart = "res://assets/weeks/week 1/assets/charts/fresh.json"
-hard_chart = "res://assets/weeks/week 1/assets/charts/fresh-hard.json"
-player_track = NodePath("Camera/Screen Elements/Player Track")
-enemy_track = NodePath("Camera/Screen Elements/Enemy Track")
-player_vocals = NodePath("Sounds/Music/Instrumentals/Player Vocals")
-instrumentals = NodePath("Sounds/Music/Instrumentals")
-enemy_vocals = NodePath("Sounds/Music/Instrumentals/Player Vocals")
-sounds_path = NodePath("Sounds")
-label_thingy = NodePath("Camera/Screen Elements/Label")
-label_thingy_2 = NodePath("Camera/Screen Elements/Text UI/Song Label")
-target_scene = ExtResource( 6 )
-song_data_file = "res://assets/weeks/week 1/song_data.json"
 
 [node name="stageback" type="Sprite" parent="."]
 position = Vector2( -40.2127, -267.617 )
@@ -373,7 +356,7 @@ pause_mode = 1
 
 [node name="Instrumentals" type="AudioStreamPlayer" parent="Sounds/Music"]
 stream = ExtResource( 3 )
-bus = "Player Vocals"
+pitch_scale = 1.5
 script = ExtResource( 14 )
 offset_ms = -15.5
 
@@ -382,6 +365,7 @@ one_shot = true
 
 [node name="Player Vocals" type="AudioStreamPlayer" parent="Sounds/Music/Instrumentals"]
 stream = ExtResource( 4 )
+pitch_scale = 1.5
 
 [node name="Enemy Vocals" type="AudioStreamPlayer" parent="Sounds/Music/Instrumentals"]
 
@@ -389,18 +373,17 @@ stream = ExtResource( 4 )
 
 [node name="3" type="AudioStreamPlayer" parent="Sounds/Count Down Sounds"]
 stream = ExtResource( 21 )
-bus = "SFX"
 
 [node name="2" type="AudioStreamPlayer" parent="Sounds/Count Down Sounds"]
 stream = ExtResource( 20 )
-bus = "SFX"
 
 [node name="1" type="AudioStreamPlayer" parent="Sounds/Count Down Sounds"]
 stream = ExtResource( 27 )
-bus = "SFX"
 
 [node name="Go!" type="AudioStreamPlayer" parent="Sounds/Count Down Sounds"]
 stream = ExtResource( 19 )
-bus = "SFX"
+
+[node name="ping" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
 
 [connection signal="timeout" from="Sounds/Music/Instrumentals/Count Down Timer" to="Sounds/Music/Instrumentals" method="_on_Count_Down_Timer_timeout"]

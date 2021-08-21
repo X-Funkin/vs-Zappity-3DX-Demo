@@ -15,6 +15,14 @@ func _ready():
 #func _process(delta):
 #	pass
 
+func note_selected():
+	$Polygon2D.visible = true
+	get_parent().modulate = Color("00FF7F")
+
+func note_unselected():
+	$Polygon2D.visible = false
+	get_parent().modulate = Color("FFFFFF")
+
 
 func _on_Note_Area_mouse_entered():
 	print("hovering over editor note lol")

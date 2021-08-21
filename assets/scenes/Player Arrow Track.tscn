@@ -1,42 +1,36 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/scenes/Arrow Track.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/scenes/Judment Particles.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/scenes/notes/Note Track.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/scenes/Combo Particles.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/fonts/coolpixelfontlol.tres" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/scenes/Hit Error.gd" type="Script" id=5]
+[ext_resource path="res://assets/images/judgment text/shit.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "test"
 loop = true
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("Arrow Track:position:x")
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Hit"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.5, 1 )
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("Arrow Track:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.5, 1 )
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [node name="Player Arrow Track" type="Node2D"]
-
-[node name="Arrow Track" parent="." groups=[
-"Player Hit Recievers",
-"Player Input Recievers",
-"Song Time Recievers",
-] instance=ExtResource( 1 )]
-scroll_speed = 2.4
-chart_file = "res://assets/weeks/zappity/zappity/fnftestchart_7_13_2021_3-36-34.json"
-auto_load_chart = true
-player_track = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 1.5, 388.876 )
@@ -44,3 +38,46 @@ current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/test = SubResource( 1 )
+
+[node name="Note Track" parent="." groups=[
+"Note Track",
+] instance=ExtResource( 2 )]
+chart_file = "res://assets/weeks/zappity/zappity/zappity-chart-hard.json"
+chart_format = 1
+player_track = true
+
+[node name="Judgment Particles" parent="." groups=[
+"Player Hit Recievers",
+"Player Miss Recievers",
+] instance=ExtResource( 1 )]
+position = Vector2( 0, 712 )
+scale = Vector2( 0.667793, 0.667793 )
+miss_judgment = ExtResource( 6 )
+
+[node name="Combo Particles" parent="Judgment Particles" groups=[
+"Player Hit Recievers",
+] instance=ExtResource( 3 )]
+position = Vector2( 0, 152 )
+scale = Vector2( 0.599853, 0.599853 )
+
+[node name="Hit Error" type="Label" parent="Judgment Particles" groups=[
+"Player Hit Recievers",
+]]
+anchor_right = 0.02
+margin_left = -500.0
+margin_top = -184.036
+margin_right = 500.0
+margin_bottom = -118.036
+rect_min_size = Vector2( 1000, 0 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "-15.5 ms"
+align = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Judgment Particles/Hit Error"]
+playback_speed = 3.0
+anims/Hit = SubResource( 3 )

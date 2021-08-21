@@ -1,15 +1,23 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=89 format=2]
 
 [ext_resource path="res://Main2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main3D.gd" type="Script" id=2]
 [ext_resource path="res://assets/images/zappity concept v0.png" type="Texture" id=3]
 [ext_resource path="res://assets/models/cube room.glb" type="PackedScene" id=4]
 [ext_resource path="res://assets/materials/basic floor.tres" type="Material" id=5]
-[ext_resource path="res://assets/weeks/zappity/zappity/zappity-voice.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/weeks/zappity/zappity theme yay-02 bf vocals.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/scripts/Audio Tracks.gd" type="Script" id=7]
-[ext_resource path="res://assets/weeks/zappity/zappity/inst.ogg" type="AudioStream" id=8]
-[ext_resource path="res://assets/weeks/zappity/zappity/bf-voice.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/weeks/zappity/zappity theme yay-02 intrumentas.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/weeks/zappity/zappity theme yay-02 zappity vocals.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/scenes/BF.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/weeks/zappity/assets/characters/boyfriend 3D/Boyfriend 3D.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/weeks/zappity/zapzPZPAP_health_icon - Copy.png" type="Texture" id=12]
+[ext_resource path="res://assets/sounds/missnote1.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Sound Thingies.gd" type="Script" id=14]
+[ext_resource path="res://assets/weeks/zappity/assets/textures/hex tile normal map.png" type="Texture" id=15]
+[ext_resource path="res://assets/weeks/zappity/assets/textures/hex tile mix.png" type="Texture" id=16]
+[ext_resource path="res://assets/scenes/Space Background.tscn" type="PackedScene" id=17]
+[ext_resource path="res://assets/weeks/zappity/assets/characters/Zappity/Zappity 3D.tscn" type="PackedScene" id=18]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 20, 20 )
@@ -18,7 +26,6 @@ size = Vector2( 20, 20 )
 size = Vector2( 1.6, 0.9 )
 
 [sub_resource type="VisualShaderNodeScalarConstant" id=3]
-constant = 1.0
 
 [sub_resource type="VisualShaderNodeScalarOp" id=4]
 operator = 6
@@ -37,6 +44,9 @@ alpha = n_tex_read.a;"
 
 [sub_resource type="VisualShaderNodeVectorScalarMix" id=8]
 default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 1, 1, 1 ), 2, 1.0 ]
+
+[sub_resource type="VisualShaderNodeVectorScalarMix" id=71]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0, 0, 0 ), 2, 0.0 ]
 
 [sub_resource type="VisualShaderNodeGlobalExpression" id=9]
 size = Vector2( 383, 166 )
@@ -94,12 +104,6 @@ void fragment() {
 		n_out14p1 = n_tex_read.a;
 	}
 
-// Scalar:10
-	float n_out10p0 = 1.000000;
-
-// Scalar:9
-	float n_out9p0 = 0.000000;
-
 // Expression:4
 	vec3 n_out4p0;
 	float n_out4p1;
@@ -110,6 +114,16 @@ void fragment() {
 		n_out4p0 = n_tex_read.rgb;
 		n_out4p1 = n_tex_read.a;
 	}
+
+// VectorScalarMix:16
+	vec3 n_in16p1 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_out16p0 = mix(n_out14p0, n_in16p1, n_out4p1);
+
+// Scalar:10
+	float n_out10p0 = 0.000000;
+
+// Scalar:9
+	float n_out9p0 = 0.000000;
 
 // ScalarUniform:7
 	float n_out7p0 = Brightness;
@@ -123,7 +137,7 @@ void fragment() {
 	vec3 n_out6p0 = mix(n_in6p0, n_out4p0, n_out11p0);
 
 // Output:0
-	ALBEDO = n_out14p0;
+	ALBEDO = n_out16p0;
 	METALLIC = n_out10p0;
 	ROUGHNESS = n_out10p0;
 	SPECULAR = n_out9p0;
@@ -136,10 +150,10 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -132.5, 182.5 )
+graph_offset = Vector2( -307.972, 67 )
 modes/cull = 2
 modes/specular = 4
-nodes/fragment/0/position = Vector2( 520, 120 )
+nodes/fragment/0/position = Vector2( 740, 80 )
 nodes/fragment/3/node = SubResource( 9 )
 nodes/fragment/3/position = Vector2( -380, -40 )
 nodes/fragment/3/size = Vector2( 383, 166 )
@@ -164,15 +178,15 @@ nodes/fragment/7/position = Vector2( -140, 140 )
 nodes/fragment/8/node = SubResource( 14 )
 nodes/fragment/8/position = Vector2( 260, 60 )
 nodes/fragment/9/node = SubResource( 15 )
-nodes/fragment/9/position = Vector2( 140, 320 )
+nodes/fragment/9/position = Vector2( 320, 420 )
 nodes/fragment/10/node = SubResource( 3 )
-nodes/fragment/10/position = Vector2( 140, 380 )
+nodes/fragment/10/position = Vector2( 140, 240 )
 nodes/fragment/11/node = SubResource( 4 )
-nodes/fragment/11/position = Vector2( 40, 100 )
+nodes/fragment/11/position = Vector2( 60, 100 )
 nodes/fragment/12/node = SubResource( 5 )
 nodes/fragment/12/position = Vector2( 220, -20 )
 nodes/fragment/13/node = SubResource( 6 )
-nodes/fragment/13/position = Vector2( 160, 520 )
+nodes/fragment/13/position = Vector2( 300, 540 )
 nodes/fragment/14/node = SubResource( 7 )
 nodes/fragment/14/position = Vector2( -360, 520 )
 nodes/fragment/14/size = Vector2( 505, 254 )
@@ -183,10 +197,12 @@ rgb = n_tex_read.rgb;
 alpha = n_tex_read.a;"
 nodes/fragment/15/node = SubResource( 8 )
 nodes/fragment/15/position = Vector2( 420, -20 )
-nodes/fragment/connections = PoolIntArray( 5, 0, 4, 0, 4, 0, 6, 1, 9, 0, 0, 4, 10, 0, 0, 2, 10, 0, 0, 3, 7, 0, 11, 0, 11, 0, 6, 2, 6, 0, 0, 5, 14, 0, 15, 0, 4, 0, 15, 1, 5, 0, 14, 0, 14, 0, 0, 0 )
+nodes/fragment/16/node = SubResource( 71 )
+nodes/fragment/16/position = Vector2( 380, 300 )
+nodes/fragment/connections = PoolIntArray( 5, 0, 4, 0, 4, 0, 6, 1, 9, 0, 0, 4, 10, 0, 0, 2, 10, 0, 0, 3, 7, 0, 11, 0, 11, 0, 6, 2, 6, 0, 0, 5, 14, 0, 15, 0, 4, 0, 15, 1, 5, 0, 14, 0, 4, 1, 16, 2, 14, 0, 16, 0, 16, 0, 0, 0 )
 
-[sub_resource type="ViewportTexture" id=17]
-viewport_path = NodePath("Viewport2")
+[sub_resource type="ViewportTexture" id=70]
+viewport_path = NodePath("Space Viewport")
 
 [sub_resource type="ViewportTexture" id=18]
 viewport_path = NodePath("Viewport")
@@ -196,7 +212,7 @@ resource_local_to_scene = true
 shader = SubResource( 16 )
 shader_param/Brightness = 1.1
 shader_param/Screen = SubResource( 18 )
-shader_param/Background = SubResource( 17 )
+shader_param/Background = SubResource( 70 )
 
 [sub_resource type="Environment" id=20]
 background_mode = 1
@@ -299,7 +315,7 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -132.5, 182.5 )
+graph_offset = Vector2( 0, 99 )
 nodes/fragment/2/node = SubResource( 26 )
 nodes/fragment/2/position = Vector2( -20, 120 )
 nodes/fragment/3/node = SubResource( 27 )
@@ -368,8 +384,51 @@ uniform_name = "Depth"
 
 [sub_resource type="VisualShaderNodeScalarClamp" id=40]
 
+[sub_resource type="VisualShaderNodeTexture" id=55]
+texture = ExtResource( 15 )
+
+[sub_resource type="VisualShaderNodeInput" id=56]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeTexture" id=57]
+texture = ExtResource( 16 )
+
+[sub_resource type="VisualShaderNodeSwitch" id=58]
+
+[sub_resource type="VisualShaderNodeCompare" id=59]
+default_input_values = [ 0, 0.0, 1, 0.2, 2, 1e-05 ]
+function = 3
+
 [sub_resource type="VisualShaderNodeScalarUniform" id=41]
 uniform_name = "Metallic"
+
+[sub_resource type="VisualShaderNodeVectorScalarMix" id=60]
+
+[sub_resource type="VisualShaderNodeInput" id=61]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeColorUniform" id=62]
+uniform_name = "Color2"
+
+[sub_resource type="VisualShaderNodeVectorScalarMix" id=63]
+default_input_values = [ 0, Vector3( 1, 1, 1 ), 1, Vector3( 0, 0, 0 ), 2, 0.5 ]
+
+[sub_resource type="VisualShaderNodeColorUniform" id=64]
+uniform_name = "Color3"
+
+[sub_resource type="VisualShaderNodeVectorOp" id=65]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVec3Uniform" id=66]
+uniform_name = "UV_Scale"
+
+[sub_resource type="VisualShaderNodeVectorOp" id=67]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=68]
+uniform_name = "UV_Scale_2"
+
+[sub_resource type="VisualShaderNodeVectorScalarMix" id=69]
 
 [sub_resource type="VisualShaderNodeScalarUniform" id=42]
 uniform_name = "Roughness"
@@ -400,10 +459,16 @@ texture = SubResource( 49 )
 code = "shader_type spatial;
 render_mode cull_disabled, specular_schlick_ggx;
 
+uniform vec3 UV_Scale;
+uniform float UV_Scale_2;
+uniform sampler2D tex_frg_16;
+uniform vec4 Color : hint_color;
+uniform vec4 Color2 : hint_color;
 uniform float Metallic;
 uniform float Roughness;
 uniform float Specular;
-uniform sampler2D tex_frg_9;
+uniform vec4 Color3 : hint_color;
+uniform sampler2D tex_frg_12;
 uniform float Depth;
 
 
@@ -414,6 +479,50 @@ void vertex() {
 }
 
 void fragment() {
+// Input:21
+	vec3 n_out21p0 = vec3(UV, 0.0);
+
+// VectorUniform:26
+	vec3 n_out26p0 = UV_Scale;
+
+// ScalarUniform:28
+	float n_out28p0 = UV_Scale_2;
+
+// VectorScalarMix:29
+	vec3 n_in29p0 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_out29p0 = mix(n_in29p0, n_out26p0, n_out28p0);
+
+// VectorOp:25
+	vec3 n_out25p0 = n_out21p0 * n_out29p0;
+
+// Texture:16
+	vec4 tex_frg_16_read = texture(tex_frg_16, n_out25p0.xy);
+	vec3 n_out16p0 = tex_frg_16_read.rgb;
+	float n_out16p1 = tex_frg_16_read.a;
+
+// Compare:18
+	float n_in18p1 = 0.20000;
+	bool n_out18p0 = dot(n_out16p0, vec3(0.333333, 0.333333, 0.333333))>=n_in18p1;
+
+// ColorUniform:5
+	vec3 n_out5p0 = Color.rgb;
+	float n_out5p1 = Color.a;
+
+// ColorUniform:22
+	vec3 n_out22p0 = Color2.rgb;
+	float n_out22p1 = Color2.a;
+
+// VectorSwitch:17
+	vec3 n_out17p0;
+	if(n_out18p0)
+	{
+		n_out17p0 = n_out5p0;
+	}
+	else
+	{
+		n_out17p0 = n_out22p0;
+	}
+
 // ScalarUniform:2
 	float n_out2p0 = Metallic;
 
@@ -438,10 +547,24 @@ void fragment() {
 	float n_in8p2 = 1.00000;
 	float n_out8p0 = clamp(n_out4p0, n_in8p1, n_in8p2);
 
-// Texture:9
-	vec4 tex_frg_9_read = texture(tex_frg_9, UV.xy);
-	vec3 n_out9p0 = tex_frg_9_read.rgb;
-	float n_out9p1 = tex_frg_9_read.a;
+// ColorUniform:24
+	vec3 n_out24p0 = Color3.rgb;
+	float n_out24p1 = Color3.a;
+
+// VectorScalarMix:23
+	vec3 n_in23p1 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_out23p0 = mix(n_out24p0, n_in23p1, (n_out18p0 ? 1.0 : 0.0));
+
+// Input:13
+	vec3 n_out13p0 = vec3(UV, 0.0);
+
+// VectorOp:27
+	vec3 n_out27p0 = n_out13p0 * n_out29p0;
+
+// Texture:12
+	vec4 tex_frg_12_read = texture(tex_frg_12, n_out27p0.xy);
+	vec3 n_out12p0 = tex_frg_12_read.rgb;
+	float n_out12p1 = tex_frg_12_read.a;
 
 // ScalarUniform:10
 	float n_out10p0 = Depth;
@@ -452,10 +575,12 @@ void fragment() {
 	float n_out11p0 = clamp(n_out10p0, n_in11p1, n_in11p2);
 
 // Output:0
+	ALBEDO = n_out17p0;
 	METALLIC = n_out6p0;
 	ROUGHNESS = n_out7p0;
 	SPECULAR = n_out8p0;
-	NORMALMAP = n_out9p0;
+	EMISSION = n_out23p0;
+	NORMALMAP = n_out12p0;
 	NORMALMAP_DEPTH = n_out11p0;
 
 }
@@ -465,9 +590,9 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -132.5, 182.5 )
+graph_offset = Vector2( -535.59, -2.1308 )
 modes/cull = 2
-nodes/fragment/0/position = Vector2( 600, 140 )
+nodes/fragment/0/position = Vector2( 840, -120 )
 nodes/fragment/2/node = SubResource( 41 )
 nodes/fragment/2/position = Vector2( 20, 260 )
 nodes/fragment/3/node = SubResource( 42 )
@@ -475,27 +600,62 @@ nodes/fragment/3/position = Vector2( 100, 340 )
 nodes/fragment/4/node = SubResource( 43 )
 nodes/fragment/4/position = Vector2( 40, 420 )
 nodes/fragment/5/node = SubResource( 44 )
-nodes/fragment/5/position = Vector2( 0, 80 )
+nodes/fragment/5/position = Vector2( 80, -140 )
 nodes/fragment/6/node = SubResource( 45 )
 nodes/fragment/6/position = Vector2( 280, 200 )
 nodes/fragment/7/node = SubResource( 46 )
-nodes/fragment/7/position = Vector2( 360, 280 )
+nodes/fragment/7/position = Vector2( 400, 160 )
 nodes/fragment/8/node = SubResource( 47 )
-nodes/fragment/8/position = Vector2( 360, 380 )
+nodes/fragment/8/position = Vector2( 380, 200 )
 nodes/fragment/9/node = SubResource( 50 )
-nodes/fragment/9/position = Vector2( 140, 480 )
+nodes/fragment/9/position = Vector2( 120, 680 )
 nodes/fragment/10/node = SubResource( 39 )
-nodes/fragment/10/position = Vector2( -20, 600 )
+nodes/fragment/10/position = Vector2( -60, 420 )
 nodes/fragment/11/node = SubResource( 40 )
-nodes/fragment/11/position = Vector2( 240, 540 )
-nodes/fragment/connections = PoolIntArray( 2, 0, 6, 0, 6, 0, 0, 2, 3, 0, 7, 0, 7, 0, 0, 3, 4, 0, 8, 0, 8, 0, 0, 4, 9, 0, 0, 8, 10, 0, 11, 0, 11, 0, 0, 9 )
+nodes/fragment/11/position = Vector2( 320, 340 )
+nodes/fragment/12/node = SubResource( 55 )
+nodes/fragment/12/position = Vector2( 420, 440 )
+nodes/fragment/13/node = SubResource( 56 )
+nodes/fragment/13/position = Vector2( -60, 519 )
+nodes/fragment/16/node = SubResource( 57 )
+nodes/fragment/16/position = Vector2( -80, -20 )
+nodes/fragment/17/node = SubResource( 58 )
+nodes/fragment/17/position = Vector2( 500, 0 )
+nodes/fragment/18/node = SubResource( 59 )
+nodes/fragment/18/position = Vector2( 260, 20 )
+nodes/fragment/20/node = SubResource( 60 )
+nodes/fragment/20/position = Vector2( -320, -120 )
+nodes/fragment/21/node = SubResource( 61 )
+nodes/fragment/21/position = Vector2( -520, -60 )
+nodes/fragment/22/node = SubResource( 62 )
+nodes/fragment/22/position = Vector2( 100, -40 )
+nodes/fragment/23/node = SubResource( 63 )
+nodes/fragment/23/position = Vector2( 520, -140 )
+nodes/fragment/24/node = SubResource( 64 )
+nodes/fragment/24/position = Vector2( 240, -220 )
+nodes/fragment/25/node = SubResource( 65 )
+nodes/fragment/25/position = Vector2( -280, 40 )
+nodes/fragment/26/node = SubResource( 66 )
+nodes/fragment/26/position = Vector2( -700, 260 )
+nodes/fragment/27/node = SubResource( 67 )
+nodes/fragment/27/position = Vector2( 220, 540 )
+nodes/fragment/28/node = SubResource( 68 )
+nodes/fragment/28/position = Vector2( -640, 380 )
+nodes/fragment/29/node = SubResource( 69 )
+nodes/fragment/29/position = Vector2( -400, 200 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 6, 0, 6, 0, 0, 2, 3, 0, 7, 0, 7, 0, 0, 3, 4, 0, 8, 0, 8, 0, 0, 4, 10, 0, 11, 0, 11, 0, 0, 9, 12, 0, 0, 8, 16, 0, 18, 0, 21, 0, 20, 1, 18, 0, 17, 0, 17, 0, 0, 0, 5, 0, 17, 1, 22, 0, 17, 2, 18, 0, 23, 2, 23, 0, 0, 5, 24, 0, 23, 0, 21, 0, 25, 0, 25, 0, 16, 0, 13, 0, 27, 0, 27, 0, 12, 0, 28, 0, 29, 2, 26, 0, 29, 1, 29, 0, 27, 1, 29, 0, 25, 1 )
 
 [sub_resource type="ShaderMaterial" id=52]
 shader = SubResource( 51 )
-shader_param/Metallic = 1.0
+shader_param/UV_Scale = Vector3( 1.896, 1.038, 0 )
+shader_param/UV_Scale_2 = 2.421
+shader_param/Color = Color( 0.592157, 0.592157, 0.592157, 1 )
+shader_param/Color2 = Color( 0.38, 0.66, 1, 1 )
+shader_param/Metallic = 0.701
 shader_param/Roughness = 0.0
-shader_param/Specular = null
-shader_param/Depth = 0.046
+shader_param/Specular = 1.0
+shader_param/Color3 = Color( 0.1, 0, 1.4, 1 )
+shader_param/Depth = 0.066
 
 [sub_resource type="Environment" id=53]
 background_mode = 1
@@ -504,13 +664,45 @@ background_color = Color( 0.4, 0.176471, 0.698039, 1 )
 [sub_resource type="World" id=54]
 environment = SubResource( 53 )
 
-[node name="Main3D" type="Spatial"]
+[node name="Main3D" type="Spatial" groups=[
+"Player Hit Recievers",
+"Player Input Recievers",
+"Player Miss Recievers",
+]]
 script = ExtResource( 2 )
+song_name = "Zappity"
+freeplay_icon = ExtResource( 12 )
+easy_chart = "res://assets/weeks/zappity/zappity/zappity-chart-hard.json"
+normal_chart = "res://assets/weeks/zappity/zappity/zappity-chart-hard.json"
+hard_chart = "res://assets/weeks/zappity/zappity/zappity-chart-hard.json"
+bpm = 240.0
+player_vocals = NodePath("Audio Tracks/BF Voice")
+instrumentals = NodePath("Audio Tracks/Instrumentals")
+enemy_vocals = NodePath("Audio Tracks/Zappity Voice")
+sounds_path = NodePath("Sound Thingies")
 
 [node name="BF" parent="." groups=[
 "Player Hit Recievers",
 ] instance=ExtResource( 10 )]
 transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 1, 3.16968, 0, -1.22972 )
+visible = false
+
+[node name="Zappity 3D" parent="." groups=[
+"Enemy Input Recievers",
+"Song Time Recievers",
+] instance=ExtResource( 18 )]
+transform = Transform( 0.447512, 0, 0, 0, 0.447512, 0, 0, 0, 0.447512, -2.98134, -0.0382277, -1.45786 )
+bop_on_beat = 2
+
+[node name="Boyfriend 3D" parent="." groups=[
+"Player Hit Recievers",
+"Player Input Recievers",
+"Player Miss Recievers",
+"Song Time Recievers",
+] instance=ExtResource( 11 )]
+transform = Transform( 0.331012, 0, 0, 0, 0.331012, 0, 0, 0, 0.331012, 2.46232, 0, -0.0541983 )
+player = true
+bop_on_beat = 2
 
 [node name="Ground" type="CSGMesh" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.07518, 0 )
@@ -540,7 +732,7 @@ render_target_update_mode = 3
 position = Vector2( 960, 540 )
 
 [node name="OmniLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23057e-05, 3.04151, 0.513502 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23057e-05, 3.04151, 1.49896 )
 light_energy = 3.36
 omni_range = 7.33978
 
@@ -564,6 +756,7 @@ material = SubResource( 23 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.11056, 0, -0.94498 )
+visible = false
 material_override = SubResource( 35 )
 offset = Vector2( 0, 125 )
 texture = ExtResource( 3 )
@@ -576,22 +769,27 @@ transform = Transform( 4.4425, 0, 0, 0, 4.4425, 0, 0, 0, 4.4425, 0, 0, -0.001140
 material/0 = SubResource( 38 )
 material/1 = SubResource( 52 )
 
-[node name="Viewport2" type="Viewport" parent="."]
-size = Vector2( 1920, 1080 )
+[node name="Space Viewport" type="Viewport" parent="."]
+size = Vector2( 1280, 720 )
 own_world = true
 world = SubResource( 54 )
 render_target_update_mode = 3
 
+[node name="Space Background" parent="Space Viewport" instance=ExtResource( 17 )]
+
 [node name="Audio Tracks" type="Spatial" parent="."]
 script = ExtResource( 7 )
-offset = -15.5
+offset_ms = -15.5
+bpm = 240.0
+count_down = 8
 
 [node name="Zappity Voice" type="AudioStreamPlayer" parent="Audio Tracks"]
-stream = ExtResource( 6 )
+stream = ExtResource( 9 )
 bus = "Zappity Voice"
 
 [node name="BF Voice" type="AudioStreamPlayer" parent="Audio Tracks"]
-stream = ExtResource( 9 )
+stream = ExtResource( 6 )
+volume_db = -6.0
 bus = "BF Voice"
 
 [node name="Instrumentals" type="AudioStreamPlayer" parent="Audio Tracks"]
@@ -599,6 +797,20 @@ stream = ExtResource( 8 )
 volume_db = -4.181
 bus = "Instrumentals"
 
+[node name="Count Down Timer" type="Timer" parent="Audio Tracks"]
+one_shot = true
+
+[node name="Beat Timer" type="Timer" parent="Audio Tracks"]
+
+[node name="Sound Thingies" type="Spatial" parent="."]
+script = ExtResource( 14 )
+
+[node name="Player Miss Sound" type="AudioStreamPlayer" parent="Sound Thingies"]
+stream = ExtResource( 13 )
+volume_db = -7.0
+
 [connection signal="finished" from="Audio Tracks/Instrumentals" to="Audio Tracks" method="_on_Instrumentals_finished"]
+[connection signal="timeout" from="Audio Tracks/Count Down Timer" to="Audio Tracks" method="_on_Count_Down_Timer_timeout"]
+[connection signal="timeout" from="Audio Tracks/Beat Timer" to="Audio Tracks" method="_on_Beat_Timer_timeout"]
 
 [editable path="cube room"]

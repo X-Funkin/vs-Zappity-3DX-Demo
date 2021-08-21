@@ -1,10 +1,11 @@
-#tool
+tool
 extends Node2D
 class_name OS_Box
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+export(bool) var window_open = false setget set_window_open
 export(String) var window_name setget set_name, get_name
 export(int) onready var width setget set_w, get_w
 export(int) onready var height setget set_h, get_h
@@ -14,8 +15,18 @@ export(PackedScene) var target_scene
 
 var ugh : bool = Engine.editor_hint
 
+func set_window_open(n_open):
+	window_open = n_open
+	if not is_inside_tree(): yield(self, "ready")
+	match n_open:
+		false:
+			$"OS Box Animation".play("Window Default")
+		true:
+			$"OS Box Animation".play("Window Open")
+
 func set_name(n_name):
 	window_name = n_name
+	if not is_inside_tree(): yield(self, "ready")
 	#$Label.text = n_name
 
 func get_name():
@@ -23,6 +34,7 @@ func get_name():
 
 func set_w(n_width):
 	width = n_width
+	if not is_inside_tree(): yield(self, "ready")
 	if ugh:
 		$"OS Box Borders".points[3].x = width
 		$"OS Box Borders".points[4].x = width
@@ -34,6 +46,7 @@ func get_w():
 	
 func set_h(n_height):
 	height = n_height
+	if not is_inside_tree(): yield(self, "ready")
 	if ugh:
 		$"OS Box Borders".points[4].y = height
 		$"OS Box Borders".points[5].y = height
@@ -45,22 +58,32 @@ func get_h():
 	
 
 func set_display_w(n_width):
+	if not is_inside_tree(): yield(self, "ready")
 	display_width = n_width
 func get_display_w():
 	return display_width
 	
 func set_display_h(n_height):
+	if not is_inside_tree(): yield(self, "ready")
 	display_height = n_height
 func get_display_h():
 	return display_height
 # Called when the node enters the scene tree for the first time.
 
+func open_window():
+	$"OS Box Animation".play("Open Window")
+
+func close_window():
+	$"OS Box Animation".play("Close Window")
+
+
 func recieve_enter():
 	$"OS Box Animation".play("Open Window")
 	print("Playing OS Box thingy hopefully lol")
 func _ready():
-	var windowscene = target_scene.instance()
-	$Viewport.add_child(windowscene)
+	if target_scene:
+		var windowscene = target_scene.instance()
+		$Viewport.add_child(windowscene)
 	ugh = true
 	width = width
 	height = height
