@@ -212,8 +212,41 @@ func recieve_player_right_input(event : InputEvent):
 #		print("supposidly coring")
 		score_note("Scorable Right Notes")
 
+func change_floor_first_color(note_type):
+	var col = Color(0,0,1)
+	match note_type:
+		0:
+			col = Color(1,0,1)
+		1:
+			col = Color(0,1,1)
+		2:
+			col = Color(0,1,0)
+		3:
+			col = Color(1,0,0)
+	$"cube room/Cube".get_surface_material(1).set_shader_param("First_Glow_Color", col)
+	col.s *= 0.5
+	$"cube room/Cube".get_surface_material(1).set_shader_param("First_Line_Color", col)
+
+func change_floor_second_color(note_type):
+	var col = Color(0,0,1)
+	match note_type:
+		0:
+			col = Color(1,0,1)
+		1:
+			col = Color(0,1,1)
+		2:
+			col = Color(0,1,0)
+		3:
+			col = Color(1,0,0)
+	$"cube room/Cube".get_surface_material(1).set_shader_param("Second_Glow_Color", col)
+	col.s *= 0.5
+	$"cube room/Cube".get_surface_material(1).set_shader_param("Second_Line_Color", col)
+
+
 func recieve_player_hit(note : Note, hit_error):
 	get_node(player_vocals).volume_db = -6.0
+	if GameData.data.photosensitivity == 0:
+		change_floor_second_color(note.note_type)
 
 func recieve_player_miss(note_type):
 	get_node(player_vocals).volume_db = -80.0
@@ -223,6 +256,8 @@ func recieve_player_miss(note_type):
 
 func recieve_enemy_hit(note : Note, hit_error):
 	get_node(enemy_vocals).volume_db = 0.0
+	if GameData.data.photosensitivity == 0:
+		change_floor_first_color(note.note_type)
 
 func recieve_player_full_combo(combo):
 	$"Boyfriend 3D".play_animation("Peace!")

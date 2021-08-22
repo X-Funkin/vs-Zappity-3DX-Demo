@@ -219,7 +219,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Vs Zappity"
-run/main_scene="res://assets/scenes/Menu Screens.tscn"
+run/main_scene="res://assets/scenes/Photosensitivity Warning.tscn"
 boot_splash/image="res://screenshots/screenshot_8-21-2021-3_50_47.png"
 config/icon="res://zappity icon buuuuh.png"
 
@@ -290,6 +290,11 @@ delete={
 restart={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777220,"unicode":0,"echo":false,"script":null)
+ ]
+}
+select_all={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
  ]
 }
 

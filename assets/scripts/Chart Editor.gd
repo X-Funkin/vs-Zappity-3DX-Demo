@@ -88,6 +88,9 @@ func set_selection_start(n_start):
 
 func set_selection_end(n_end):
 	selection_end = n_end
+	if selection_end < selection_start:
+		selection_end = selection_start
+		self.selection_start = n_end
 	if not is_inside_tree(): yield(self, "ready")
 	update_selection_highlight()
 
@@ -100,6 +103,7 @@ func _ready():
 	$"Right Note/AnimationPlayer".play("SPIIIIIN")
 	$"Import Button".focus_mode = Control.FOCUS_NONE
 	$"Export Button".focus_mode = Control.FOCUS_NONE
+	$AcceptDialog.popup()
 	pass
 	
 #	var test3 = bytes2var(testwav.data[0])
@@ -174,6 +178,10 @@ func play_snippet():
 	
 	$"Snippet Timer".start()
 
+func select_all():
+	self.selection_start = 0.0
+	self.selection_end = 299792458.0
+
 func _input(event):
 	if event is InputEventMouseMotion:
 #		print(event.relative)
@@ -194,6 +202,8 @@ func _input(event):
 		paste_notes()
 	if event.is_action_pressed("delete"):
 		delete_notes()
+	if event.is_action_pressed("select_all"):
+		select_all()
 
 func _notification(what):
 	match what:
@@ -470,6 +480,7 @@ func import_fnf_chart(file_path):
 	
 
 func _on_Import_Button_pressed():
+	$"Chart Import Dialouge".window_title = "Open A Chart File"
 	$"Chart Import Dialouge".popup()
 #	import_chart("res://assets/weeks/zappity/zappity/testchart7_13_2021_2-5-6.txt", "boyfriend_notes", "zappity_notes")
 
@@ -581,7 +592,7 @@ func _on_AutoSave_toggled(button_pressed):
 
 func _on_AutoSaveLineEdit_text_entered(new_text):
 	autosave_time = float(new_text)
-	$AutoSaveTimer.wait_time = 60.0*autosave_time
+	$AutoSaveTimer.wait_time = min(60.0*autosave_time,5.0)
 
 
 func _on_PlaybackOffsetLineEdit_text_entered(new_text):
@@ -708,4 +719,36 @@ func _on_Center_Track_input_event(viewport, event, shape_idx):
 
 func _on_Exit_Button_pressed():
 	get_tree().change_scene("res://assets/scenes/Menu Screens.tscn")
+	pass # Replace with function body.
+
+
+func _on_Help_Button_pressed():
+	$HelpDialog.popup()
+	pass # Replace with function body.
+
+
+func _on_AutoSaveTimer_timeout():
+	simple_export_fnf_chart("res://assets/weeks/zappity/zappity/", "fnftestchart_", true)
+	pass # Replace with function body.
+
+
+func _on_ControlsButton_pressed():
+	$ControlsDialog.popup()
+	pass # Replace with function body.
+
+
+func _on_TechnicalHoopsButton_pressed():
+	$TechnicalHoopsDialog.popup()
+	pass # Replace with function body.
+
+
+func _on_AcceptDialog_popup_hide():
+	$"Chart Import Dialouge".window_title = "Open A Chart File To Begin"
+	$"Chart Import Dialouge".popup()
+	get_tree().paused = true
+	pass # Replace with function body.
+
+
+func _on_Chart_Import_Dialouge_popup_hide():
+	get_tree().paused = false
 	pass # Replace with function body.

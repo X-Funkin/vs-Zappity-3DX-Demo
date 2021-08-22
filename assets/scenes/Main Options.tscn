@@ -14,9 +14,10 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 130.206
-margin_top = 284.811
-margin_right = 704.206
-margin_bottom = 752.811
+margin_top = 161.803
+margin_right = 1378.21
+margin_bottom = 737.803
+grow_vertical = 2
 rect_scale = Vector2( 1.4, 1.4 )
 custom_constants/separation = 99
 __meta__ = {
@@ -40,10 +41,10 @@ __meta__ = {
 
 [node name="FNF Text5" parent="VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 169.0
-margin_right = 454.0
+margin_right = 409.0
 margin_bottom = 238.0
-rect_min_size = Vector2( 454, 69 )
-text = "controlls"
+rect_min_size = Vector2( 409, 69 )
+text = "controls"
 
 [node name="Controls Options Button" type="Button" parent="VBoxContainer/FNF Text5"]
 anchor_right = 1.0
@@ -54,10 +55,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FNF Text4" parent="VBoxContainer" instance=ExtResource( 2 )]
+[node name="FNF Text6" parent="VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 337.0
-margin_right = 1248.0
+margin_right = 1182.0
 margin_bottom = 407.0
+rect_min_size = Vector2( 1182, 70 )
+text = "photosensitivE MODE OFF"
+
+[node name="Photosensitive Button" type="Button" parent="VBoxContainer/FNF Text6"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+toggle_mode = true
+flat = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FNF Text4" parent="VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 506.0
+margin_right = 1248.0
+margin_bottom = 576.0
 rect_min_size = Vector2( 1248, 70 )
 text = "CHART EDITOR SUPER ALPHA"
 
@@ -106,4 +124,5 @@ __meta__ = {
 
 [connection signal="pressed" from="VBoxContainer/FNF Text/Gameplay Options Button" to="." method="_on_Gameplay_Options_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/FNF Text5/Controls Options Button" to="." method="_on_Controls_Options_Button_pressed"]
+[connection signal="toggled" from="VBoxContainer/FNF Text6/Photosensitive Button" to="." method="_on_Photosensitive_Button_toggled"]
 [connection signal="pressed" from="VBoxContainer/FNF Text4/Chart Editor Button" to="." method="_on_Chart_Editor_Button_pressed"]

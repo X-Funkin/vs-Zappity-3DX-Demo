@@ -6,7 +6,7 @@ extends Node
 # var b = "text"
 
 var data = {"settings":{},"default_settings":{},
-"controls":{"note_left":[68],"note_down":[70],"note_up":[74],"note_right":[75]}, "volume":100}
+"controls":{"note_left":[68],"note_down":[70],"note_up":[74],"note_right":[75]}, "volume":100, "photosensitivity":0}
 #var settings = {}
 #var default_settings = {}
 

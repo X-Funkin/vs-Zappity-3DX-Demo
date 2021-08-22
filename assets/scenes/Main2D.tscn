@@ -12,6 +12,8 @@
 
 [node name="Main2D" type="Node2D" groups=[
 "Count Down Recievers",
+"Enemy Hit Recievers",
+"Player Hit Recievers",
 "Song Time Recievers",
 ]]
 script = ExtResource( 7 )

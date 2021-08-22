@@ -1092,9 +1092,12 @@ __meta__ = {
 }
 
 [node name="Chart Import Dialouge" type="FileDialog" parent="."]
+pause_mode = 2
+visible = true
 margin_right = 484.0
 margin_bottom = 453.0
-window_title = "Open a File"
+popup_exclusive = true
+window_title = "Open A Chart File to Begin"
 resizable = true
 mode = 0
 access = 2
@@ -1280,6 +1283,16 @@ margin_bottom = 20.0
 hide_on_item_selection = false
 hide_on_checkable_item_selection = false
 
+[node name="Help Button" type="Button" parent="."]
+margin_left = 803.341
+margin_top = 845.218
+margin_right = 920.341
+margin_bottom = 865.218
+text = "Help"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Options Button" type="Button" parent="."]
 margin_left = 803.341
 margin_top = 872.936
@@ -1323,7 +1336,6 @@ __meta__ = {
 }
 
 [node name="Settings Popup" type="WindowDialog" parent="."]
-visible = true
 margin_left = 83.0
 margin_top = 106.0
 margin_right = 346.0
@@ -1602,6 +1614,103 @@ color = Color( 1, 1, 1, 1 )
 [node name="AutoSaveTimer" type="Timer" parent="."]
 wait_time = 600.0
 
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+margin_left = -161.817
+margin_top = 254.712
+margin_right = 140.183
+margin_bottom = 567.712
+window_title = "NOTICE"
+resizable = true
+dialog_text = "NOTICE: This Chart Editor likely DOES NOT WORK as it is a Super Alpha, not even a proper alpha, and requires some technical hoops to jump through before it works
+
+This is the first version, later versions will have these technical hoops fixed as well as being more stable
+
+If you downloaded this from anywhere except GitHub, then you're playing on the \"Exported\" Zappity Mod, which i haven't tested yet and doubt works right
+
+Also, you NEED to import a chart first otherwise your chart WILL NOT BE SAVED"
+dialog_autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ControlsDialog" type="AcceptDialog" parent="."]
+margin_right = 299.0
+margin_bottom = 58.0
+window_title = "Controls"
+resizable = true
+dialog_text = "CONTROLS: 
+>Left Click note track to place note
+>Right Click a note to delete it
+>Shift+Left Click a note track to make the above note a hold note
+>Shift+Right Click a hold note to make it a normal note
+>Left Click + Mouse Drag the center waveform to move up and down
+>Shift+Left Click + Mouse Drag the center waveform to zoom in and out
+>Ctrl+Mouse Drag a waveform to scrub audio
+>Right Click the center waveform to start a selection
+>Shift+Right Click the center waveform to end a selection
+>Ctrl+A to select all
+>Ctrl+C to copy notes in selection from the track your mouse is over
+>Ctrl+V to paste notes
+>THERE IS NO UNDO YET
+>Ctrl+S to save chart
+>Del to delete selected notes
+>THERE IS NO UNDO YET
+>THERE IS NO UNDO YET"
+dialog_autowrap = true
+
+[node name="TechnicalHoopsDialog" type="AcceptDialog" parent="."]
+margin_right = 299.0
+margin_bottom = 58.0
+window_title = "Technical Hoops"
+resizable = true
+dialog_text = "REMEMBER: YOU ARE USING THE SUPER ALPHA, THIS WILL BE FIXED IN THE FUTURE
+
+The real biggest technical hoop is getting audio to import properly
+
+HOW TO:
+>Put your .wav files in the game's directory
+>Double Click \"project.godot\" in the game's directory
+>Open it with the Zappity Demo .exe file
+
+You are now in the game's editor, where the audio should import
+
+To check, find the .wav files in the editor's filesystem panel (should be in the bottom left) and double click it
+If the \"Inspector\" panel on the right updates with info about the file, then congratulations you can now use the audio in the editor!"
+dialog_autowrap = true
+
+[node name="HelpDialog" type="AcceptDialog" parent="."]
+margin_right = 189.0
+margin_bottom = 165.0
+window_title = "Help"
+resizable = true
+
+[node name="Control" type="Control" parent="HelpDialog"]
+anchor_left = 0.1
+anchor_top = 0.044
+anchor_right = 0.9
+anchor_bottom = 0.788
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HelpDialog/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ControlsButton" type="Button" parent="HelpDialog/Control/VBoxContainer"]
+margin_right = 159.0
+margin_bottom = 20.0
+text = "Controls"
+
+[node name="TechnicalHoopsButton" type="Button" parent="HelpDialog/Control/VBoxContainer"]
+margin_top = 24.0
+margin_right = 159.0
+margin_bottom = 44.0
+text = "Weird Technical Hoops"
+
 [connection signal="zoom_updated" from="Song Chart Transform" to="." method="_on_Song_Chart_Transform_zoom_updated"]
 [connection signal="timeout" from="Character/Pose Timer" to="Character" method="_on_Pose_Timer_timeout"]
 [connection signal="pressed" from="Character/Load Character" to="Character" method="_on_Load_Character_pressed"]
@@ -1658,6 +1767,7 @@ wait_time = 600.0
 [connection signal="file_selected" from="Instrumentals File Dialog" to="." method="_on_Instrumentals_File_Dialog_file_selected"]
 [connection signal="file_selected" from="Player Vocals File Dialog" to="." method="_on_Player_Vocals_File_Dialog_file_selected"]
 [connection signal="file_selected" from="Chart Import Dialouge" to="." method="_on_Chart_Import_Dialouge_file_selected"]
+[connection signal="popup_hide" from="Chart Import Dialouge" to="." method="_on_Chart_Import_Dialouge_popup_hide"]
 [connection signal="text_entered" from="BPM/BPM" to="." method="_on_LineEdit_text_entered"]
 [connection signal="text_entered" from="BPM/Snap Offset" to="." method="_on_Snap_Offset_text_entered"]
 [connection signal="toggled" from="BPM/CheckBox" to="." method="_on_CheckBox_toggled"]
@@ -1671,6 +1781,7 @@ wait_time = 600.0
 [connection signal="value_changed" from="Player Vocals Volume" to="." method="_on_Player_Vocals_Volume_value_changed"]
 [connection signal="value_changed" from="Instrumentals Volume" to="." method="_on_Instrumentals_Volume_value_changed"]
 [connection signal="value_changed" from="Enemy Vocals Volume" to="." method="_on_Enemy_Vocals_Volume_value_changed"]
+[connection signal="pressed" from="Help Button" to="." method="_on_Help_Button_pressed"]
 [connection signal="pressed" from="Options Button" to="." method="_on_Options_Button_pressed"]
 [connection signal="pressed" from="Exit Button" to="." method="_on_Exit_Button_pressed"]
 [connection signal="toggled" from="Settings Popup/VBoxContainer/SnappingPlayback" to="." method="_on_SnappingPlayback_toggled"]
@@ -1687,3 +1798,7 @@ wait_time = 600.0
 [connection signal="color_changed" from="Settings Popup/VBoxContainer/Enemy Vocals Color/EnemyVocalsColorPicker" to="." method="_on_EnemyVocalsColorPicker_color_changed"]
 [connection signal="color_changed" from="Settings Popup/VBoxContainer/Instrumentals Color/InstrumentalsColorPicker" to="." method="_on_InstrumentalsColorPicker_color_changed"]
 [connection signal="color_changed" from="Settings Popup/VBoxContainer/Player Vocals Color/PlayerVocalsColorPicker" to="." method="_on_PlayerVocalsColorPicker_color_changed"]
+[connection signal="timeout" from="AutoSaveTimer" to="." method="_on_AutoSaveTimer_timeout"]
+[connection signal="popup_hide" from="AcceptDialog" to="." method="_on_AcceptDialog_popup_hide"]
+[connection signal="pressed" from="HelpDialog/Control/VBoxContainer/ControlsButton" to="." method="_on_ControlsButton_pressed"]
+[connection signal="pressed" from="HelpDialog/Control/VBoxContainer/TechnicalHoopsButton" to="." method="_on_TechnicalHoopsButton_pressed"]
