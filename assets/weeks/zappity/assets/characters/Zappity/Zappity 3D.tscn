@@ -25,6 +25,11 @@ animations = [ {
 "name": "Default",
 "speed": 24.0
 }, {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "Right",
+"speed": 24.0
+}, {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "Idle",
@@ -35,19 +40,14 @@ animations = [ {
 "name": "Left",
 "speed": 24.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": false,
-"name": "Right",
+"name": "Down",
 "speed": 24.0
 }, {
 "frames": [ ExtResource( 10 ) ],
 "loop": false,
 "name": "Up",
-"speed": 24.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": false,
-"name": "Down",
 "speed": 24.0
 } ]
 
@@ -142,7 +142,7 @@ shader = SubResource( 8 )
 shader_param/Metallic = 0.0
 shader_param/Roughness = null
 shader_param/Specular = 0.0
-shader_param/Sprite_Texture = ExtResource( 3 )
+shader_param/Sprite_Texture = ExtResource( 6 )
 
 [sub_resource type="QuadMesh" id=10]
 
@@ -387,12 +387,12 @@ sprite_mesh = NodePath("CSGMesh")
 visible = false
 position = Vector2( 682.294, 500.067 )
 frames = SubResource( 1 )
-animation = "Right"
+animation = "Default"
 speed_scale = 0.5
 playing = true
 
 [node name="CSGMesh" type="CSGMesh" parent="."]
-transform = Transform( 7.11, 0, 0, 0, 8.3, 0, 0, 0, 0.986701, 0, 4.15, 0 )
+transform = Transform( 4.41, 0, 0, 0, 8, 0, 0, 0, 0.986701, 0, 4, 0 )
 mesh = SubResource( 2 )
 material = SubResource( 9 )
 

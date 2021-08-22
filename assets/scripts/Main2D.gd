@@ -42,15 +42,28 @@ func color_arrow_box(arrow_box, note_type):
 		3:
 			arrow_box.boarder_color = Color(1,0,0)
 
+func color_window_text(window, note_type):
+	match note_type:
+		0:
+			window.text_color = Color(1,0,1)
+		1:
+			window.text_color = Color(0,1,1)
+		2:
+			window.text_color = Color(0,1,0)
+		3:
+			window.text_color = Color(1,0,0)
+
 func recieve_enemy_hit(note, hit_error):
 	var arrow_box = $"Zappity Arrow Box"
 	if GameData.data.photosensitivity == 0:
 		color_arrow_box(arrow_box, note.note_type)
+		color_window_text(arrow_box, note.note_type)
 
 func recieve_player_hit(note, hit_error):
 	var arrow_box = $"Player Arrow Box"
 	if GameData.data.photosensitivity == 0:
 		color_arrow_box(arrow_box, note.note_type)
+		color_window_text(arrow_box, note.note_type)
 
 
 func _on_Timer_timeout():

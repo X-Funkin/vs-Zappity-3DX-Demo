@@ -7,7 +7,8 @@ class_name OS_Box
 # var b = "text"
 export(bool) var window_open = false setget set_window_open
 export(String) var window_name setget set_name, get_name
-export(Color) var boarder_color setget set_boarder_color
+export(Color) var boarder_color = Color(1,1,1) setget set_boarder_color
+export(Color) var text_color = Color(1,1,1) setget set_text_color
 export(int) onready var width setget set_w, get_w
 export(int) onready var height setget set_h, get_h
 export(int) var display_width setget set_display_w, get_display_w
@@ -35,6 +36,11 @@ func set_boarder_color(n_color):
 	boarder_color = n_color
 	if not is_inside_tree(): yield(self, "ready")
 	$"OS Box Borders".modulate = n_color
+
+func set_text_color(n_color):
+	text_color = n_color
+	if not is_inside_tree(): yield(self, "ready")
+	$Control/Label.modulate = text_color
 
 func get_name():
 	return window_name
