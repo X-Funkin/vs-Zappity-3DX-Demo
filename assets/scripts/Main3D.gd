@@ -8,6 +8,9 @@ export(String, FILE) var hard_chart
 export(float) var bpm = 120.0
 export(NodePath) var player_track
 export(NodePath) var enemy_track
+export(float, EXP, -80.0,10.0) var player_volume_db = 0.0
+export(float, EXP, -80.0,10.0) var instrumentals_volume_db = 0.0
+export(float, EXP, -80.0,10.0) var enemy_volume_db = 0.0
 export(NodePath) var player_vocals
 export(NodePath) var instrumentals
 export(NodePath) var enemy_vocals
@@ -20,6 +23,21 @@ var chart_file = ""
 var player_combo = 0
 
 
+func set_player_volume_db(n_volume):
+	player_volume_db = n_volume
+	if not is_inside_tree(): yield(self, "ready")
+	get_node(player_vocals).volume_db = n_volume
+
+func set_instrumentals_volume_db(n_volume):
+	instrumentals_volume_db = n_volume
+	if not is_inside_tree(): yield(self, "ready")
+	get_node(instrumentals).volume_db = n_volume
+
+func set_enemy_volume_db(n_volume):
+	enemy_volume_db = n_volume
+	if not is_inside_tree(): yield(self, "ready")
+	get_node(enemy_vocals).volume_db = n_volume
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -29,6 +47,9 @@ var player_combo = 0
 func _ready():
 	get_tree().call_group("Note Track", "load_chart")
 	$"Audio Tracks".start()
+	self.player_volume_db = player_volume_db
+	self.instrumentals_volume_db = instrumentals_volume_db
+	self.enemy_volume_db = enemy_volume_db
 	pass # Replace with function body.
 
 
@@ -244,7 +265,7 @@ func change_floor_second_color(note_type):
 
 
 func recieve_player_hit(note : Note, hit_error):
-	get_node(player_vocals).volume_db = -6.0
+	get_node(player_vocals).volume_db = player_volume_db
 	if GameData.data.photosensitivity == 0:
 		change_floor_second_color(note.note_type)
 
@@ -255,7 +276,7 @@ func recieve_player_miss(note_type):
 	get_tree().call_group("Player Hit Recievers", "recieve_player_combo", player_combo)
 
 func recieve_enemy_hit(note : Note, hit_error):
-	get_node(enemy_vocals).volume_db = 0.0
+	get_node(enemy_vocals).volume_db = enemy_volume_db
 	if GameData.data.photosensitivity == 0:
 		change_floor_first_color(note.note_type)
 

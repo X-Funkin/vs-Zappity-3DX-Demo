@@ -19,13 +19,13 @@ func dir_contents(path, return_full_path = true):
 		var file_name = dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
-				print("Found directory: " + file_name)
+#				print("Found directory: " + file_name)
 				if return_full_path:
 					contents["Folders"].append(path+file_name+"/")
 				else:
 					contents["Folders"].append(file_name)
 			else:
-				print("Found file: " + file_name)
+#				print("Found file: " + file_name)
 				if return_full_path:
 					contents["Files"].append(path+file_name)
 				else:
@@ -37,7 +37,7 @@ func dir_contents(path, return_full_path = true):
 
 func get_all_week_data():
 	var weeks_data = []
-	print(dir_contents("res://assets/weeks/"))
+	#print(dir_contents("res://assets/weeks/"))
 	var weeks_folder_contents = dir_contents("res://assets/weeks/")
 	for folder in weeks_folder_contents["Folders"]:
 		var week_contents = dir_contents(folder, false)
@@ -46,8 +46,8 @@ func get_all_week_data():
 				var data_file = File.new()
 				data_file.open(folder+file, File.READ)
 				var week_data = JSON.parse(data_file.get_as_text()).result
-				print("WEEEK DATAAAA")
-				print(week_data)
+#				print("WEEEK DATAAAA")
+#				print(week_data)
 				weeks_data.append(week_data)
 	return weeks_data
 	pass
@@ -60,10 +60,11 @@ func add_week_buttons():
 	for week_data in all_week_data:
 		print("trying to load ", week_data["week_menu_image"])
 		var week_button_inst : TextureButton = week_button.instance()
-		var button_image = Image.new()
-		button_image.load(week_data["week_menu_image"])
-		var button_texture = ImageTexture.new()
-		button_texture.create_from_image(button_image)
+#		var button_image = Image.new()
+#		button_image.load(week_data["week_menu_image"])
+#		var button_texture = ImageTexture.new()
+#		button_texture.create_from_image(button_image)
+		var button_texture = load(week_data["week_menu_image"])
 		$Test_Sprite.texture = button_texture
 		week_button_inst.texture_disabled = button_texture
 		week_button_inst.texture_focused = button_texture

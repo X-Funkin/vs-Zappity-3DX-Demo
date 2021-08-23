@@ -275,6 +275,16 @@ enemy_icon = ExtResource( 4 )
 enemy_winning_icon = ExtResource( 4 )
 health_icons_scale = 1.0
 
+[node name="Icon Sprite Position" parent="Camera/Screen Elements/Health Bar" index="1"]
+scale = Vector2( 1, 1 )
+
+[node name="Player Health Icon" parent="Camera/Screen Elements/Health Bar/Icon Sprite Position" index="0"]
+texture = ExtResource( 39 )
+
+[node name="Enemy Health Icon" parent="Camera/Screen Elements/Health Bar/Icon Sprite Position" index="1"]
+modulate = Color( 2.3, 2.3, 2.3, 1 )
+texture = ExtResource( 4 )
+
 [node name="Judgment Particles" parent="Camera/Screen Elements" groups=[
 "Player Hit Recievers",
 "Player Input Recievers",
@@ -416,3 +426,5 @@ stream = ExtResource( 27 )
 stream = ExtResource( 19 )
 
 [connection signal="timeout" from="Sounds/Music/Instrumentals/Count Down Timer" to="Sounds/Music/Instrumentals" method="_on_Count_Down_Timer_timeout"]
+
+[editable path="Camera/Screen Elements/Health Bar"]
